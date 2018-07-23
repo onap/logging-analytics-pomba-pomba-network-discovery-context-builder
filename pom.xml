@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.onap.pomba.network-discovery-context-builder</groupId>
+  <artifactId>network-discovery-context-builder</artifactId>
+  <version>1.3.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>org.onap.oparent</groupId>
+    <artifactId>oparent</artifactId>
+    <version>1.1.0</version>
+  </parent>
+
+  <properties>
+    <swagger.directory>${basedir}/target/classes/META-INF/resources/swagger</swagger.directory>
+    <icd.package>org.onap.pomba.ms.service.rs</icd.package>
+    <java.version>1.8</java.version>
+    <build.number>local</build.number>
+    <kube.namespace>org-onap-pomba-ms</kube.namespace>
+    <namespace>org.onap.pomba.ms</namespace>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <sdk.java.rest>6.2.0.4-oss</sdk.java.rest>
+    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+    <sonar.surefire.reportsPath>${basedir}/target/surefire-reports</sonar.surefire.reportsPath>
+    <sonar.failsafe.reportsPath>${basedir}/target/failsafe-reports</sonar.failsafe.reportsPath>
+    <jacoco.path>${basedir}/target/jacoco_report</jacoco.path>
+    <jacoco.itPath>${basedir}/target/jacoco_itReport</jacoco.itPath>
+    <sonar.jacoco.reportPath>${basedir}/target/jacoco-ut.exec</sonar.jacoco.reportPath>
+    <sonar.jacoco.itReportPath>${basedir}/target/jacoco-it.exec</sonar.jacoco.itReportPath>
+    <sonar.language>java</sonar.language>
+    <serviceArtifactName>network-discovery-context-builder</serviceArtifactName>
+  </properties>
+  <!-- Used during verify stage in Jenkins -->
+  <profiles>
+    <profile>
+      <id>all-tests</id>
+      <properties>
+        <build.profile.id>all-tests</build.profile.id>
+
+        <!-- All tests are run. -->
+        <skip.integration.tests>false</skip.integration.tests>
+        <skip.unit.tests>false</skip.unit.tests>
+      </properties>
+    </profile>
+    <profile>
+      <id>dev</id>
+    </profile>
+    <profile>
+      <id>integration-test</id>
+      <properties>
+        <!-- Only integration tests are run. -->
+        <build.profile.id>integration-test</build.profile.id>
+        <skip.integration.tests>false</skip.integration.tests>
+        <skip.unit.tests>true</skip.unit.tests>
+      </properties>
+    </profile>
+  </profiles>
+
+  <dependencyManagement>
+      <dependencies>
+          <dependency>
+              <!-- Import dependency management from Spring Boot -->
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-dependencies</artifactId>
+              <version>1.5.12.RELEASE</version>
+              <type>pom</type>
+              <scope>import</scope>
+          </dependency>
+      </dependencies>
+  </dependencyManagement>
+
+  <developers>
+  </developers>
+
+  <dependencies>
+    <dependency>
+      <groupId>au.com.dius</groupId>
+      <artifactId>pact-jvm-consumer-junit_2.11</artifactId>
+      <version>3.3.9</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-all</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>au.com.dius</groupId>
+      <artifactId>pact-jvm-provider-junit_2.11</artifactId>
+      <version>3.3.9</version>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-core</artifactId>
+      <version>1.5.9</version>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.5.9</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.core</groupId>
+      <artifactId>jersey-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jersey.core</groupId>
+      <artifactId>jersey-common</artifactId>
+    </dependency>
+    <!--  Springframework Dependencies -->
+    <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jetty</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jersey</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <!-- csi-logging-dependencies goes here -->
+    <!-- csi-logging-dependency-addon -->
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openecomp.aai.logging-service</groupId>
+      <artifactId>common-logging</artifactId>
+      <version>1.1.0-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.onap.pomba.pomba-audit-common</groupId>
+      <artifactId>pomba-audit-common</artifactId>
+      <version>1.0.2-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.onap.aai</groupId>
+      <artifactId>rest-client</artifactId>
+      <version>1.3.0</version>
+    </dependency>
+
+        <!-- test dependencies -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+    <exclusion>
+      <groupId>com.vaadin.external.google</groupId>
+      <artifactId>android-json</artifactId>
+    </exclusion>
+    </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.10.19</version>
+      <type>jar</type>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>network-discovery-context-builder</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <executions>
+          <!-- Prepares the property pointing to the JaCoCo runtime agent which
+            is passed as VM argument when Maven the Surefire plugin is executed. -->
+          <execution>
+            <id>pre-unit-test</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the path to the file which contains the execution data. -->
+              <destFile>${sonar.jacoco.reportPath}</destFile>
+              <propertyName>surefireArgLine</propertyName>
+            </configuration>
+          </execution>
+          <!-- Ensures that the code coverage report for unit tests is created
+            after unit tests have been run. -->
+          <execution>
+            <id>post-unit-test</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the path to the file which contains the execution data. -->
+              <dataFile>${sonar.jacoco.reportPath}</dataFile>
+              <!-- Sets the output directory for the code coverage report. -->
+              <outputDirectory>${jacoco.path}</outputDirectory>
+            </configuration>
+          </execution>
+          <!-- Prepares the property pointing to the JaCoCo runtime agent which
+            is passed as VM argument when Maven the Failsafe plugin is executed. -->
+          <execution>
+            <id>pre-integration-test</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the path to the file which contains the execution data. -->
+              <destFile>${sonar.jacoco.itReportPath}</destFile>
+              <!-- Sets the name of the property containing the settings for JaCoCo
+                runtime agent. -->
+              <propertyName>failsafeArgLine</propertyName>
+            </configuration>
+          </execution>
+          <!-- Ensures that the code coverage report for integration tests after
+            integration tests have been run. -->
+          <execution>
+            <id>post-integration-test</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the path to the file which contains the execution data. -->
+              <dataFile>${sonar.jacoco.itReportPath}/</dataFile>
+              <!-- Sets the output directory for the code coverage report. -->
+              <outputDirectory>${jacoco.itPath}</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Used for unit tests -->
+        <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <environmentVariables>
+            <system_properties_path>opt/config/system.properties</system_properties_path>
+          </environmentVariables>
+          <!-- Sets the VM argument line used when unit tests are run. -->
+          <argLine>${surefireArgLine}</argLine>
+
+          <!-- Skips unit tests if the value of skip.unit.tests property is true -->
+          <skipTests>${skip.unit.tests}</skipTests>
+          <!-- Excludes integration tests when unit tests are run. -->
+          <excludes>
+
+            <exclude>**/IT*.java</exclude>
+
+          </excludes>
+        </configuration>
+      </plugin>
+
+      <!-- Used for integration tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <executions>
+          <!-- Ensures that both integration-test and verify goals of the Failsafe
+            Maven plugin are executed. -->
+          <execution>
+            <id>integration-tests</id>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the VM argument line used when integration tests are run. -->
+              <argLine>${failsafeArgLine}</argLine>
+
+              <!-- Skips integration tests if the value of skip.integration.tests
+                property is true -->
+              <skipTests>${skip.integration.tests}</skipTests>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>au.com.dius</groupId>
+        <artifactId>pact-jvm-provider-maven_2.11</artifactId>
+        <version>3.3.9</version>
+        <configuration>
+          <!--pactBrokerUrl,user name,password and project version required only
+            for consumer -->
+          <pactBrokerUrl>${BROKER_URL}</pactBrokerUrl>
+          <pactBrokerUsername>${userName}</pactBrokerUsername>
+          <pactBrokerPassword>${password}</pactBrokerPassword>
+          <projectVersion>0.0.1</projectVersion>
+          <!-- service provider required only for producer -->
+          <serviceProviders>
+            <serviceProvider>
+              <name>network-discovery-context-builder</name>
+              <protocol>http</protocol>
+              <host>${APP_URL}</host>
+              <port>${APP_PORT}</port>
+              <path>/</path>
+              <pactBroker>
+                <url>${BROKER_URL}</url>
+                <authentication>
+                  <username>${userName}</username>
+                  <password>${password}</password>
+                </authentication>
+              </pactBroker>
+              <!-- If you want to test specific PACT and specific port uncomment
+                the consumers section and comment the pact broker in the service provider -->
+              <!-- <consumers> <consumer> <name>ajscpactconsumer</name> <pactUrl>${brokerUrl}/pacts/provider/ajscpactdemo/consumer/ajscpactdemo/latest</pactUrl>
+                <pactUrl>${brokerUrl}/pacts/provider/ajscpactdemo/consumer/ajscpactconsumer2/version/0.0.1</pactUrl>
+                </consumer> </consumers> -->
+            </serviceProvider>
+          </serviceProviders>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.github.kongchen</groupId>
+        <artifactId>swagger-maven-plugin</artifactId>
+        <version>3.1.3</version>
+        <configuration>
+          <apiSources>
+            <apiSource>
+              <locations>org.onap.pomba.ms.service.rs</locations>
+              <basePath>/network-discovery</basePath>
+              <info>
+                <title>${project.artifactId} Service</title>
+                <version>${project.version}</version>
+              </info>
+              <swaggerDirectory>${swagger.directory}</swaggerDirectory>
+            </apiSource>
+          </apiSources>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>exec-maven-plugin</artifactId>
+        <groupId>org.codehaus.mojo</groupId>
+        <version>1.6.0</version>
+      </plugin>
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.4.11</version>
+        <configuration>
+          <imageName>${docker.registry}/org.onap.pomba.ms/${serviceArtifactName}</imageName>
+          <dockerDirectory>src/main/docker</dockerDirectory>
+          <serverId>docker-hub</serverId>
+          <registryUrl>https://${docker.registry}</registryUrl>
+          <imageTags>
+            <imageTag>${project.version}</imageTag>
+            <imageTag>latest</imageTag>
+          </imageTags>
+          <forceTags>true</forceTags>
+          <resources>
+            <resource>
+              <targetPath>/</targetPath>
+              <directory>${project.build.directory}</directory>
+              <include>${project.build.finalName}.jar</include>
+            </resource>
+            <resource>
+              <targetPath>/</targetPath>
+              <directory>${project.build.directory}</directory>
+              <include>opt/config/*</include>
+            </resource>
+            <resource>
+              <targetPath>/</targetPath>
+              <directory>${project.build.directory}</directory>
+              <include>prometheus-javaagent.jar</include>
+            </resource>
+            <!-- csi-logging-resources-goes here -->
+            <!-- csi-logging-resources-addon -->
+          </resources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>2.0.3.RELEASE</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <!-- mention the logback.xml location through system property or environment
+      variable to edit logback.xml at run time -->
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>opt/config</directory>
+        <targetPath>../opt/config</targetPath>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+      <!-- csi-logging-target-resources-goes here -->
+      <!-- csi-logging-target-resources-addon -->
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>opt/config</directory>
+        <filtering>false</filtering>
+      </testResource>
+    </testResources>
+  </build>
+</project>
