@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da7095c5_a7cce936",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/common/LogMessages.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-07-25T00:46:57Z",
+      "side": 1,
+      "message": "tabs should \u003d 4 spaces",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
