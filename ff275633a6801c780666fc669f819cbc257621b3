@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_b303c572",
+        "filename": "opt/config/logback.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-26T19:30:02Z",
+      "side": 1,
+      "message": "Replaceing this with:\nhttps://git.onap.org/logging-analytics/tree/reference/logging-slf4j/src/test/resources/logback.xml",
+      "parentUuid": "da7095c5_27d8d9ee",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_c7e47dae",
         "filename": "opt/config/system.properties",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_50201f49",
+        "filename": "opt/config/system.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-26T19:30:02Z",
+      "side": 1,
+      "message": "Purging this file",
+      "parentUuid": "da7095c5_c7e47dae",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_07db55ee",
         "filename": "pom.xml",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2018-07-25T00:52:06Z",
       "side": 1,
       "message": "oparent 1.1.1",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_101aa717",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-26T19:30:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_07db55ee",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -76,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_13c4f13e",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-26T19:30:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_db1c556d",
+      "range": {
+        "startLine": 166,
+        "startChar": 6,
+        "endLine": 166,
+        "endChar": 39
+      },
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_a7cce936",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/common/LogMessages.java",
         "patchSetId": 1
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_90ab1789",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/common/LogMessages.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-26T19:30:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_a7cce936",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_e7e1819b",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/util/RestUtil.java",
         "patchSetId": 1
@@ -104,6 +200,24 @@
       "writtenOn": "2018-07-25T00:52:06Z",
       "side": 1,
       "message": "this comment block will kick in sonar violations later",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_f0d85355",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/util/RestUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-26T19:30:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_e7e1819b",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
