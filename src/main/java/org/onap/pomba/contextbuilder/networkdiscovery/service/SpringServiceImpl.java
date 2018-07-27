@@ -19,12 +19,23 @@ package org.onap.pomba.contextbuilder.networkdiscovery.service;
 
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.ReentrantLock;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.onap.pomba.common.datatypes.ModelContext;
@@ -33,13 +44,15 @@ import org.onap.pomba.common.datatypes.VF;
 import org.onap.pomba.common.datatypes.VFModule;
 import org.onap.pomba.common.datatypes.VNFC;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
+import org.onap.pomba.contextbuilder.networkdiscovery.model.NetworkDiscoveryRspInfo;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.rs.RestService;
 import org.onap.pomba.contextbuilder.networkdiscovery.util.RestUtil;
+import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
+import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 @org.springframework.stereotype.Service
 public class SpringServiceImpl implements SpringService {
@@ -57,6 +70,17 @@ public class SpringServiceImpl implements SpringService {
     public static String MDC_STATUS_CODE = "StatusCode";
     public static String MDC_RESPONSE_CODE = "ResponseCode";
     public static String MDC_INSTANCE_UUID = "InstanceUUID";
+    public static String MDC_NUM_MSG_TO_NETWORK_DISCOVERY = "NumOfMsg_To_NetworkDiscovery";
+    public static String NETWORK_DISCOVERY_RSP_STATE_REQUEST_SENT = "RequestSent";
+    public static String NETWORK_DISCOVERY_RSP_STATE_RSP_ALL_RECEIVED = "AllRspReceived";
+    public static String NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER = "___";
+    public static String NETWORK_DISCOVERY_CTX_BUILDER_NETWORK_DISCOVERY_NOTIFICATION_PATH = "/network-discovery/service/networkDiscoveryNotification";
+    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_PARTNER_NAME = "X-ONAP-PartnerName";
+    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID = "X-ONAP-RequestID";
+    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_REQUEST_ID = "requestId";
+    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_TYPE = "resourceType";
+    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_ID = "resourceId";
+    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_NOTIFICATION_URL = "notificationURL";
 
     private static final String ENTITY_GENERIC_VNFS = "generic-vnfs";
     private static final String ENTITY_L3_NETWORK = "l3-network";
@@ -76,9 +100,14 @@ public class SpringServiceImpl implements SpringService {
     private static final String ENTITY_VSERVER_ID = "vserver-id";
 
     private static UUID instanceUUID = UUID.randomUUID();
+    private static Map<String, NetworkDiscoveryRspInfo> networkDiscoveryInfoList = new HashMap<>();
+    private static final AtomicLong uniqueSeq = new AtomicLong();
 
     @Autowired
     private String serviceDecompositionBaseUrl;
+
+    @Autowired
+    private String networkDiscoveryMicroServiceBasicAuthorization;
 
     @Autowired
     private String networkDiscoveryCtxBuilderBasicAuthorization;
@@ -87,16 +116,22 @@ public class SpringServiceImpl implements SpringService {
     private String serviceDecompositionBasicAuthorization;
 
     @Autowired
+    private String networkDiscoveryMicroServiceBaseUrl;
+
+    @Autowired
+    private String networkDiscoveryCtxBuilderBaseUrl;
+
+    @Autowired
+    private long ndResponseTimeOutInMilliseconds;
+
+    @Autowired
     private Client jerseyClient;
 
+    private final ReentrantLock lock = new ReentrantLock();
+
     @Override
-    public ModelContext getContext(HttpServletRequest req,
-                              String partnerName,
-                              String authorization,
-                              String requestId,
-                              String serviceInstanceId,
-                              String modelVersionId,
-                              String modelInvariantId) throws DiscoveryException {
+    public ModelContext getContext(HttpServletRequest req, String partnerName, String authorization, String requestId,
+            String serviceInstanceId, String modelVersionId, String modelInvariantId) throws DiscoveryException {
 
         String remoteAddress = req.getRemoteAddr() != null ? req.getRemoteAddr() : null;
         initMDC(requestId, partnerName, serviceInstanceId, remoteAddress);
@@ -105,7 +140,30 @@ public class SpringServiceImpl implements SpringService {
             RestUtil.validateServiceInstanceId(serviceInstanceId);
             RestUtil.validatePartnerName(partnerName);
             validateBasicAuth(authorization);
-            return getServiceDeomposition(serviceInstanceId, partnerName, requestId);
+            ModelContext serviceDecompCtx = getServiceDeomposition(serviceInstanceId, partnerName, requestId);
+            CountDownLatch latchSignal = createCountDownLatch(serviceDecompCtx);
+
+            if (latchSignal == null) {
+                // Nothing to send
+                return serviceDecompCtx;
+            }
+
+            List<String> sentRequestIdList = sendNetworkDiscoveryRequest(serviceDecompCtx, serviceInstanceId,
+                    partnerName, latchSignal);
+
+            int numOfMsgSent = sentRequestIdList.size();
+            if ((numOfMsgSent > 0) && (latchSignal != null)) {
+                MDC.put(MDC_NUM_MSG_TO_NETWORK_DISCOVERY, Integer.toString(numOfMsgSent));
+                // The main task waits for four threads
+                if (false == latchSignal.await(ndResponseTimeOutInMilliseconds, TimeUnit.MILLISECONDS)) {
+                    // When it comes here, it is due to time out.
+                    log.info("Wait for Latch Signal time out " + serviceInstanceId);
+                }
+                return updateServiceDecompCtx_and_networkDiscoveryInfoList(serviceDecompCtx, sentRequestIdList);
+            } else {
+                return serviceDecompCtx;
+            }
+
         } catch (Exception x) {
             MDC.put(MDC_RESPONSE_CODE, String.valueOf(Status.INTERNAL_SERVER_ERROR.getStatusCode()));
             MDC.put(MDC_STATUS_CODE, "ERROR");
@@ -115,7 +173,6 @@ public class SpringServiceImpl implements SpringService {
             MDC.clear();
         }
     }
-
 
     private void initMDC(String requestId, String partnerName, String serviceInstanceId, String remoteAddress) {
         MDC.clear();
@@ -131,7 +188,8 @@ public class SpringServiceImpl implements SpringService {
         try {
             MDC.put(MDC_SERVER_FQDN, InetAddress.getLocalHost().getCanonicalHostName());
         } catch (Exception e) {
-            // If, for some reason we are unable to get the canonical host name, we
+            // If, for some reason we are unable to get the canonical host name,
+            // we
             // just want to leave the field null.
         }
     }
@@ -139,7 +197,8 @@ public class SpringServiceImpl implements SpringService {
     /**
      * Given a service instance ID, GET the resources from Service Decompostion.
      */
-    private ModelContext getServiceDeomposition(String serviceInstanceId, String partnerName, String requestId) throws DiscoveryException {
+    private ModelContext getServiceDeomposition(String serviceInstanceId, String partnerName, String requestId)
+            throws DiscoveryException {
         if (serviceInstanceId == null) {
             return null;
         }
@@ -149,23 +208,18 @@ public class SpringServiceImpl implements SpringService {
         String urlStr = getUrl(serviceInstanceId);
 
         try {
-            Response response =
-                    jerseyClient.target(urlStr)
-                        .request()
-                        .header("Accept", "application/json")
-                        .header("Authorization", getSdBasicAuthorization())
-                        .header("X-ONAP-PartnerName", partnerName)
-                        .header("X-ONAP-RequestID", requestId)
-                        .get();
+            Response response = jerseyClient.target(urlStr).request().header("Accept", "application/json")
+                    .header("Authorization", getSdBasicAuthorization()).header("X-ONAP-PartnerName", partnerName)
+                    .header("X-ONAP-RequestID", requestId).get();
 
             String reply = null;
             JSONObject jObject = null;
             if (response.getStatus() != 200) {
                 MDC.put(MDC_RESPONSE_CODE, String.valueOf(response.getStatus()));
                 MDC.put(MDC_STATUS_CODE, "ERROR");
-                throw new DiscoveryException(response.getStatusInfo().toString(), Response.Status.fromStatusCode(response.getStatus()));
-            }
-            else {
+                throw new DiscoveryException(response.getStatusInfo().toString(),
+                        Response.Status.fromStatusCode(response.getStatus()));
+            } else {
                 MDC.put(MDC_RESPONSE_CODE, String.valueOf(response.getStatus()));
                 MDC.put(MDC_STATUS_CODE, "COMPLETE");
                 reply = response.readEntity(String.class);
@@ -173,12 +227,12 @@ public class SpringServiceImpl implements SpringService {
                 jObject = new JSONObject(reply);
             }
             return parseServiceDecomposition(jObject);
-        }  catch (Exception x) {
+        } catch (Exception x) {
             throw new DiscoveryException(x.getMessage(), x);
         }
     }
 
-    private String getUrl (String serviceInstanceId) throws DiscoveryException {
+    private String getUrl(String serviceInstanceId) throws DiscoveryException {
         return new String(serviceDecompositionBaseUrl + "?serviceInstanceId=" + serviceInstanceId);
     }
 
@@ -209,7 +263,7 @@ public class SpringServiceImpl implements SpringService {
         // Find generic-vnfs
         if (jObject.has(ENTITY_GENERIC_VNFS)) {
             JSONArray genericVnfs = jObject.getJSONArray(ENTITY_GENERIC_VNFS);
-            for (int i = 0; i < genericVnfs.length(); i++ ) {
+            for (int i = 0; i < genericVnfs.length(); i++) {
                 VF vf = new VF();
                 JSONObject genericVnfInst = genericVnfs.getJSONObject(i);
 
@@ -250,7 +304,7 @@ public class SpringServiceImpl implements SpringService {
                 if (genericVnfInst.has(ENTITY_VSERVER)) {
                     JSONArray vservers = genericVnfInst.getJSONArray(ENTITY_VSERVER);
                     for (int j = 0; j < vservers.length(); j++) {
-                        VNFC vserver  = new VNFC();
+                        VNFC vserver = new VNFC();
                         JSONObject vserversInst = vservers.getJSONObject(j);
                         if (vserversInst.has(ENTITY_VSERVER_NAME)) {
                             vserver.setName(vserversInst.getString(ENTITY_VSERVER_NAME));
@@ -261,6 +315,8 @@ public class SpringServiceImpl implements SpringService {
                         if (vserversInst.has(ENTITY_MODEL_INVARIANT_ID)) {
                             vserver.setInvariantUuid(vserversInst.getString(ENTITY_MODEL_INVARIANT_ID));
                         }
+                        // Store vserver type to NfcNameCode
+                        vserver.setNfcNamingCode(ENTITY_VSERVER);
                         vf.addVnfc(vserver);
                     }
                 }
@@ -280,6 +336,8 @@ public class SpringServiceImpl implements SpringService {
                         if (l3NetworkInst.has(ENTITY_MODEL_INVARIANT_ID)) {
                             l3Network.setInvariantUuid(l3NetworkInst.getString(ENTITY_MODEL_INVARIANT_ID));
                         }
+                        // Store l3-network type to NfcNameCode
+                        l3Network.setNfcNamingCode(ENTITY_L3_NETWORK);
                         vf.addVnfc(l3Network);
                     }
                 }
@@ -293,17 +351,276 @@ public class SpringServiceImpl implements SpringService {
     /**
      * Validates the Basic authorization header as admin:admin.
      *
-     * @throws DiscoveryException if there is missing parameter
+     * @throws DiscoveryException
+     *             if there is missing parameter
      */
     public void validateBasicAuth(String authorization) throws DiscoveryException {
         if (authorization != null && !authorization.trim().isEmpty() && authorization.startsWith("Basic")) {
             if (!authorization.equals(networkDiscoveryCtxBuilderBasicAuthorization)) {
                 throw new DiscoveryException("Authorization Failed", Status.UNAUTHORIZED);
-            };
+            }
+            ;
         } else {
-            throw new DiscoveryException("Missing Authorization: " +(authorization==null ? "null" : authorization.toString()), Status.UNAUTHORIZED);
+            throw new DiscoveryException(
+                    "Missing Authorization: " + (authorization == null ? "null" : authorization.toString()),
+                    Status.UNAUTHORIZED);
         }
     }
 
+    @Override
+    public void networkDiscoveryNotification(NetworkDiscoveryNotification ndNotification, String authorization)
+            throws DiscoveryException {
+        log.info("networkDiscoveryNotification from POST: " + ndNotification.toString());
+        String requestId = ndNotification.getRequestId();
 
+        NetworkDiscoveryRspInfo myNetworkDiscoveryRspInfo;
+        lock.lock();
+        try {
+            myNetworkDiscoveryRspInfo = networkDiscoveryInfoList.get(requestId);
+            if (myNetworkDiscoveryRspInfo == null) {
+                // The requestId is invalid. The corresponding request may
+                // already be discarded
+                // due to time out or error exception, or the request may never
+                // exist.
+                log.error("Unknown RequestId:" + requestId
+                        + "! The corresponding request may already be discarded due to time out or error exception, or the request never exists.");
+                return;
+            }
+
+            // Update networkDiscoveryInfo
+            myNetworkDiscoveryRspInfo.getNetworkDiscoveryNotificationList().add(ndNotification);
+
+        } finally {
+            lock.unlock();
+        }
+
+        CountDownLatch latch = myNetworkDiscoveryRspInfo.getLatchSignal();
+        if (latch != null) {
+            latch.countDown();
+        }
+
+        return;
+    }
+
+    private ModelContext updateServiceDecompCtx_and_networkDiscoveryInfoList(ModelContext serviceDecompCtx,
+            List<String> sentRequestIdList) {
+        /*
+         * TO DO: We can’t add network discovery data to serviceDecompCtx
+         * because the existing “v0” context aggregator context model doesn’t
+         * support it. We will have to wait for the real “v1” context model
+         * which contains attributes, vservers and networks.
+         */
+
+        StringBuilder sbl = new StringBuilder();
+        for (String reqId : sentRequestIdList) {
+            sbl.append(" requestId:" + reqId);
+            lock.lock();
+            NetworkDiscoveryRspInfo tNdRspInfo = networkDiscoveryInfoList.get(reqId);
+
+            // ServiceDecompCtx is updated, we need to delete the existing entry
+            // in
+            // networkDiscoveryInfoList
+            networkDiscoveryInfoList.remove(reqId);
+            lock.unlock();
+
+            sbl.append(" -- Resource :" + tNdRspInfo.getResourceType());
+            sbl.append(" -- ServerId :" + tNdRspInfo.getResourceId());
+            sbl.append(" -- RelatedRequestId :" + tNdRspInfo.getRelatedRequestIdList());
+            List<NetworkDiscoveryNotification> nList = tNdRspInfo.getNetworkDiscoveryNotificationList();
+            if (nList.size() > 0) {
+                for (NetworkDiscoveryNotification nt : tNdRspInfo.getNetworkDiscoveryNotificationList()) {
+                    sbl.append(" -- Notification :" + nt.toString());
+                }
+            }
+
+        }
+
+        String infoStr = sbl.toString();
+        log.info("Received Notification from NetworkDiscoveryMicroService: " + infoStr);
+
+        return serviceDecompCtx;
+    }
+
+    private CountDownLatch createCountDownLatch(ModelContext serviceDecompCtx) {
+
+        // Obtain the possible total count of messages to NetworkDiscovery
+        // for CountDownLatch.
+        int latch_count = sizeOfMsgToNetworkDiscovery(serviceDecompCtx);
+        if (latch_count > 0) {
+            // Let us create task that is going to
+            // wait for all threads before it starts
+            CountDownLatch latchSignal = new CountDownLatch(latch_count);
+            return latchSignal;
+        }
+
+        return null;
+    }
+
+    /* Return list of requestIds sent to network-discovery microService. */
+    private List<String> sendNetworkDiscoveryRequest(ModelContext serviceDecompCtx, String serviceInstanceId,
+            String partner_name, CountDownLatch latchSignal) throws DiscoveryException {
+        log.info("Http Request", "GET");
+        List<String> relatedRequestIdList = new ArrayList<>();
+
+        String parent_requestId = MDC.get(MDC_REQUEST_ID);
+
+        List<VF> vfList = serviceDecompCtx.getVf();
+
+        for (VF entryVF : vfList) {
+
+            List<VNFC> vnfcList = entryVF.getVnfc();
+            for (VNFC entryVnfc : vnfcList) {
+                String resourceId = entryVnfc.getUuid();
+                String resourceType = entryVnfc.getNfcNamingCode();
+
+                // The old_requestId is inheritated from ServiceDecomposition.
+                // Before we send a
+                // message to NetworkDiscoveryMicroService for each Vserver, we
+                // need to generate
+                // a new request for identification, based on the old ID.
+                String requestId = parent_requestId + NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER
+                        + uniqueSeq.incrementAndGet();
+
+                if (true == sendNetworkDiscoveryRequestToSpecificServer(partner_name, parent_requestId, requestId,
+                        resourceId, resourceType, latchSignal)) {
+                    relatedRequestIdList.add(requestId);
+                }
+            }
+        }
+
+        // Update networkDiscoveryInfoList
+        for (String t_rqId : relatedRequestIdList) {
+            networkDiscoveryInfoList.get(t_rqId).setRelatedRequestIdList(relatedRequestIdList);
+        }
+
+        return relatedRequestIdList;
+    }
+
+    /* Return number of messages sent to network-discovery microService. */
+    private int sizeOfMsgToNetworkDiscovery(ModelContext serviceDecompCtx) {
+        int msg_count = 0;
+
+        List<VF> vfList = serviceDecompCtx.getVf();
+        for (VF entryVF : vfList) {
+            List<VNFC> vnfcList = entryVF.getVnfc();
+            msg_count = msg_count + vnfcList.size();
+        }
+        return msg_count;
+    }
+
+    // Return true when message is sent to network-discovery microService,
+    // otherwise, return false.
+    private boolean sendNetworkDiscoveryRequestToSpecificServer(String partner_name, String parent_requestId,
+            String requestId, String resourceId, String resourceType, CountDownLatch latchSignal)
+            throws DiscoveryException {
+        String callbackUrlStr = getNetworkDiscoveryCtxBuilderCallBackUrl();
+        String networkDiscoveryUrl = networkDiscoveryMicroServiceBaseUrl;
+
+        log.info("Sending message to networkDiscoveryMicroService with serverId:" + resourceId + " and type:"
+                + resourceType + "/n networkDiscoveryUrl:" + networkDiscoveryUrl + "/n callbackUrlStr:"
+                + callbackUrlStr);
+
+        NetworkDiscoveryRspInfo entryNS = new NetworkDiscoveryRspInfo();
+        entryNS.setRequestId(requestId);
+        entryNS.setResourceId(resourceId);
+        entryNS.setResourceType(resourceType);
+        entryNS.setLatchSignal(latchSignal);
+        List<NetworkDiscoveryNotification> notfList = new ArrayList<>();
+        List<String> reqList = new ArrayList<>();
+        entryNS.setNetworkDiscoveryNotificationList(notfList);
+        entryNS.setRelatedRequestIdList(reqList);
+
+        // Update networkDiscoveryInfoList before sending the message
+        // to NetworkDiscoveryMicroService, in case of race condition.
+        lock.lock();
+        networkDiscoveryInfoList.put(requestId, entryNS);
+        lock.unlock();
+
+        // send message to Network Discovery API
+        NetworkDiscoveryResponse ndResponse = null;
+
+        try {
+            Response response = jerseyClient.target(networkDiscoveryUrl)
+                    .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_REQUEST_ID, requestId)
+                    .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_TYPE, resourceType)
+                    .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_ID, resourceId)
+                    .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_NOTIFICATION_URL, callbackUrlStr).request()
+                    .header(HttpHeaders.CONTENT_TYPE, "application/json").header(HttpHeaders.ACCEPT, "application/json")
+                    .header(HttpHeaders.AUTHORIZATION, getNetworkDiscoveryMircoServiceBasicAuthorization())
+                    .header(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_PARTNER_NAME, partner_name)
+                    .header(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID, parent_requestId).get();
+
+            log.info(" *** msg payload: " + response.getEntity().toString());
+
+            int responseCode = response.getStatus();
+            if ((responseCode < 200) || (responseCode >= 300)) {
+                latchSignal.countDown();
+                safeRemoveEntry_from_networkDiscoveryInfoList(requestId);
+                throw new DiscoveryException(response.getStatusInfo().toString(),
+                        Response.Status.fromStatusCode(response.getStatus()));
+            } else {
+                ndResponse = response.readEntity(NetworkDiscoveryResponse.class);
+            }
+        } catch (Exception e) {
+            latchSignal.countDown();
+            safeRemoveEntry_from_networkDiscoveryInfoList(requestId);
+            throw new DiscoveryException(e.getMessage(), e);
+        }
+
+        if (true == ndResponse.getAckFinalIndicator()) {
+            // Perform count-down because there is no more notification coming
+            // for this requestId.
+            latchSignal.countDown();
+            safeRemoveEntry_from_networkDiscoveryInfoList(requestId);
+        }
+
+        return true;
+    }
+
+    private void safeRemoveEntry_from_networkDiscoveryInfoList(String requestId) {
+        lock.lock();
+        networkDiscoveryInfoList.remove(requestId);
+        lock.unlock();
+    }
+
+    private String getNetworkDiscoveryCtxBuilderCallBackUrl() {
+        return new String(
+                networkDiscoveryCtxBuilderBaseUrl + NETWORK_DISCOVERY_CTX_BUILDER_NETWORK_DISCOVERY_NOTIFICATION_PATH);
+    }
+
+    private String getNetworkDiscoveryMircoServiceBasicAuthorization() {
+        return networkDiscoveryMicroServiceBasicAuthorization;
+    }
+
+    public static void updateNetworkDiscoveryInfoList(String requestId, NetworkDiscoveryRspInfo resp) {
+        networkDiscoveryInfoList.put(requestId, resp);
+        return;
+    }
+
+    public static NetworkDiscoveryRspInfo getNetworkDiscoveryInfoList(String requestId) {
+        return networkDiscoveryInfoList.get(requestId);
+    }
+
+    // /**
+    // * Validates the Basic authorization header as admin:admin.
+    // *
+    // * @throws DiscoveryException
+    // * if there is missing parameter
+    // */
+    // public void validateBasicAuth(String authorization) throws
+    // DiscoveryException {
+    // if (authorization != null && !authorization.trim().isEmpty()) {
+    // if
+    // (!authorization.equals(networkDiscoveryMicroServiceBasicAuthorization)) {
+    // throw new DiscoveryException("Authorization Failed!",
+    // Status.UNAUTHORIZED);
+    // }
+    // } else {
+    // // authentication is null or empty
+    // throw new DiscoveryException(
+    // "Missing Authorization: " + (authorization == null ? "null" :
+    // authorization.toString()),
+    // Status.UNAUTHORIZED);
+    // }
+    // }
 }

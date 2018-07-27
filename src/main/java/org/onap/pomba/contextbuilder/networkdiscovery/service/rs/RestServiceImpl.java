@@ -26,8 +26,8 @@ import javax.ws.rs.core.Response.Status;
 import org.onap.pomba.common.datatypes.ModelContext;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.ErrorMessage;
-
 import org.onap.pomba.contextbuilder.networkdiscovery.service.SpringService;
+import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,23 +46,19 @@ public class RestServiceImpl implements RestService {
     private SpringService service;
 
     @Override
-    public Response getContext(HttpServletRequest req,
-                               String authorization,
-                               String partnerName,
-                               String requestId,
-                               String serviceInstanceId,
-                               String modelVersionId,
-                               String modelInvariantId) throws DiscoveryException {
+    public Response getContext(HttpServletRequest req, String authorization, String partnerName, String requestId,
+            String serviceInstanceId, String modelVersionId, String modelInvariantId) throws DiscoveryException {
 
         // Do some validation on Http headers and URL parameters
 
         if (requestId == null || requestId.isEmpty()) {
-               requestId = UUID.randomUUID().toString();
-               log.debug(HEADER_REQUEST_ID + " is missing; using newly generated value: " + requestId);
+            requestId = UUID.randomUUID().toString();
+            log.debug(HEADER_REQUEST_ID + " is missing; using newly generated value: " + requestId);
         }
 
         try {
-            ModelContext sdContext = service.getContext(req, partnerName, authorization, requestId, serviceInstanceId, modelVersionId, modelInvariantId);
+            ModelContext sdContext = service.getContext(req, partnerName, authorization, requestId, serviceInstanceId,
+                    modelVersionId, modelInvariantId);
             if (sdContext == null) {
                 // Return empty JSON
                 return Response.ok().entity(EMPTY_JSON_OBJECT).build();
@@ -80,5 +76,27 @@ public class RestServiceImpl implements RestService {
         }
     }
 
+    @Override
+    public Response networkDiscoveryNotification(NetworkDiscoveryNotification notification, String authorization)
+            throws DiscoveryException {
+        Gson gson = new Gson();
+        String jsonInString = gson.toJson(notification);
+        log.info("Receiving networkDiscoveryNotification ... " + jsonInString);
 
+        try {
+            // The calling server (network discovery microService)
+            // doesn't check the response.
+            this.service.validateBasicAuth(authorization);
+            this.service.networkDiscoveryNotification(notification, authorization);
+            return Response.ok("Ack").build();
+
+        } catch (DiscoveryException x) {
+            log.error("context builder failed", x);
+            return Response.status(x.getHttpStatus()).entity(x.getMessage()).build();
+
+        } catch (Exception x) {
+            log.error("context builder failed", x);
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(x.getMessage()).build();
+        }
+    }
 }
