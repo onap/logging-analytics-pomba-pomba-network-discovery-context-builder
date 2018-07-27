@@ -1,0 +1,36 @@
+<configuration scan="true" scanPeriod="3 seconds" debug="false">
+
+	<statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+	<property name="namespace" value="${kubernetes.namespace}"></property>
+
+	<property name="defaultPattern"
+		value="%d{yyyy-MM-dd HH:mm:ss.SSS} $ threadId:%X{threadId} %-5level  namespace:org.onap.pomba.ms %logger{20} [ hostname:%X{hostname} serviceName:%X{serviceName} version:%X{version} transactionId:%X{transactionId} conversationId:%X{conversationId} requestTimeStamp:%X{requestTimestamp}  responseTimeStamp:%X{responseTimestamp} duration:%X{duration}] %m%n" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${defaultPattern}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="EELFDebug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/debug.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>logs/debug.%d{yyyy-MM-dd}.log.zip
+			</fileNamePattern>
+			<maxHistory>60</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${defaultPattern}</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.att.eelf" level="INFO" />
+	<logger name="com.att.ajsc" level="INFO" />
+
+	<root level="INFO">
+		<appender-ref ref="EELFDebug" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>
