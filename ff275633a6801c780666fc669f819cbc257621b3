@@ -37,6 +37,23 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_1154f752",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Remove these ajsc specific properties",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_c9b6c6dc",
         "filename": "opt/config/application.properties",
         "patchSetId": 1
@@ -66,6 +83,24 @@
       "side": 1,
       "message": "I will default this in the application code, then leave this in a comment with blank entries",
       "parentUuid": "da7095c5_c9b6c6dc",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_44205d49",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "\"nd\" and \"sd\" may make sense to you, but they really should be spelled out so others can understand.",
+      "parentUuid": "da7095c5_29a74251",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -124,6 +159,23 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_e43171a3",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "These are also AJSC-specific properties that should be removed",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_27d8d9ee",
         "filename": "opt/config/logback.xml",
         "patchSetId": 1
@@ -153,6 +205,23 @@
       "side": 1,
       "message": "Replaceing this with:\nhttps://git.onap.org/logging-analytics/tree/reference/logging-slf4j/src/test/resources/logback.xml",
       "parentUuid": "da7095c5_27d8d9ee",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_d14d1fc6",
+        "filename": "opt/config/system.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "This file is AJSC-specific and should be deleted",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -229,6 +298,40 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_f14aa3ab",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Many of the properties are specific to the ECOMP continuous integration environment.  Remove all properties that are not used by ONAP.",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_91c7a712",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Profiles are used for ECOMP testing and should be removed",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_db1c556d",
         "filename": "pom.xml",
         "patchSetId": 1
@@ -276,6 +379,125 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_11db97ee",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Remove any plugin that is not directly required by your code, which is probably only swagger generation.  The oparent pom will handle everything else.",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_31ffbb36",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/Application.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Why sd and not networkdiscovery?",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_84267567",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "@Autowired is redundant with @Value",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_3186dbba",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Base64.getEncoder().encodeToString() will return String directly\n\nIt\u0027s very rare to see String() constructor used, and it\u0027s not needed here.",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_d192fff5",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Unnecessary String() constructor",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_f18f03cb",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Unnecessary String() contructor if using encodeToString()",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_d1a99f25",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/common/LogMessages.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Remove these \"hello world\" messages.  Ideally, remove EELF messages and use pure SLF4J.",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_a7cce936",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/common/LogMessages.java",
         "patchSetId": 1
@@ -305,6 +527,57 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "da7095c5_a7cce936",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_516d8f03",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/exception/DiscoveryException.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Tabs are not allowed by the ONAP coding guidelines.\n\nhttps://wiki.onap.org/display/DW/Java+code+style",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_117717d6",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/model/HelloWorld.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Delete all hello world stuff",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_f17dc3b2",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Querying service decomposition not A\u0026AI",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -398,6 +671,23 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_b14f4b92",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Use a REST client and not raw HTTP.  There\u0027s one already configured in JerseyConfiguration.",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_e7e1819b",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/util/RestUtil.java",
         "patchSetId": 1
@@ -427,6 +717,40 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "da7095c5_e7e1819b",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_641d610f",
+        "filename": "src/main/resources/META-INF/resources/att-logo.png",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "Remove AT\u0026T logo",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_2400c9a9",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/sd/unittest/service/NetworkDiscoveryContextBuilderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T17:16:07Z",
+      "side": 1,
+      "message": "These tests should also verify the HTTP status code (400, 401, etc.)",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
