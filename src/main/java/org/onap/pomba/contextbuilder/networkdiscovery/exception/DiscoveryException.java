@@ -17,6 +17,9 @@
  */
 package org.onap.pomba.contextbuilder.networkdiscovery.exception;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.ws.rs.core.Response.Status;
 
 public class DiscoveryException extends Exception {
@@ -26,7 +29,8 @@ public class DiscoveryException extends Exception {
     private final Status httpStatus;
 
     public DiscoveryException(String message) {
-        this(message, Status.INTERNAL_SERVER_ERROR);
+        super(message);        
+        this.httpStatus =  matachErrorCode(message);
     }
 
     public DiscoveryException(String message, Status httpStatus) {
@@ -39,11 +43,26 @@ public class DiscoveryException extends Exception {
 
     public DiscoveryException(String message, Exception cause) {
         super(message, cause);
-        this.httpStatus = Status.INTERNAL_SERVER_ERROR;
+        this.httpStatus = matachErrorCode(cause.getMessage());                
     }
 
     public Status getHttpStatus() {
         return this.httpStatus;
     }
+    
+    private Status matachErrorCode (String errorMessage) {   
+        if (errorMessage.toLowerCase().contains("auth")) {
+            return Status.UNAUTHORIZED;
+        } if ((errorMessage.toLowerCase().contains("missing"))) {
+            return Status.BAD_REQUEST;
+        }   else {
+            for (Status st : Status.values()){
 
+                if ( errorMessage.toLowerCase().contains( st.getReasonPhrase().toLowerCase())) {
+                    return st;
+                }
+            } 
+        }            
+        return Status.INTERNAL_SERVER_ERROR;
+    }
 }
