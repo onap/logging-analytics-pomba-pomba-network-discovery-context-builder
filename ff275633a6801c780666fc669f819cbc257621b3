@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "da7095c5_29aae270",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T13:50:55Z",
+      "side": 1,
+      "message": "We should probably remove this section related to com.att.ajsc?",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_c9b6c6dc",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T13:50:55Z",
+      "side": 1,
+      "message": "Should we check in the user name and password?",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_e9bb8ac2",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T13:50:55Z",
+      "side": 1,
+      "message": "Should we include ip address as part of the check in?",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_27d8d9ee",
         "filename": "opt/config/logback.xml",
         "patchSetId": 1
