@@ -1,0 +1,43 @@
+{
+	"service": {
+		"name": "Firewall1",
+		"invariant-id": "0c5a20de-87ad-442c-9190-f38ab0a6bb7f",
+		"uuid": "c6456519-6acf-4adb-997c-3c363dd4caaf"
+	},
+	"vf-list": [{
+		"name": "PacketGenerator-1",
+		"type": "vFW-vSINK-service/vPKG 0",
+		"invariant-id": "99f1fd3f-845c-48f5-a0ba-11fbde6ae557",
+		"uuid": "6700c313-fbb7-4cf9-ac70-0293ec56df68",
+		"vf-module-list": [{
+			"invariant-id": "2a8844a8-f5f7-46dd-a732-472c6972a28e",
+			"uuid": "0f792076-f5b3-4251-9fcc-c4d5afae0eb1",
+			"max-instances": 0,
+			"min-instances": 0
+		}],
+		"vnfc-list": [{
+			"name": "Firewall-1",
+			"invariant-id": "0c5a20de-87ad-442c-9190-f38ab0a6bb7f",
+			"uuid": "25fb07ab-0478-465e-a021-6384ac299671",
+			"nfc-naming-code": "vserver"
+		}]
+	},
+	{
+		"name": "PacketGenerator-2",
+		"type": "vFW-vSINK-service/vPKG 0",
+		"invariant-id": "99f1fd3f-845c-48f5-a0ba-11fbde6ae557",
+		"uuid": "6700c313-fbb7-4cf9-ac70-0293ec56df69",
+		"vf-module-list": [{
+			"invariant-id": "2a8844a8-f5f7-46dd-a732-472c6972a28e",
+			"uuid": "0f792076-f5b3-4251-9fcc-c4d5afae0eb1",
+			"max-instances": 0,
+			"min-instances": 0
+		}],
+		"vnfc-list": [{
+			"name": "Firewall-1",
+			"invariant-id": "0c5a20de-87ad-442c-9190-f38ab0a6bb7f",
+			"uuid": "25fb07ab-0478-465e-a021-6384ac299672",
+			"nfc-naming-code": "vserver"
+		}]
+	}]
+}
