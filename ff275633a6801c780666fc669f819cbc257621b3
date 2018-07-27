@@ -189,6 +189,23 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_2973c24e",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-27T13:26:11Z",
+      "side": 1,
+      "message": "Adding InstanceUUID and InvocationID.",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_e7e1819b",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/util/RestUtil.java",
         "patchSetId": 1
