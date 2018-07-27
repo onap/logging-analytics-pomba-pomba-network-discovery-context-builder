@@ -1,0 +1,461 @@
+{
+    "relationship-list": {
+        "relationship": [{
+            "related-to": "generic-vnf",
+            "relationship-data": [{
+                "relationship-value": "6700c313-fbb7-4cf9-ac70-0293ec56df68",
+                "relationship-key": "generic-vnf.vnf-id"
+            }],
+            "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/6700c313-fbb7-4cf9-ac70-0293ec56df68",
+            "related-to-property": [{
+                "property-key": "generic-vnf.vnf-name",
+                "property-value": "PacketGenerator-1"
+            }]
+        },
+        {
+            "related-to": "generic-vnf",
+            "relationship-data": [{
+                "relationship-value": "6700c313-fbb7-4cf9-ac70-0293ec56df69",
+                "relationship-key": "generic-vnf.vnf-id"
+            }],
+            "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/6700c313-fbb7-4cf9-ac70-0293ec56df69",
+            "related-to-property": [{
+                "property-key": "generic-vnf.vnf-name",
+                "property-value": "PacketGenerator-2"
+            }]
+        }]
+    },
+    "model-version-id": "d3d6cf83-d03a-43cc-99ff-206d40bb9a72",
+    "service-instance-id": "c6456519-6acf-4adb-997c-3c363dd4caaf",
+    "resource-version": "1527637758480",
+    "generic-vnfs": [{
+        "nf-role": "",
+        "service-id": "8ea56b0d-459d-4668-b363-c9567432d8b7",
+        "relationship-list": {
+            "relationship": [{
+                "related-to": "service-instance",
+                "relationship-data": [{
+                    "relationship-value": "Demonstration",
+                    "relationship-key": "customer.global-customer-id"
+                },
+                {
+                    "relationship-value": "vFWCL",
+                    "relationship-key": "service-subscription.service-type"
+                },
+                {
+                    "relationship-value": "c6456519-6acf-4adb-997c-3c363dd4caaf",
+                    "relationship-key": "service-instance.service-instance-id"
+                }],
+                "related-link": "/aai/v11/business/customers/customer/Demonstration/service-subscriptions/service-subscription/vFWCL/service-instances/service-instance/c6456519-6acf-4adb-997c-3c363dd4caaf",
+                "related-to-property": [{
+                    "property-key": "service-instance.service-instance-name",
+                    "property-value": "Firewall1"
+                }]
+            },
+            {
+                "related-to": "l3-network",
+                "relationship-data": [{
+                    "relationship-value": "HNP1d77c-1094-41ec-b7f3-94bb30951870",
+                    "relationship-key": "l3-network.network-id"
+                }],
+                "related-link": "/aai/v13/network/l3-networks/l3-network/HNP1d77c-1094-41ec-b7f3-94bb30951870",
+                "relationship-label": "org.onap.relationships.inventory.Uses",
+                "related-to-property": [{
+                    "property-key": "l3-network.network-name",
+                    "property-value": "HNPORTALOAM.OAM"
+                }]
+            },
+            {
+                "related-to": "vserver",
+                "relationship-data": [{
+                    "relationship-value": "CloudOwner",
+                    "relationship-key": "cloud-region.cloud-owner"
+                },
+                {
+                    "relationship-value": "RegionOne",
+                    "relationship-key": "cloud-region.cloud-region-id"
+                },
+                {
+                    "relationship-value": "b49b830686654191bb1e952a74b014ad",
+                    "relationship-key": "tenant.tenant-id"
+                },
+                {
+                    "relationship-value": "25fb07ab-0478-465e-a021-6384ac299671",
+                    "relationship-key": "vserver.vserver-id"
+                }],
+                "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/tenants/tenant/b49b830686654191bb1e952a74b014ad/vservers/vserver/25fb07ab-0478-465e-a021-6384ac299671"
+            },
+            {
+                "related-to": "vserver",
+                "relationship-data": [{
+                    "relationship-value": "CloudOwner",
+                    "relationship-key": "cloud-region.cloud-owner"
+                },
+                {
+                    "relationship-value": "RegionOne",
+                    "relationship-key": "cloud-region.cloud-region-id"
+                },
+                {
+                    "relationship-value": "b49b830686654191bb1e952a74b014ad",
+                    "relationship-key": "tenant.tenant-id"
+                },
+                {
+                    "relationship-value": "25fb07ab-0478-465e-a021-6384ac299672",
+                    "relationship-key": "vserver.vserver-id"
+                }],
+                "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/tenants/tenant/b49b830686654191bb1e952a74b014ad/vservers/vserver/25fb07ab-0478-465e-a021-6384ac299672"
+            }]
+        },
+        "vnf-id": "6700c313-fbb7-4cf9-ac70-0293ec56df68",
+        "nf-type": "",
+        "l3-networks": [{
+            "network-role": "HNPORTALOAM.OAM",
+            "network-technology": "ovs",
+            "service-id": "V7611HNP-1222-48f1-8085-94aef0c6ef3d51870",
+            "network-id": "HNP1d77c-1222-41ec-b7f3-94bb30951870",
+            "neutron-network-id": "491c7cef-a3f4-4990-883e-b0af397466d0",
+            "is-external-network": false,
+            "is-bound-to-vpn": false,
+            "is-provider-network": true,
+            "network-type": "OVS_PROVIDER_VLAN",
+            "orchestration-status": "active",
+            "network-role-instance": 0,
+            "resource-version": "1526558298075",
+            "network-name": "HNPORTALOAM.OAM",
+            "is-shared-network": false
+        }],
+        "prov-status": "PREPROV",
+        "vnf-type": "vFW-vSINK-service/vPKG 0",
+        "orchestration-status": "Created",
+        "nf-naming-code": "",
+        "in-maint": false,
+        "nf-function": "",
+        "model-version-id": "a5565bf4-d55a-4964-8fbc-6a7674a2e676",
+        "vservers": [{
+            "relationship-list": {
+                "relationship": [{
+                    "related-to": "generic-vnf",
+                    "relationship-data": [{
+                        "relationship-value": "8a9ddb25-2e79-449c-a40d-5011bac0da39",
+                        "relationship-key": "generic-vnf.vnf-id"
+                    }],
+                    "related-link": "/aai/v11/network/generic-vnfs/generic-vnf/8a9ddb25-2e79-449c-a40d-5011bac0da39",
+                    "related-to-property": [{
+                        "property-key": "generic-vnf.vnf-name",
+                        "property-value": "Firewall-1"
+                    }]
+                },
+                {
+                    "related-to": "flavor",
+                    "relationship-data": [{
+                        "relationship-value": "CloudOwner",
+                        "relationship-key": "cloud-region.cloud-owner"
+                    },
+                    {
+                        "relationship-value": "RegionOne",
+                        "relationship-key": "cloud-region.cloud-region-id"
+                    },
+                    {
+                        "relationship-value": "764efb04-5a46-4806-a766-2bdd24559f39",
+                        "relationship-key": "flavor.flavor-id"
+                    }],
+                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/flavors/flavor/764efb04-5a46-4806-a766-2bdd24559f39",
+                    "related-to-property": [{
+                        "property-key": "flavor.flavor-name",
+                        "property-value": "m1.medium"
+                    }]
+                },
+                {
+                    "related-to": "image",
+                    "relationship-data": [{
+                        "relationship-value": "CloudOwner",
+                        "relationship-key": "cloud-region.cloud-owner"
+                    },
+                    {
+                        "relationship-value": "RegionOne",
+                        "relationship-key": "cloud-region.cloud-region-id"
+                    },
+                    {
+                        "relationship-value": "42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
+                        "relationship-key": "image.image-id"
+                    }],
+                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/images/image/42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
+                    "related-to-property": [{
+                        "property-key": "image.image-name",
+                        "property-value": "unknown"
+                    }]
+                }]
+            },
+            "in-maint": false,
+            "resource-version": "1528481820321",
+            "vserver-name": "Firewall-0",
+            "prov-status": "ACTIVE",
+            "vserver-id": "25fb07ab-0478-465e-a021-6384ac299671",
+            "vserver-name2": "Firewall-0",
+            "vserver-selflink": "http://10.12.25.2:8774/v2.1/b49b830686654191bb1e952a74b014ad/servers/25fb07ab-0478-465e-a021-6384ac299671",
+            "is-closed-loop-disabled": false
+        },
+        {
+            "relationship-list": {
+                "relationship": [{
+                    "related-to": "generic-vnf",
+                    "relationship-data": [{
+                        "relationship-value": "8a9ddb25-2e79-449c-a40d-5011bac0da39",
+                        "relationship-key": "generic-vnf.vnf-id"
+                    }],
+                    "related-link": "/aai/v11/network/generic-vnfs/generic-vnf/8a9ddb25-2e79-449c-a40d-5011bac0da39",
+                    "related-to-property": [{
+                        "property-key": "generic-vnf.vnf-name",
+                        "property-value": "Firewall-1"
+                    }]
+                },
+                {
+                    "related-to": "flavor",
+                    "relationship-data": [{
+                        "relationship-value": "CloudOwner",
+                        "relationship-key": "cloud-region.cloud-owner"
+                    },
+                    {
+                        "relationship-value": "RegionOne",
+                        "relationship-key": "cloud-region.cloud-region-id"
+                    },
+                    {
+                        "relationship-value": "764efb04-5a46-4806-a766-2bdd24559f39",
+                        "relationship-key": "flavor.flavor-id"
+                    }],
+                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/flavors/flavor/764efb04-5a46-4806-a766-2bdd24559f39",
+                    "related-to-property": [{
+                        "property-key": "flavor.flavor-name",
+                        "property-value": "m1.medium"
+                    }]
+                },
+                {
+                    "related-to": "image",
+                    "relationship-data": [{
+                        "relationship-value": "CloudOwner",
+                        "relationship-key": "cloud-region.cloud-owner"
+                    },
+                    {
+                        "relationship-value": "RegionOne",
+                        "relationship-key": "cloud-region.cloud-region-id"
+                    },
+                    {
+                        "relationship-value": "42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
+                        "relationship-key": "image.image-id"
+                    }],
+                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/images/image/42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
+                    "related-to-property": [{
+                        "property-key": "image.image-name",
+                        "property-value": "unknown"
+                    }]
+                }]
+            },
+            "in-maint": false,
+            "resource-version": "1528481820321",
+            "vserver-name": "Firewall-0",
+            "prov-status": "ACTIVE",
+            "vserver-id": "25fb07ab-0478-465e-a021-6384ac299672",
+            "vserver-name2": "Firewall-0",
+            "vserver-selflink": "http://10.12.25.2:8774/v2.1/b49b830686654191bb1e952a74b014ad/servers/25fb07ab-0478-465e-a021-6384ac299672",
+            "is-closed-loop-disabled": false
+        }],
+        "resource-version": "1527638176989",
+        "model-customization-id": "4cc1e555-361f-4d69-ae21-9f371ea9f40c",
+        "vf-modules": {
+            "vf-module": [{
+                "vf-module-name": "vPacketGen-VNF-1128-3",
+                "model-version-id": "d6d4a002-a584-4640-bdce-a50e9bce552b",
+                "heat-stack-id": "vPacketGen-VNF-1128-3/df34f5d6-ed39-4184-b785-51c37cfa8ac2",
+                "resource-version": "1527641224058",
+                "model-customization-id": "49c8f521-e5ee-4095-bb87-4090166e49ab",
+                "is-base-vf-module": true,
+                "vf-module-id": "0f792076-f5b3-4251-9fcc-c4d5afae0eb1",
+                "module-index": 0,
+                "model-invariant-id": "2a8844a8-f5f7-46dd-a732-472c6972a28e",
+                "orchestration-status": "active"
+            }]
+        },
+        "vserver": [{
+            "vserver-name": "Firewall-1",
+            "vserver-id": "25fb07ab-0478-465e-a021-6384ac299671",
+            "model-invariant-id": "0c5a20de-87ad-442c-9190-f38ab0a6bb7f"
+        }],
+        "model-invariant-id": "99f1fd3f-845c-48f5-a0ba-11fbde6ae557",
+        "vnf-name": "PacketGenerator-1",
+        "is-closed-loop-disabled": false
+    },
+    {
+        "nf-role": "",
+        "service-id": "8ea56b0d-459d-4668-b363-c9567432d8b9",
+        "relationship-list": {
+            "relationship": [{
+                "related-to": "service-instance",
+                "relationship-data": [{
+                    "relationship-value": "Demonstration",
+                    "relationship-key": "customer.global-customer-id"
+                },
+                {
+                    "relationship-value": "vFWCL",
+                    "relationship-key": "service-subscription.service-type"
+                },
+                {
+                    "relationship-value": "c6456519-6acf-4adb-997c-3c363dd4caaf",
+                    "relationship-key": "service-instance.service-instance-id"
+                }],
+                "related-link": "/aai/v11/business/customers/customer/Demonstration/service-subscriptions/service-subscription/vFWCL/service-instances/service-instance/c6456519-6acf-4adb-997c-3c363dd4caaf",
+                "related-to-property": [{
+                    "property-key": "service-instance.service-instance-name",
+                    "property-value": "Firewall1"
+                }]
+            },
+            {
+                "related-to": "l3-network",
+                "relationship-data": [{
+                    "relationship-value": "HNP1d77c-1094-41ec-b7f3-94bb30951870",
+                    "relationship-key": "l3-network.network-id"
+                }],
+                "related-link": "/aai/v13/network/l3-networks/l3-network/HNP1d77c-1094-41ec-b7f3-94bb30951871",
+                "relationship-label": "org.onap.relationships.inventory.Uses",
+                "related-to-property": [{
+                    "property-key": "l3-network.network-name",
+                    "property-value": "HNPORTALOAM.OAM"
+                }]
+            },
+            {
+                "related-to": "vserver",
+                "relationship-data": [{
+                    "relationship-value": "CloudOwner",
+                    "relationship-key": "cloud-region.cloud-owner"
+                },
+                {
+                    "relationship-value": "RegionOne",
+                    "relationship-key": "cloud-region.cloud-region-id"
+                },
+                {
+                    "relationship-value": "b49b830686654191bb1e952a74b014ad",
+                    "relationship-key": "tenant.tenant-id"
+                },
+                {
+                    "relationship-value": "25fb07ab-0478-465e-a021-6384ac299671",
+                    "relationship-key": "vserver.vserver-id"
+                }],
+                "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/tenants/tenant/b49b830686654191bb1e952a74b014ad/vservers/vserver/b494cd6e-b9f3-45e0-afe7-e1d1a5f5d74b"
+            }]
+        },
+        "vnf-id": "6700c313-fbb7-4cf9-ac70-0293ec56df69",
+        "nf-type": "",
+        "l3-networks": [{
+            "network-role": "HNPORTALOAM.OAM",
+            "network-technology": "ovs",
+            "service-id": "V7611HNP-1222-48f1-8085-94aef0c6ef3d51870",
+            "network-id": "HNP1d77c-1222-41ec-b7f3-94bb30951870",
+            "neutron-network-id": "491c7cef-a3f4-4990-883e-b0af397466d0",
+            "is-external-network": false,
+            "is-bound-to-vpn": false,
+            "is-provider-network": false,
+            "network-type": "OVS_PROVIDER_VLAN",
+            "orchestration-status": "active",
+            "network-role-instance": 0,
+            "resource-version": "1526558298075",
+            "network-name": "HNPORTALOAM.OAM",
+            "is-shared-network": false
+        }],
+        "prov-status": "PREPROV",
+        "vnf-type": "vFW-vSINK-service/vPKG 0",
+        "orchestration-status": "Created",
+        "nf-naming-code": "",
+        "in-maint": false,
+        "nf-function": "",
+        "model-version-id": "a5565bf4-d55a-4964-8fbc-6a7674a2e676",
+        "vservers": [{
+            "relationship-list": {
+                "relationship": [{
+                    "related-to": "generic-vnf",
+                    "relationship-data": [{
+                        "relationship-value": "8a9ddb25-2e79-449c-a40d-5011bac0da39",
+                        "relationship-key": "generic-vnf.vnf-id"
+                    }],
+                    "related-link": "/aai/v11/network/generic-vnfs/generic-vnf/8a9ddb25-2e79-449c-a40d-5011bac0da39",
+                    "related-to-property": [{
+                        "property-key": "generic-vnf.vnf-name",
+                        "property-value": "Firewall-1"
+                    }]
+                },
+                {
+                    "related-to": "flavor",
+                    "relationship-data": [{
+                        "relationship-value": "CloudOwner",
+                        "relationship-key": "cloud-region.cloud-owner"
+                    },
+                    {
+                        "relationship-value": "RegionOne",
+                        "relationship-key": "cloud-region.cloud-region-id"
+                    },
+                    {
+                        "relationship-value": "764efb04-5a46-4806-a766-2bdd24559f39",
+                        "relationship-key": "flavor.flavor-id"
+                    }],
+                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/flavors/flavor/764efb04-5a46-4806-a766-2bdd24559f39",
+                    "related-to-property": [{
+                        "property-key": "flavor.flavor-name",
+                        "property-value": "m1.medium"
+                    }]
+                },
+                {
+                    "related-to": "image",
+                    "relationship-data": [{
+                        "relationship-value": "CloudOwner",
+                        "relationship-key": "cloud-region.cloud-owner"
+                    },
+                    {
+                        "relationship-value": "RegionOne",
+                        "relationship-key": "cloud-region.cloud-region-id"
+                    },
+                    {
+                        "relationship-value": "42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
+                        "relationship-key": "image.image-id"
+                    }],
+                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/images/image/42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
+                    "related-to-property": [{
+                        "property-key": "image.image-name",
+                        "property-value": "unknown"
+                    }]
+                }]
+            },
+            "in-maint": false,
+            "resource-version": "1528481820321",
+            "vserver-name": "Firewall-0",
+            "prov-status": "ACTIVE",
+            "vserver-id": "b494cd6e-b9f3-45e0-afe7-e1d1a5f5d74b",
+            "vserver-name2": "Firewall-0",
+            "vserver-selflink": "http://10.12.25.2:8774/v2.1/b49b830686654191bb1e952a74b014ad/servers/25fb07ab-0478-465e-a021-6384ac299671",
+            "is-closed-loop-disabled": false
+        }],
+        "resource-version": "1527638176989",
+        "model-customization-id": "4cc1e555-361f-4d69-ae21-9f371ea9f40c",
+        "vf-modules": {
+            "vf-module": [{
+                "vf-module-name": "vPacketGen-VNF-1128-3",
+                "model-version-id": "d6d4a002-a584-4640-bdce-a50e9bce552b",
+                "heat-stack-id": "vPacketGen-VNF-1128-3/df34f5d6-ed39-4184-b785-51c37cfa8ac2",
+                "resource-version": "1527641224058",
+                "model-customization-id": "49c8f521-e5ee-4095-bb87-4090166e49ab",
+                "is-base-vf-module": true,
+                "vf-module-id": "0f792076-f5b3-4251-9fcc-c4d5afae0eb1",
+                "module-index": 0,
+                "model-invariant-id": "2a8844a8-f5f7-46dd-a732-472c6972a28e",
+                "orchestration-status": "active"
+            }]
+        },
+        "vserver": [{
+            "vserver-name": "Firewall-1",
+            "vserver-id": "25fb07ab-0478-465e-a021-6384ac299672",
+            "model-invariant-id": "0c5a20de-87ad-442c-9190-f38ab0a6bb7f"
+        }],
+        "model-invariant-id": "99f1fd3f-845c-48f5-a0ba-11fbde6ae557",
+        "vnf-name": "PacketGenerator-2",
+        "is-closed-loop-disabled": false
+    }],
+    "model-invariant-id": "0c5a20de-87ad-442c-9190-f38ab0a6bb7f",
+    "service-instance-name": "Firewall1"
+}
