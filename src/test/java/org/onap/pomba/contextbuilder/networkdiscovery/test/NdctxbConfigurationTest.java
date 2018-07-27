@@ -26,28 +26,28 @@ import org.junit.Test;
 import org.onap.pomba.contextbuilder.networkdiscovery.NdctxbConfiguration;
 
 public class NdctxbConfigurationTest {
-
+    
     NdctxbConfiguration configuration = mock(NdctxbConfiguration.class);
-
+    
     @Test
     public void testGetUrl() {
         String url = "www.google.com";
         when(configuration.getURL()).thenReturn(url);
         assertEquals(url, configuration.getURL());
     }
-
+    
     @Test
     public void testGetNdBasicAuth() {
         String msg = "Basic YWRtaW46YWRtaW4=";
         when(configuration.getNdBasicAuth()).thenReturn(msg);
         assertEquals(msg, configuration.getNdBasicAuth());
     }
-
+    
     @Test
     public void testGetSdBasicAuth() {
         String msg = "Basic YWRtaW46YWRtaW4=";
         when(configuration.getSdBasicAuth()).thenReturn(msg);
         assertEquals(msg, configuration.getSdBasicAuth());
     }
-
+    
 }

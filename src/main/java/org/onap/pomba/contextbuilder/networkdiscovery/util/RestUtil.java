@@ -30,25 +30,28 @@ public class RestUtil {
     /**
      * Validates the URL parameter seriveInstanceId.
      *
-     * @throws DiscoveryException if there is missing parameter
+     * @throws DiscoveryException
+     *             if there is missing parameter
      */
     public static void validateServiceInstanceId(String serviceInstanceId) throws DiscoveryException {
 
         if (serviceInstanceId == null || serviceInstanceId.trim().isEmpty())
-            throw new DiscoveryException(ErrorMessage.INVALID_REQUEST_URL + ErrorMessage.MISSING_PARAMTER + SERVICE_INSTANCE_ID, Status.BAD_REQUEST);
+            throw new DiscoveryException(
+                    ErrorMessage.INVALID_REQUEST_URL + ErrorMessage.MISSING_PARAMTER + SERVICE_INSTANCE_ID,
+                    Status.BAD_REQUEST);
     }
 
     /**
      * Validates the URL parameter X-ONAP-PartnerName.
      *
-     * @throws DiscoveryException if there is missing parameter
+     * @throws DiscoveryException
+     *             if there is missing parameter
      */
     public static void validatePartnerName(String partnerName) throws DiscoveryException {
 
         if ((partnerName == null) || partnerName.trim().isEmpty()) {
-            throw new DiscoveryException(ErrorMessage.MISSING_PARAMTER + HEADER_PARTNER_NAME, Status.BAD_REQUEST);
+        throw new DiscoveryException(ErrorMessage.MISSING_PARAMTER + HEADER_PARTNER_NAME, Status.BAD_REQUEST);
         }
     }
-
 
 }

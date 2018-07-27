@@ -21,16 +21,16 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.onap.pomba.common.datatypes.ModelContext;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
+import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
 
 public interface SpringService {
-
-    public ModelContext getContext(HttpServletRequest req,
-                              String partnerName,
-                              String authorization,
-                              String transactionId,
-                              String serviceInstanceId,
-                              String modelVersionId,
-                              String modelInvariantId) throws DiscoveryException;
-
+    
+    public ModelContext getContext(HttpServletRequest req, String partnerName, String authorization,
+            String transactionId, String serviceInstanceId, String modelVersionId, String modelInvariantId)
+            throws DiscoveryException;
+    
     public void validateBasicAuth(String authorization) throws DiscoveryException;
+    
+    public void networkDiscoveryNotification(NetworkDiscoveryNotification notification, String authorization)
+            throws DiscoveryException;
 }
