@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da7095c5_49263618",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Only use abbreviations when when they are commonly known, and \"nd\" is not.  Take the time to spell out \"network-discovery\" and everyone will know what you\u0027re talking about.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_a93a7234",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "This shouldn\u0027t need to be configured.  Some can be discovered from environment (port, hostname); others like the path shouldn\u0027t be changed or things will break.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_294662c0",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "@Autowired is redundant with @Value",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_29f9824d",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "The REST framework will do the unmarshalling for you - just specify the type you want the JSON converted to.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_c99566e5",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Imports are not in the correct order",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_e99aaa13",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "If these are truly unused, remove them.  If they are used, remove the annotation",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_498956c9",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "You are the callback not the client - this should be renamed.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_89b68e89",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Do this conversion in the configuration bean so it\u0027s done just once and not on every call.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_e9c14ae5",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Why V suffix?  If unit is milliseconds, timeoutMs would make more sense.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_a9bb5271",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "typo remainding \u003d\u003e remaining",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_89444e75",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Iterating over a list that can be mutated by other threads is not thread-safe.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_495e3647",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Vservers can also be associated directly with VNF, like in vFW demo.  You will need to check those as well, not just VNFCs.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_893beeea",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Use a real REST client to make REST calls.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_490cf642",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Handle/log exceptions correctly",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_a9403257",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "new String?  Really?",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_4925d6c0",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Parameters must be URL-encoded.  But you shouldn\u0027t be building URLs yourself and instead use a real REST client to do this.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_092fdea2",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "You don\u0027t need to do this unmarshalling manually.  Just add NetworkDiscoveryResponse ndResponse as a method parameter instead of InputStream is.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_292c22ab",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "networkDiscoveryList can\u0027t be an instance variable - what if there are two concurrent context builder calls?\n\nYou need a map of requestId \u003d\u003e networkDiscoveryInfoList",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_89120e61",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "This will throw an exception because you\u0027re trying to update an immutable list (created by Arrays.asList)\n\nI don\u0027t see an concurrency handling - the callback will be called concurrently by Network Discovery service.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_c4ff8d00",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/rs/RestService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "A better name would be /networkDiscoveryNotification since you\u0027re receiving a notification from Network Discovery, not performing any query.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_2903c210",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/rs/RestService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "The callback consumes NetworkDiscoveryResponse, not returning it.  Network Discovery service doesn\u0027t really look at callback output - you can just return text/plain \"Acknowledged\"",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_8409952e",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/rs/RestService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Fix copy paste issues",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_44137d5c",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/rs/RestServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "You shouldn\u0027t be returning network discovery response - you are supposed to consume it.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_69745acf",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/util/SignalBarrier.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-27T15:46:10Z",
+      "side": 1,
+      "message": "Where did this come from?  You should use existing class like java.util.concurrent.CountDownLatch instead.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
