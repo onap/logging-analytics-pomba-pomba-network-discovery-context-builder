@@ -328,6 +328,24 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_045585c5",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-27T16:54:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_e9306a58",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_24e4493a",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
         "patchSetId": 1
@@ -339,6 +357,24 @@
       "writtenOn": "2018-07-27T16:41:20Z",
       "side": 1,
       "message": "Remove TODO",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_245209de",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-27T16:54:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_24e4493a",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
