@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_69c77a46",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "Should we include the ip address as part of the check in?",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_a93a7234",
         "filename": "opt/config/application.properties",
         "patchSetId": 1
@@ -30,6 +47,23 @@
       "writtenOn": "2018-07-27T15:46:10Z",
       "side": 1,
       "message": "This shouldn\u0027t need to be configured.  Some can be discovered from environment (port, hostname); others like the path shouldn\u0027t be changed or things will break.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_49cab650",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "Is this always going to be localhost?",
       "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -121,6 +155,23 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_693c5a30",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "I don\u0027t quite understand this barrier business. Perhaps include some comments.\n\nIf this is just a simple timeout mechanism, isn\u0027t it a bit over complicated?",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_89b68e89",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
         "patchSetId": 1
@@ -172,6 +223,57 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_e4041117",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "Generic Exception?",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_a40e1933",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "Need proper exception handling here.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_241a096f",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "use /* comment */",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_89444e75",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
         "patchSetId": 1
@@ -183,6 +285,74 @@
       "writtenOn": "2018-07-27T15:46:10Z",
       "side": 1,
       "message": "Iterating over a list that can be mutated by other threads is not thread-safe.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_a425b9ac",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "Is it TODO for the following method?  If so, it makes more sense to add this inside the method.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_c44d4d74",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "use /* comment */",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_044b455a",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "Should this be removed?",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_2448c95a",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "why are we changing the requestId?  If it\u0027s a requirement, please add a comment.",
       "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -223,6 +393,40 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_84f3d509",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "Should probably have a constant for \"GET\" etc.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_a4f859e6",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "Need proper exception handling here.",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_490cf642",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
         "patchSetId": 1
@@ -234,6 +438,23 @@
       "writtenOn": "2018-07-27T15:46:10Z",
       "side": 1,
       "message": "Handle/log exceptions correctly",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_44ddbd6f",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "same comment as above",
       "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -291,6 +512,23 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_e4d5f143",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "same comment as above",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_292c22ab",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
         "patchSetId": 1
@@ -302,6 +540,23 @@
       "writtenOn": "2018-07-27T15:46:10Z",
       "side": 1,
       "message": "networkDiscoveryList can\u0027t be an instance variable - what if there are two concurrent context builder calls?\n\nYou need a map of requestId \u003d\u003e networkDiscoveryInfoList",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_44c4dd91",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-07-27T16:41:05Z",
+      "side": 1,
+      "message": "should be able to combine responseList \u003d\u003d null and responseList.isEmpty",
       "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
