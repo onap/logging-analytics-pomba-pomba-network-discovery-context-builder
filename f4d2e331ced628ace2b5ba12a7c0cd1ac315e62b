@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a6a9dd7_9d6b4385",
+        "filename": "config/application.properties",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-30T15:38:22Z",
+      "side": 1,
+      "message": "These properties to end of file can still be removed",
+      "revId": "f4d2e331ced628ace2b5ba12a7c0cd1ac315e62b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_bd688788",
+        "filename": "pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-30T15:38:22Z",
+      "side": 1,
+      "message": "Don\u0027t override jacoco and sonar properties from the parent pom",
+      "revId": "f4d2e331ced628ace2b5ba12a7c0cd1ac315e62b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_5d05abc0",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/nd/Application.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-30T15:38:22Z",
+      "side": 1,
+      "message": "\"nd\" is not as readable as \"networkdiscovery\"",
+      "revId": "f4d2e331ced628ace2b5ba12a7c0cd1ac315e62b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_7d0aefd3",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/nd/JerseyConfiguration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-30T15:38:22Z",
+      "side": 1,
+      "message": "Constructors should appear before methods, otherwise Sonar will complain",
+      "revId": "f4d2e331ced628ace2b5ba12a7c0cd1ac315e62b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_1d0f33e3",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/nd/exception/ErrorMessage.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-30T15:38:22Z",
+      "side": 1,
+      "message": "Tabs used here",
+      "revId": "f4d2e331ced628ace2b5ba12a7c0cd1ac315e62b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_3d1477f4",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/nd/service/rs/RestServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-30T15:38:22Z",
+      "side": 1,
+      "message": "Remove this unnecessary constructor or Sonar will complain",
+      "revId": "f4d2e331ced628ace2b5ba12a7c0cd1ac315e62b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_ddf8dbc6",
+        "filename": "src/main/resources/logmessages.properties",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-30T15:38:22Z",
+      "side": 1,
+      "message": "This file is only used by Hello world, and should be removed",
+      "revId": "f4d2e331ced628ace2b5ba12a7c0cd1ac315e62b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
