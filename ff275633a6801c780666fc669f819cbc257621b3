@@ -315,6 +315,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_9a058916",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_f14aa3ab",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_91c7a712",
         "filename": "pom.xml",
         "patchSetId": 1
@@ -413,6 +431,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_ba02cd09",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/Application.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_31ffbb36",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_84267567",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
         "patchSetId": 1
@@ -424,6 +460,24 @@
       "writtenOn": "2018-07-27T17:16:07Z",
       "side": 1,
       "message": "@Autowired is redundant with @Value",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_5dffeb01",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_84267567",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -447,6 +501,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_7d042f15",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_3186dbba",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_d192fff5",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
         "patchSetId": 1
@@ -464,6 +536,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_1d09732c",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_d192fff5",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_f18f03cb",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
         "patchSetId": 1
@@ -475,6 +565,24 @@
       "writtenOn": "2018-07-27T17:16:07Z",
       "side": 1,
       "message": "Unnecessary String() contructor if using encodeToString()",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_3d0eb735",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_f18f03cb",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -550,6 +658,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_dd121b58",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/exception/DiscoveryException.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_516d8f03",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_117717d6",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/model/HelloWorld.java",
         "patchSetId": 1
@@ -567,6 +693,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_bd19677b",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/model/HelloWorld.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_117717d6",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_f17dc3b2",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
         "patchSetId": 1
@@ -578,6 +722,24 @@
       "writtenOn": "2018-07-27T17:16:07Z",
       "side": 1,
       "message": "Querying service decomposition not A\u0026AI",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_3d2557ab",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done and moved it to getServiceDecomposition",
+      "parentUuid": "da7095c5_f17dc3b2",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -671,6 +833,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_1d20939a",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_2973c24e",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_b14f4b92",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
         "patchSetId": 1
@@ -740,6 +920,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_9a57c926",
+        "filename": "src/main/resources/META-INF/resources/att-logo.png",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_641d610f",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_2400c9a9",
         "filename": "src/test/java/org/onap/pomba/contextbuilder/sd/unittest/service/NetworkDiscoveryContextBuilderTest.java",
         "patchSetId": 1
@@ -751,6 +949,24 @@
       "writtenOn": "2018-07-27T17:16:07Z",
       "side": 1,
       "message": "These tests should also verify the HTTP status code (400, 401, etc.)",
+      "revId": "ff275633a6801c780666fc669f819cbc257621b3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_fd64bfe6",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/sd/unittest/service/NetworkDiscoveryContextBuilderTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-30T14:27:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da7095c5_2400c9a9",
       "revId": "ff275633a6801c780666fc669f819cbc257621b3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
