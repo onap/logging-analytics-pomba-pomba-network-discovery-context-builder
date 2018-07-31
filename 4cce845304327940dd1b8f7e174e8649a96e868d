@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a6a9dd7_2cb447f1",
+        "filename": "config/application.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "Is this mandatory? if yes, please indicate it.",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 33
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_eccdef87",
+        "filename": "config/application.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "#nd.userId\u003d\u003cNetwork Discovery Micro Service user Id\u003e\n#nd.password\u003d\u003cNetwork Discovery Micro Service password\u003e",
+      "range": {
+        "startLine": 19,
+        "startChar": 84,
+        "endLine": 21,
+        "endChar": 13
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_6ce9df19",
+        "filename": "config/application.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "May be replaced with 1.2.3.4",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_4cb97be8",
+        "filename": "config/application.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "Is this mandatory? if yes, please indicate it.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 12
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_acc7f763",
+        "filename": "config/application.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "#nd.userId\u003d\u003cService Decomposition Micro Service user Id\u003e\n#nd.password\u003d\u003cService Decomposition Micro Service password\u003e",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 13
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_6cd31f39",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/exception/DiscoveryException.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "NetworkDiscoveryException is more relevant.",
+      "range": {
+        "startLine": 22,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 31
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_ac193724",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "Has not been used any place.",
+      "range": {
+        "startLine": 57,
+        "startChar": 25,
+        "endLine": 57,
+        "endChar": 40
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_0c92a357",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "Service",
+      "range": {
+        "startLine": 106,
+        "startChar": 29,
+        "endLine": 106,
+        "endChar": 35
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_6ca1dfa8",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "Let\u0027s use \"e\" or \"x\" throughout the project for consistency.",
+      "range": {
+        "startLine": 180,
+        "startChar": 28,
+        "endLine": 180,
+        "endChar": 29
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_2cabe78a",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/util/RestUtil.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-07-31T16:24:25Z",
+      "side": 1,
+      "message": "Service",
+      "range": {
+        "startLine": 35,
+        "startChar": 31,
+        "endLine": 35,
+        "endChar": 37
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
