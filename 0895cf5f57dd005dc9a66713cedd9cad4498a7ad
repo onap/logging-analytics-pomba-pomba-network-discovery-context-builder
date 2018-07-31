@@ -1016,6 +1016,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_f1f7088b",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-31T14:04:27Z",
+      "side": 1,
+      "message": "The correct thing then is to address the problem, not work around it.  You should have mentioned this to me.",
+      "parentUuid": "9a6a9dd7_005b4c55",
+      "revId": "0895cf5f57dd005dc9a66713cedd9cad4498a7ad",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da7095c5_e4d5f143",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
         "patchSetId": 1
