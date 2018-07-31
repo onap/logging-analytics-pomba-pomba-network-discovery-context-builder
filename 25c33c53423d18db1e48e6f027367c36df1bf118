@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a6a9dd7_3199006f",
+        "filename": "opt/config/application.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-31T14:04:27Z",
+      "side": 1,
+      "message": "Please merge all changes made by Trevor - none of the ajsc stuff should be here.",
+      "revId": "25c33c53423d18db1e48e6f027367c36df1bf118",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_51ecb4c7",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-31T14:04:27Z",
+      "side": 1,
+      "message": "An instance variable to handle concurrency is not acceptable.  How are you going to handle multiple context builder calls for different service instance ids with a single lock?",
+      "revId": "25c33c53423d18db1e48e6f027367c36df1bf118",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_71dd3814",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-07-31T14:04:27Z",
+      "side": 1,
+      "message": "Barrier is not the correct idiom to wait on multiple threads.  Change this to CountDownLatch, as per previous comment.",
+      "revId": "25c33c53423d18db1e48e6f027367c36df1bf118",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
