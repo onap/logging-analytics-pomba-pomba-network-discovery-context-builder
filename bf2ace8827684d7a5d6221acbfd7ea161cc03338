@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_711218b6",
+        "filename": "pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-31T14:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a6a9dd7_c0ed54f1",
+      "revId": "bf2ace8827684d7a5d6221acbfd7ea161cc03338",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a6a9dd7_60ba48e3",
         "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/test/NdctxbConfigurationTest.java",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9a6a9dd7_f13e2829",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/test/NdctxbConfigurationTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-31T14:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a6a9dd7_60ba48e3",
+      "revId": "bf2ace8827684d7a5d6221acbfd7ea161cc03338",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a6a9dd7_a0f060ca",
         "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/unittest/service/NetworkDiscoveryContextBuilderTest.java",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2018-07-30T20:16:23Z",
       "side": 1,
       "message": "Prefer assertEquals when comparing values",
+      "revId": "bf2ace8827684d7a5d6221acbfd7ea161cc03338",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a6a9dd7_b148b0cd",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/unittest/service/NetworkDiscoveryContextBuilderTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-07-31T14:12:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a6a9dd7_a0f060ca",
       "revId": "bf2ace8827684d7a5d6221acbfd7ea161cc03338",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
