@@ -95,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_d2544523",
+        "filename": "config/application.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-02T20:05:03Z",
+      "side": 1,
+      "message": "I keep setting this for my dev env and forget to revert it back!",
+      "parentUuid": "1a76adc5_7263f11a",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a6a9dd7_4cb97be8",
         "filename": "config/application.properties",
         "patchSetId": 4
