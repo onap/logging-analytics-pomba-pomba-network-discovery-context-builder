@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_bf4872cd",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/model/NetworkDiscoveryRspInfo.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-02T20:18:09Z",
+      "side": 1,
+      "message": "Network discovery request is not just for vserver, it can be any resource type.  This should be replaced with\n\n String resourceType; // e.g. vserver\n String resourceId;   // e.g. vserverId",
+      "revId": "e2015bd805600aec4c3682aeaef9b3f0a4f49bd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_5f883ee7",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/model/NetworkDiscoveryRspInfo.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-02T20:18:09Z",
+      "side": 1,
+      "message": "Initial this with new ArrayList\u003c\u003e() and you don\u0027t need null check when using it.",
+      "revId": "e2015bd805600aec4c3682aeaef9b3f0a4f49bd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_7f12dab5",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-02T20:18:09Z",
+      "side": 1,
+      "message": "\"is\" was variable name when type was InputStream.  Should be renamed to something more appropriate, e.g. notification",
+      "revId": "e2015bd805600aec4c3682aeaef9b3f0a4f49bd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_1f6ac61a",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-02T20:18:09Z",
+      "side": 1,
+      "message": "Don\u0027t use Arrays.asList(), as it creates an unmodifiable List.  That will cause exception on line 398 when you try to add to it.\n\nJust initialize list in RspInfo class.  You will still need to add concurrency support if you use ArrayList which is not thread-safe.",
+      "revId": "e2015bd805600aec4c3682aeaef9b3f0a4f49bd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_7f609a35",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/sd/service/SpringServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-02T20:18:09Z",
+      "side": 1,
+      "message": "This is the wrong place to add to the map - the rspInfo must already be in place otherwise this method doesn\u0027t work.",
+      "revId": "e2015bd805600aec4c3682aeaef9b3f0a4f49bd3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
