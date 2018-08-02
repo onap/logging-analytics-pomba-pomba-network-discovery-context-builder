@@ -117,6 +117,23 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_b21f49b7",
+        "filename": "pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-02T19:33:38Z",
+      "side": 1,
+      "message": "revert this to org.onap.oparent 1.1.1",
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a6a9dd7_6cd31f39",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/exception/DiscoveryException.java",
         "patchSetId": 4
@@ -134,6 +151,23 @@
         "endLine": 22,
         "endChar": 31
       },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_328339ce",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/model/GenericResponse.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-02T19:33:38Z",
+      "side": 1,
+      "message": "remove this class",
       "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
