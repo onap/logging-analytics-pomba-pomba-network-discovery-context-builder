@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_6687b310",
+        "filename": "config/application.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-03T13:59:31Z",
+      "side": 1,
+      "message": "NO, there is a defualt",
+      "parentUuid": "9a6a9dd7_2cb447f1",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 33
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a6a9dd7_eccdef87",
         "filename": "config/application.properties",
         "patchSetId": 4
@@ -153,6 +177,30 @@
       "writtenOn": "2018-07-31T16:24:25Z",
       "side": 1,
       "message": "#nd.userId\u003d\u003cService Decomposition Micro Service user Id\u003e\n#nd.password\u003d\u003cService Decomposition Micro Service password\u003e",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 13
+      },
+      "revId": "4cce845304327940dd1b8f7e174e8649a96e868d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_2679bb2f",
+        "filename": "config/application.properties",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-03T13:59:31Z",
+      "side": 1,
+      "message": "Is also defaulted",
+      "parentUuid": "9a6a9dd7_acc7f763",
       "range": {
         "startLine": 28,
         "startChar": 0,
