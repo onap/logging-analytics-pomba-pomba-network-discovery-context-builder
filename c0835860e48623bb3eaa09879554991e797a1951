@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_852524ad",
+        "filename": "config/application.properties",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_d24525b4",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_724a1185",
         "filename": "config/application.properties",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-02T20:18:09Z",
       "side": 1,
       "message": "If you want to configure the context builder port, you\u0027d change the spring parameter, not this one - use the existing parameter instead of creating your own for the callback URL.\n\nLikewise, hard-code http for callback until https is supported, then hard-code that.",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_253a10ce",
+        "filename": "config/application.properties",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_724a1185",
       "revId": "c0835860e48623bb3eaa09879554991e797a1951",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_e533b8f4",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_320c9994",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_f225c10a",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/model/NetworkDiscoveryRspInfo.java",
         "patchSetId": 6
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_a54dc074",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/model/NetworkDiscoveryRspInfo.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_f225c10a",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_7279b1fb",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/model/NetworkDiscoveryRspInfo.java",
         "patchSetId": 6
@@ -98,6 +170,24 @@
       "writtenOn": "2018-08-02T20:18:09Z",
       "side": 1,
       "message": "Change to resourceId - may a network ID, or vnfc ID, etc.",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_c5523c13",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/model/NetworkDiscoveryRspInfo.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_7279b1fb",
       "revId": "c0835860e48623bb3eaa09879554991e797a1951",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -138,6 +228,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_6557a803",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_d273e513",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_525fd572",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
         "patchSetId": 6
@@ -149,6 +257,24 @@
       "writtenOn": "2018-08-02T20:18:09Z",
       "side": 1,
       "message": "Need to use lock when accessing networkDiscoveryInfoList.\n\nIn fact, remove the entry from the map here so you don\u0027t have to do it below (430-437)",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_2541b039",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_525fd572",
       "revId": "c0835860e48623bb3eaa09879554991e797a1951",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -172,6 +298,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_a574e09c",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_b24d09c7",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_72c77113",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
         "patchSetId": 6
@@ -183,6 +327,24 @@
       "writtenOn": "2018-08-02T20:18:09Z",
       "side": 1,
       "message": "What about the l3-networks?",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_c579dc94",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_72c77113",
       "revId": "c0835860e48623bb3eaa09879554991e797a1951",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -206,6 +368,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_656ec8cb",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_92cc8d37",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_b2fbc946",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
         "patchSetId": 6
@@ -217,6 +397,24 @@
       "writtenOn": "2018-08-02T20:18:09Z",
       "side": 1,
       "message": "The URL should not include the query parameters - those are added below by the builder.  This should be the base URL.",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_8573e4b0",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_b2fbc946",
       "revId": "c0835860e48623bb3eaa09879554991e797a1951",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -240,6 +438,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_25af70e5",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_f2daa1e8",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_72ee918d",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
         "patchSetId": 6
@@ -251,6 +467,24 @@
       "writtenOn": "2018-08-02T20:18:09Z",
       "side": 1,
       "message": "These must be query parameters, not headers",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_e56178d4",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_72ee918d",
       "revId": "c0835860e48623bb3eaa09879554991e797a1951",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -274,6 +508,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_e5b8982c",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_f2af012a",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_32449973",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestService.java",
         "patchSetId": 6
@@ -285,6 +537,24 @@
       "writtenOn": "2018-08-02T20:18:09Z",
       "side": 1,
       "message": "whitespace issues",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_a582a050",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_32449973",
       "revId": "c0835860e48623bb3eaa09879554991e797a1951",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -308,6 +578,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_c5879c60",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_5249158a",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_9236cd02",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
         "patchSetId": 6
@@ -325,6 +613,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_c53c7c96",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "The authentication verification is done in SpringServiceImpl, to be consistent with Trevor\u0027s approach.",
+      "parentUuid": "1a76adc5_9236cd02",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_f224e1c7",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
         "patchSetId": 6
@@ -336,6 +642,24 @@
       "writtenOn": "2018-08-02T20:18:09Z",
       "side": 1,
       "message": "Ack or OK is fine, don\u0027t need both...",
+      "revId": "c0835860e48623bb3eaa09879554991e797a1951",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_657c8873",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-03T23:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_f224e1c7",
       "revId": "c0835860e48623bb3eaa09879554991e797a1951",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
