@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1a76adc5_0406ed20",
+        "filename": "config/application.properties",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-07T19:40:18Z",
+      "side": 1,
+      "message": "We need separate basic auth credentials for the microservice.",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_e4cc1138",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
         "patchSetId": 7
@@ -19,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_2403e910",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-07T19:40:18Z",
+      "side": 1,
+      "message": "Need basic auth here as well.",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_a4d619c4",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
         "patchSetId": 7
@@ -30,6 +64,23 @@
       "writtenOn": "2018-08-07T18:40:04Z",
       "side": 1,
       "message": "Don\u0027t eat the exception and return null - throw the exception instead",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_c7ff9700",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-07T19:40:18Z",
+      "side": 1,
+      "message": "The JerseyConfiguration already gives you this.",
       "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -81,6 +132,23 @@
       "writtenOn": "2018-08-07T18:40:04Z",
       "side": 1,
       "message": "This is not correct import order - see coding guidelines",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_e7041317",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-07T19:40:18Z",
+      "side": 1,
+      "message": "Don\u0027t reuse the Basic Auth that was passed in from the Context Aggregator, configure this authoriztion separately.",
       "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
