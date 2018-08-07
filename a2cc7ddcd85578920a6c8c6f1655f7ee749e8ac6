@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_e4cc1138",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Whitespace issues.",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_a4d619c4",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Don\u0027t eat the exception and return null - throw the exception instead",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_24e209a0",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/model/NetworkDiscoveryRspInfo.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Whitespace issues",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_04e58da7",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/model/NetworkDiscoveryRspInfo.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Comments are backwards",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_e4f3b171",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "This is not correct import order - see coding guidelines",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_c4631519",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "This should be done in RestServiceImpl - auth is part of the HTTP stack.",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_a4edb98d",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Why are you updating the map here?",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_4402a53f",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Unlock immediately after get on line 393 - there should be minimal code protected by the lock",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_64ffa135",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Replace get on line 433 with remove and unlock immediately\n\nAlways use try/finally when locking and unlocking",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_64ad6131",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Delete this - query parameters are added by client below",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_c4bc756f",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Replace with this - property has nothing to do with REST or HTTP\n\n            Response response \u003d jerseyClient.target(networkDiscoveryBaseUrl)\n                    .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_REQUEST_ID, requestId)\n                    .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_TYPE, resourceType)\n                    .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_ID, resourceId)\n                    .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_NOTIFICATION_URL, callbackUrlStr)\n                    .request()\n                    .header(HttpHeaders.CONTENT_TYPE, \"application/json\")\n                    .header(HttpHeaders.ACCEPT, \"application/json\")\n                    .header(HttpHeaders.AUTHORIZATION, getNdBasicAuthorization())\n                    .header(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_PARTNER_NAME, partner_name)\n                    .header(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID, parent_requestId)\n                    .get();",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_04aa6d19",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Delete this - query parameters are handled by REST client and you\u0027re not encoding URL safely anyway",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_24a76951",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Remove or add correct MediaType (TEXT_PLAIN is fine)",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_e46891f7",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/unittest/service/NetworkDiscoveryContextBuilderTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-07T18:40:04Z",
+      "side": 1,
+      "message": "Authorization should return 401 not 500",
+      "revId": "a2cc7ddcd85578920a6c8c6f1655f7ee749e8ac6",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
