@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "1a76adc5_78b65e8c",
+        "filename": "config/application.properties",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-08T14:27:48Z",
+      "side": 1,
+      "message": "Use a consistent prefix for all network discovery micro service properties - below you use \"networkDiscovery.\"",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_8783dfcb",
         "filename": "pom.xml",
         "patchSetId": 9
@@ -30,6 +47,74 @@
       "writtenOn": "2018-08-08T00:23:45Z",
       "side": 1,
       "message": "this needs to be org.onap.logging-analytics.pomba\nsee mail by Prudence",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_98bb3a72",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-08T14:27:48Z",
+      "side": 1,
+      "message": "Coding standard violation - indent 4 spaces",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_387786d6",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-08T14:27:48Z",
+      "side": 1,
+      "message": "The Authorization header is base64 encoded - it will not start with \"Basic\"",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_b84ab681",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-08T14:27:48Z",
+      "side": 1,
+      "message": "Delete this",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_187e4aaf",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-08T14:27:48Z",
+      "side": 1,
+      "message": "No null check needed\n throw new DiscoveryException(\"Missing Authorization: \" + authorization, status);",
       "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
