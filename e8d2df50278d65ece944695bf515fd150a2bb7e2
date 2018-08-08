@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_8783dfcb",
+        "filename": "pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-08-08T00:23:45Z",
+      "side": 1,
+      "message": "this groupId is wrong - should be logging-analytics.pomba",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_676a431c",
+        "filename": "pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-08-08T00:23:45Z",
+      "side": 1,
+      "message": "this needs to be org.onap.logging-analytics.pomba\nsee mail by Prudence",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
