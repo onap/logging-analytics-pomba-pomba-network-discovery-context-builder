@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_3749d4d0",
+        "filename": "config/application.properties",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-09T02:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_78b65e8c",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_8783dfcb",
         "filename": "pom.xml",
         "patchSetId": 9
@@ -53,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_f7127cb3",
+        "filename": "pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-09T02:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_676a431c",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_98bb3a72",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
         "patchSetId": 9
@@ -64,6 +100,24 @@
       "writtenOn": "2018-08-08T14:27:48Z",
       "side": 1,
       "message": "Coding standard violation - indent 4 spaces",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_171858d2",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-09T02:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_98bb3a72",
       "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_d71180ad",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-09T02:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_387786d6",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_b84ab681",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
         "patchSetId": 9
@@ -104,6 +176,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_77266c18",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-09T02:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_b84ab681",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_187e4aaf",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
         "patchSetId": 9
@@ -115,6 +205,24 @@
       "writtenOn": "2018-08-08T14:27:48Z",
       "side": 1,
       "message": "No null check needed\n throw new DiscoveryException(\"Missing Authorization: \" + authorization, status);",
+      "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_17661852",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/rs/RestServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-09T02:09:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_187e4aaf",
       "revId": "e8d2df50278d65ece944695bf515fd150a2bb7e2",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
