@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_20f2e79a",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-10T14:06:29Z",
+      "side": 1,
+      "message": "The defalut for this should be the obfuscated string:\nnetworkDiscoveryCtxBuilder.password:OBF:1u2a1toa1w8v1tok1u30",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_a0fef769",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-10T14:06:29Z",
+      "side": 1,
+      "message": "The defalut for this should be the obfuscated string:\nserviceDecomposition.password:OBF:1u2a1toa1w8v1tok1u30",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
