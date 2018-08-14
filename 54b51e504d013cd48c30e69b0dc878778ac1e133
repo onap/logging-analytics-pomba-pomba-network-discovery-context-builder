@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_03a00842",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_232664b8",
+      "revId": "54b51e504d013cd48c30e69b0dc878778ac1e133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_4375a096",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/exception/DiscoveryException.java",
         "patchSetId": 17
@@ -30,6 +48,30 @@
       "writtenOn": "2018-08-14T15:39:06Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 25
+      },
+      "revId": "54b51e504d013cd48c30e69b0dc878778ac1e133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_a3a7d44e",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/exception/DiscoveryException.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_4375a096",
       "range": {
         "startLine": 53,
         "startChar": 19,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_0345686f",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_c33f7024",
+      "revId": "54b51e504d013cd48c30e69b0dc878778ac1e133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_834978d2",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
         "patchSetId": 17
@@ -70,6 +130,24 @@
       "writtenOn": "2018-08-14T15:39:06Z",
       "side": 1,
       "message": "Include javadoc to state these methods are not threadsafe.\n\nIt appears these are used only for junit, but as public methods they can be called by anyone for any reason.  Consider changing these to package-protected and move test to same package (under src/test/java).",
+      "revId": "54b51e504d013cd48c30e69b0dc878778ac1e133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_9e48eb5c",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 691,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_834978d2",
       "revId": "54b51e504d013cd48c30e69b0dc878778ac1e133",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_3e751798",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_2304247a",
+      "revId": "54b51e504d013cd48c30e69b0dc878778ac1e133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_431360b8",
         "filename": "src/test/resources/junit/serviceDecomposition-1.json",
         "patchSetId": 17
@@ -104,6 +200,24 @@
       "writtenOn": "2018-08-14T15:39:06Z",
       "side": 1,
       "message": "Thanks for replacing tabs in json files.  As a non-Java file, tabs are allowed but I much prefer the spaces.",
+      "revId": "54b51e504d013cd48c30e69b0dc878778ac1e133",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_2373c4ea",
+        "filename": "src/test/resources/junit/serviceDecomposition-1.json",
+        "patchSetId": 17
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_431360b8",
       "revId": "54b51e504d013cd48c30e69b0dc878778ac1e133",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
