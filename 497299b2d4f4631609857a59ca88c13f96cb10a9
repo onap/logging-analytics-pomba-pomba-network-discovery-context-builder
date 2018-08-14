@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_a9e25b9d",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_20f2e79a",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_a0fef769",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
         "patchSetId": 15
@@ -30,6 +48,24 @@
       "writtenOn": "2018-08-10T14:06:29Z",
       "side": 1,
       "message": "The defalut for this should be the obfuscated string:\nserviceDecomposition.password:OBF:1u2a1toa1w8v1tok1u30",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_49ef0788",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_a0fef769",
       "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_69f4435b",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_032c9598",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_c3253dac",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
         "patchSetId": 15
@@ -64,6 +118,24 @@
       "writtenOn": "2018-08-10T15:58:02Z",
       "side": 1,
       "message": "Why duplicate all these constants?  Just reuse the MDC... ones and create the ones that are unique to MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE...",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_09e90f80",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_c3253dac",
       "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_29ee4b89",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_233431dd",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_43312deb",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
         "patchSetId": 15
@@ -98,6 +188,24 @@
       "writtenOn": "2018-08-10T15:58:02Z",
       "side": 1,
       "message": "If you use AnyEdit Tools plugin in your Eclipse it will eliminate all of these whitespace errors.",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_e9fff332",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_43312deb",
       "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_89fc3f40",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/test/NetworkDiscoveryRspInfoTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_a357e101",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_6341c938",
         "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/test/NetworkDiscoveryRspInfoTest.java",
         "patchSetId": 15
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_699be318",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/test/NetworkDiscoveryRspInfoTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_6341c938",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_43484d5b",
         "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/unittest/service/NetworkDiscoveryContextBuilderTest.java",
         "patchSetId": 15
@@ -149,6 +293,24 @@
       "writtenOn": "2018-08-10T15:58:02Z",
       "side": 1,
       "message": "You only need to set properties here that are different from the defaults, like the 3 above.",
+      "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_c989d7cb",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/unittest/service/NetworkDiscoveryContextBuilderTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-14T17:14:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_43484d5b",
       "revId": "497299b2d4f4631609857a59ca88c13f96cb10a9",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
