@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_ebb6fe89",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-15T14:18:20Z",
+      "side": 1,
+      "message": "Why do all these files now have extraneous whitespace?  It was better before.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 4
+      },
+      "revId": "58bf6539f099c37d5d608b5de561ef3088dea51c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_6bfc2e3f",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-15T14:18:20Z",
+      "side": 1,
+      "message": "-1 Creating a lock inside the method does not make this thread safe!\n\nMake the lock on line 154 static and use that.",
+      "revId": "58bf6539f099c37d5d608b5de561ef3088dea51c",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
