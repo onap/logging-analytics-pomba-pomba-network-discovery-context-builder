@@ -161,7 +161,7 @@ limitations under the License.
                     <apiSources>
                         <apiSource>
                             <locations>
-                                <location>org.onap.sdnc.apps.pomba.networkdiscovery.service.rs</location>
+                                <location>org.onap.pomba.contextbuilder.networkdiscovery.service.rs</location>
                             </locations>
                             <basePath>/network-discovery</basePath>
                             <info>
