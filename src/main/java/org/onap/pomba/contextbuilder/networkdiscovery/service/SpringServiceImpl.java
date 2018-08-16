@@ -57,49 +57,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 @org.springframework.stereotype.Service
 public class SpringServiceImpl implements SpringService {
     private static Logger log = LoggerFactory.getLogger(RestService.class);
-    public static String APP_NAME = "NetworkDiscoveryContextBuilder";
+    public static final String APP_NAME = "NetworkDiscoveryContextBuilder";
 
-    public static String MDC_REQUEST_ID = "RequestId";
-    public static String MDC_SERVER_FQDN = "ServerFQDN";
-    public static String MDC_SERVICE_NAME = "ServiceName";
-    public static String MDC_PARTNER_NAME = "PartnerName";
-    public static String MDC_START_TIME = "StartTime";
-    public static String MDC_SERVICE_INSTANCE_ID = "ServiceInstanceId";
-    public static String MDC_INVOCATION_ID = "InvocationID";
-    public static String MDC_CLIENT_ADDRESS = "ClientAddress";
-    public static String MDC_STATUS_CODE = "StatusCode";
-    public static String MDC_RESPONSE_CODE = "ResponseCode";
-    public static String MDC_INSTANCE_UUID = "InstanceUUID";
+    public static final String MDC_REQUEST_ID = "RequestId";
+    public static final String MDC_SERVER_FQDN = "ServerFQDN";
+    public static final String MDC_SERVICE_NAME = "ServiceName";
+    public static final String MDC_PARTNER_NAME = "PartnerName";
+    public static final String MDC_START_TIME = "StartTime";
+    public static final String MDC_SERVICE_INSTANCE_ID = "ServiceInstanceId";
+    public static final String MDC_INVOCATION_ID = "InvocationID";
+    public static final String MDC_CLIENT_ADDRESS = "ClientAddress";
+    public static final String MDC_STATUS_CODE = "StatusCode";
+    public static final String MDC_RESPONSE_CODE = "ResponseCode";
+    public static final String MDC_INSTANCE_UUID = "InstanceUUID";
 
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_APP = "NetworkDiscoveryContextBuilder_TO_NetworkDiscoveryMicroService";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_MSG_NAME = "MsgName";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_FINDBYRESOURCEIDANDTYPE = "findbyResourceIdAndType";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_URL = "CallingURL";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_REQUEST_ID = "ChildRequestId";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_RESOURCE_TYPE = "ResourceType";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_RESOURCE_ID = "ResourceID";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_CALL_BACK_URL = "CallbackUrl";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS = "Status";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS_NO_MORE_CALL_BACK = "NoMoreCallBack";
-    public static String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_WAIT_FOR_NOTIFICATION_TIME_OUT = "NotificationTimeOut";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_APP = "NetworkDiscoveryContextBuilder_TO_NetworkDiscoveryMicroService";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_MSG_NAME = "MsgName";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_FINDBYRESOURCEIDANDTYPE = "findbyResourceIdAndType";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_URL = "CallingURL";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_REQUEST_ID = "ChildRequestId";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_RESOURCE_TYPE = "ResourceType";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_RESOURCE_ID = "ResourceID";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_CALL_BACK_URL = "CallbackUrl";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS = "Status";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS_NO_MORE_CALL_BACK = "NoMoreCallBack";
+    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_WAIT_FOR_NOTIFICATION_TIME_OUT = "NotificationTimeOut";
 
-    public static String NETWORK_DISCOVERY_RSP_STATE_REQUEST_SENT = "RequestSent";
-    public static String NETWORK_DISCOVERY_RSP_STATE_RSP_ALL_RECEIVED = "AllRspReceived";
-    public static String NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER = "___";
-    public static String NETWORK_DISCOVERY_CTX_BUILDER_NETWORK_DISCOVERY_NOTIFICATION_PATH = "/network-discovery/service/networkDiscoveryNotification";
-    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_PARTNER_NAME = "X-ONAP-PartnerName";
-    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID = "X-ONAP-RequestID";
-    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_REQUEST_ID = "requestId";
-    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_TYPE = "resourceType";
-    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_ID = "resourceId";
-    public static String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_NOTIFICATION_URL = "notificationURL";
-    public static String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_APP = "NetworkDiscoveryMicroService_TO_NetworkDiscoveryContextBuilder";
-    public static String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_MSG_NAME = "MsgName";
-    public static String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_NETWORKDISCOVERYNOTIFICATION = "NetworkDiscoveryNotification";
-    public static String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_REQUEST_ID = "RequestId";
-    public static String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS = "Status";
-    public static String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS_UNKNOWN_REQ = "EntryRemoved_dueTo_timeOut_or_error_or_neverExisit";
-    public static String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS_SUCCESS = "SUCCESS";
+    public static final String NETWORK_DISCOVERY_RSP_STATE_REQUEST_SENT = "RequestSent";
+    public static final String NETWORK_DISCOVERY_RSP_STATE_RSP_ALL_RECEIVED = "AllRspReceived";
+    public static final String NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER = "___";
+    public static final String NETWORK_DISCOVERY_CTX_BUILDER_NETWORK_DISCOVERY_NOTIFICATION_PATH = "/network-discovery/service/networkDiscoveryNotification";
+    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_PARTNER_NAME = "X-ONAP-PartnerName";
+    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID = "X-ONAP-RequestID";
+    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_REQUEST_ID = "requestId";
+    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_TYPE = "resourceType";
+    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_ID = "resourceId";
+    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_NOTIFICATION_URL = "notificationURL";
+    public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_APP = "NetworkDiscoveryMicroService_TO_NetworkDiscoveryContextBuilder";
+    public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_MSG_NAME = "MsgName";
+    public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_NETWORKDISCOVERYNOTIFICATION = "NetworkDiscoveryNotification";
+    public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_REQUEST_ID = "RequestId";
+    public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS = "Status";
+    public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS_UNKNOWN_REQ = "EntryRemoved_dueTo_timeOut_or_error_or_neverExisit";
+    public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS_SUCCESS = "SUCCESS";
 
     private static final String ENTITY_GENERIC_VNFS = "generic-vnfs";
     private static final String ENTITY_L3_NETWORK = "l3-network";
@@ -438,9 +438,9 @@ public class SpringServiceImpl implements SpringService {
     private ModelContext updateServiceDecompCtx_and_networkDiscoveryInfoList(ModelContext serviceDecompCtx,
             List<String> sentRequestIdList) {
         /*
-         * TO DO: We can’t add network discovery data to serviceDecompCtx
-         * because the existing “v0” context aggregator context model doesn’t
-         * support it. We will have to wait for the real “v1” context model
+         * TO DO: We can't add network discovery data to serviceDecompCtx
+         * because the existing "v0" context aggregator context model doesn't
+         * support it. We will have to wait for the real "v1" context model
          * which contains attributes, vservers and networks.
          */
 
