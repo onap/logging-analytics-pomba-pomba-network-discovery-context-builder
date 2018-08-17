@@ -17,6 +17,8 @@
  */
 package org.onap.pomba.contextbuilder.networkdiscovery.service;
 
+import com.bazaarvoice.jolt.Chainr;
+import com.bazaarvoice.jolt.JsonUtils;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,20 +31,14 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReentrantLock;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.onap.pomba.common.datatypes.ModelContext;
-import org.onap.pomba.common.datatypes.Service;
-import org.onap.pomba.common.datatypes.VF;
-import org.onap.pomba.common.datatypes.VFModule;
-import org.onap.pomba.common.datatypes.VNFC;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.onap.pomba.contextbuilder.networkdiscovery.model.NetworkDiscoveryRspInfo;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.rs.RestService;
@@ -102,27 +98,31 @@ public class SpringServiceImpl implements SpringService {
     public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS_SUCCESS = "SUCCESS";
 
     private static final String ENTITY_GENERIC_VNFS = "generic-vnfs";
-    private static final String ENTITY_L3_NETWORK = "l3-network";
-    private static final String ENTITY_L3_NETWORKS = "l3-networks";
-    private static final String ENTITY_MODEL_INVARIANT_ID = "model-invariant-id";
-    private static final String ENTITY_NETWORK_ID = "network-id";
-    private static final String ENTITY_NETWORK_NAME = "network-name";
-    private static final String ENTITY_SERVICE_INSTANCE_ID = "service-instance-id";
-    private static final String ENTITY_SERVICE_INSTANCE_NAME = "service-instance-name";
-    private static final String ENTITY_VF_MODULE = "vf-module";
-    private static final String ENTITY_VF_MODULES = "vf-modules";
-    private static final String ENTITY_VF_MODULE_ID = "vf-module-id";
-    private static final String ENTITY_VNF_ID = "vnf-id";
-    private static final String ENTITY_VNF_NAME = "vnf-name";
-    private static final String ENTITY_VNF_TYPE = "vnf-type";
-    private static final String ENTITY_VSERVER = "vserver";
-    private static final String ENTITY_VSERVERS = "vservers";
-    private static final String ENTITY_VSERVER_NAME = "vserver-name";
-    private static final String ENTITY_VSERVER_ID = "vserver-id";
+    private static final String ENTITY_UUID = "uuid";
 
     private static UUID instanceUUID = UUID.randomUUID();
     private static Map<String, NetworkDiscoveryRspInfo> networkDiscoveryInfoList = new HashMap<>();
     private static final AtomicLong uniqueSeq = new AtomicLong();
+
+    private class Resource {
+
+        private String resourceType;
+        private String resourceId;
+
+        public String getResourceType() {
+            return this.resourceType;
+        }
+        public void setResourceType(String resourceType) {
+            this.resourceType = resourceType;
+        }
+        public String getResourceId() {
+            return this.resourceId;
+        }
+        public void setResourceId(String resourceId) {
+            this.resourceId = resourceId;
+        }
+    }
+
 
     @Autowired
     private String serviceDecompositionBaseUrl;
@@ -134,6 +134,9 @@ public class SpringServiceImpl implements SpringService {
     private String networkDiscoveryCtxBuilderBasicAuthorization;
 
     @Autowired
+    private String networkDiscoveryCtxBuilderResources;
+
+    @Autowired
     private String serviceDecompositionBasicAuthorization;
 
     @Autowired
@@ -143,7 +146,7 @@ public class SpringServiceImpl implements SpringService {
     private String networkDiscoveryCtxBuilderBaseUrl;
 
     @Autowired
-    private long ndResponseTimeOutInMilliseconds;
+    private long networkDiscoveryResponseTimeOutInMilliseconds;
 
     @Autowired
     private String networkDiscoveryMicroServiceHostAndPort;
@@ -164,22 +167,23 @@ public class SpringServiceImpl implements SpringService {
             RestUtil.validateServiceInstanceId(serviceInstanceId);
             RestUtil.validatePartnerName(partnerName);
             validateBasicAuth(authorization);
-            ModelContext serviceDecompCtx = getServiceDeomposition(serviceInstanceId, partnerName, requestId);
+            ModelContext serviceDecompCtx = new ModelContext();
+            List<Resource> resourceList = getServiceDeomposition(serviceInstanceId, partnerName, requestId);
 
-            CountDownLatch latchSignal = createCountDownLatch(serviceDecompCtx);
+            CountDownLatch latchSignal = createCountDownLatch(resourceList);
 
             if (latchSignal == null) {
                 // Nothing to send
                 return serviceDecompCtx;
             }
 
-            List<String> sentRequestIdList = sendNetworkDiscoveryRequest(serviceDecompCtx, serviceInstanceId,
+            List<String> sentRequestIdList = sendNetworkDiscoveryRequest(resourceList, serviceInstanceId, requestId,
                     partnerName, latchSignal);
 
             int numOfMsgSent = sentRequestIdList.size();
             if ((numOfMsgSent > 0) && (latchSignal != null)) {
                 // The main task waits for four threads
-                if (false == latchSignal.await(ndResponseTimeOutInMilliseconds, TimeUnit.MILLISECONDS)) {
+                if (false == latchSignal.await(networkDiscoveryResponseTimeOutInMilliseconds, TimeUnit.MILLISECONDS)) {
                     // When it comes here, it is due to time out.
                     log.info("Wait for Latch Signal time out " + serviceInstanceId);
                 }
@@ -222,7 +226,7 @@ public class SpringServiceImpl implements SpringService {
     /**
      * Given a service instance ID, GET the resources from Service Decompostion.
      */
-    private ModelContext getServiceDeomposition(String serviceInstanceId, String partnerName, String requestId)
+    private List<Resource> getServiceDeomposition(String serviceInstanceId, String partnerName, String requestId)
             throws DiscoveryException {
         if (serviceInstanceId == null) {
             return null;
@@ -238,7 +242,6 @@ public class SpringServiceImpl implements SpringService {
                     .header("X-ONAP-RequestID", requestId).get();
 
             String reply = null;
-            JSONObject jObject = null;
             if (response.getStatus() != 200) {
                 MDC.put(MDC_RESPONSE_CODE, String.valueOf(response.getStatus()));
                 MDC.put(MDC_STATUS_CODE, "ERROR");
@@ -251,9 +254,15 @@ public class SpringServiceImpl implements SpringService {
 
                 log.info("GET Response from ServiceDecompositionMircoService GetContext for serviceInstanceId:"
                         + serviceInstanceId + ", message body: " + reply);
-                jObject = new JSONObject(reply);
             }
-            return parseServiceDecomposition(jObject);
+
+            List<Object> jsonSpec = JsonUtils.filepathToList("config/networkdiscoveryspec.json");
+            Object jsonInput = JsonUtils.jsonToObject(reply);
+            Chainr chainr = Chainr.fromSpec(jsonSpec);
+            Object transObject = chainr.transform(jsonInput);
+            System.out.println(JsonUtils.toPrettyJsonString(transObject));
+            JSONObject transJobject = new JSONObject(JsonUtils.toPrettyJsonString(transObject));
+            return parseServiceDecomposition(transJobject);
         } catch (Exception x) {
             throw new DiscoveryException(x.getMessage(), x);
         }
@@ -268,108 +277,30 @@ public class SpringServiceImpl implements SpringService {
         return serviceDecompositionBasicAuthorization;
     }
 
-    private ModelContext parseServiceDecomposition(JSONObject jObject) {
+    private List<Resource> parseServiceDecomposition(JSONObject jObject) {
 
-        ModelContext response = new ModelContext();
-        // Get Service Instance Data
-        Service service = new Service();
-
-        if (jObject.has(ENTITY_SERVICE_INSTANCE_NAME)) {
-            service.setName(jObject.getString(ENTITY_SERVICE_INSTANCE_NAME));
-        }
-
-        if (jObject.has(ENTITY_SERVICE_INSTANCE_ID)) {
-            service.setUuid(jObject.getString(ENTITY_SERVICE_INSTANCE_ID));
-        }
-
-        if (jObject.has(ENTITY_MODEL_INVARIANT_ID)) {
-            service.setInvariantUuid(jObject.getString(ENTITY_MODEL_INVARIANT_ID));
-        }
-
-        response.setService(service);
-
+        List<Resource> response = new ArrayList<Resource>();
         // Find generic-vnfs
         if (jObject.has(ENTITY_GENERIC_VNFS)) {
             JSONArray genericVnfs = jObject.getJSONArray(ENTITY_GENERIC_VNFS);
             for (int i = 0; i < genericVnfs.length(); i++) {
-                VF vf = new VF();
                 JSONObject genericVnfInst = genericVnfs.getJSONObject(i);
-
-                if (genericVnfInst.has(ENTITY_VNF_NAME)) {
-                    vf.setName(genericVnfInst.getString(ENTITY_VNF_NAME));
-                }
-                if (genericVnfInst.has(ENTITY_VNF_TYPE)) {
-                    vf.setType(genericVnfInst.getString(ENTITY_VNF_TYPE));
-                }
-                if (genericVnfInst.has(ENTITY_VNF_ID)) {
-                    vf.setUuid(genericVnfInst.getString(ENTITY_VNF_ID));
-                }
-
-                if (genericVnfInst.has(ENTITY_MODEL_INVARIANT_ID)) {
-                    vf.setInvariantUuid(genericVnfInst.getString(ENTITY_MODEL_INVARIANT_ID));
-                }
-
-                // find vf-modules
-                if (genericVnfInst.has(ENTITY_VF_MODULES)) {
-                    JSONObject vfModules = genericVnfInst.getJSONObject(ENTITY_VF_MODULES);
-                    if (vfModules.has(ENTITY_VF_MODULE)) {
-                        JSONArray vfModuleList = vfModules.getJSONArray(ENTITY_VF_MODULE);
-                        for (int j = 0; j < vfModuleList.length(); j++) {
-                            VFModule vfModule = new VFModule();
-                            JSONObject vfModuleInst = vfModuleList.getJSONObject(j);
-                            if (vfModuleInst.has(ENTITY_VF_MODULE_ID)) {
-                                vfModule.setUuid(vfModuleInst.getString(ENTITY_VF_MODULE_ID));
+                // Find resources
+                String[] resources = networkDiscoveryCtxBuilderResources.split(",");
+                for (int j = 0; j< resources.length; j++) {
+                    if (genericVnfInst.has(resources[j])) {
+                        JSONArray resourceList = genericVnfInst.getJSONArray(resources[j]);
+                        for (int k = 0; k < resourceList.length(); k++) {
+                            Resource resource  = new Resource();
+                            JSONObject resourceInst = resourceList.getJSONObject(k);
+                            if (resourceInst.has(ENTITY_UUID)) {
+                                resource.setResourceId(resourceInst.getString(ENTITY_UUID));
                             }
-                            if (vfModuleInst.has(ENTITY_MODEL_INVARIANT_ID)) {
-                                vfModule.setInvariantUuid(vfModuleInst.getString(ENTITY_MODEL_INVARIANT_ID));
-                            }
-                            vf.addVfModule(vfModule);
+                            resource.setResourceType(resources[j]);
+                            response.add(resource);
                         }
                     }
                 }
-
-                // Find vservers
-                if (genericVnfInst.has(ENTITY_VSERVERS)) {
-                    JSONArray vservers = genericVnfInst.getJSONArray(ENTITY_VSERVERS);
-                    for (int j = 0; j < vservers.length(); j++) {
-                        VNFC vserver = new VNFC();
-                        JSONObject vserversInst = vservers.getJSONObject(j);
-                        if (vserversInst.has(ENTITY_VSERVER_NAME)) {
-                            vserver.setName(vserversInst.getString(ENTITY_VSERVER_NAME));
-                        }
-                        if (vserversInst.has(ENTITY_VSERVER_ID)) {
-                            vserver.setUuid(vserversInst.getString(ENTITY_VSERVER_ID));
-                        }
-                        if (vserversInst.has(ENTITY_MODEL_INVARIANT_ID)) {
-                            vserver.setInvariantUuid(vserversInst.getString(ENTITY_MODEL_INVARIANT_ID));
-                        }
-                        // Store vserver type to NfcNameCode
-                        vserver.setNfcNamingCode(ENTITY_VSERVER);
-                        vf.addVnfc(vserver);
-                    }
-                }
-
-                // Find l3 networks
-                if (genericVnfInst.has(ENTITY_L3_NETWORKS)) {
-                    JSONArray l3Networks = genericVnfInst.getJSONArray(ENTITY_L3_NETWORKS);
-                    for (int j = 0; j < l3Networks.length(); j++) {
-                        VNFC l3Network = new VNFC();
-                        JSONObject l3NetworkInst = l3Networks.getJSONObject(j);
-                        if (l3NetworkInst.has(ENTITY_NETWORK_NAME)) {
-                            l3Network.setName(l3NetworkInst.getString(ENTITY_NETWORK_NAME));
-                        }
-                        if (l3NetworkInst.has(ENTITY_NETWORK_ID)) {
-                            l3Network.setUuid(l3NetworkInst.getString(ENTITY_NETWORK_ID));
-                        }
-                        if (l3NetworkInst.has(ENTITY_MODEL_INVARIANT_ID)) {
-                            l3Network.setInvariantUuid(l3NetworkInst.getString(ENTITY_MODEL_INVARIANT_ID));
-                        }
-                        // Store l3-network type to NfcNameCode
-                        l3Network.setNfcNamingCode(ENTITY_L3_NETWORK);
-                        vf.addVnfc(l3Network);
-                    }
-                }
-                response.addVf(vf);
             }
         }
 
@@ -481,11 +412,11 @@ public class SpringServiceImpl implements SpringService {
         return serviceDecompCtx;
     }
 
-    private CountDownLatch createCountDownLatch(ModelContext serviceDecompCtx) {
+    private CountDownLatch createCountDownLatch(List<Resource> resourceList) {
 
         // Obtain the possible total count of messages to NetworkDiscovery
         // for CountDownLatch.
-        int latch_count = sizeOfMsgToNetworkDiscovery(serviceDecompCtx);
+        int latch_count = resourceList.size();
         if (latch_count > 0) {
             // Let us create task that is going to
             // wait for all threads before it starts
@@ -497,33 +428,26 @@ public class SpringServiceImpl implements SpringService {
     }
 
     /* Return list of requestIds sent to network-discovery microService. */
-    private List<String> sendNetworkDiscoveryRequest(ModelContext serviceDecompCtx, String serviceInstanceId,
+    private List<String> sendNetworkDiscoveryRequest(List<Resource> resourceList, String serviceInstanceId, String parent_requestId,
             String partner_name, CountDownLatch latchSignal) throws DiscoveryException {
+
         List<String> relatedRequestIdList = new ArrayList<>();
 
-        String parent_requestId = MDC.get(MDC_REQUEST_ID);
+        for (Resource resource : resourceList) {
+            String resourceId = resource.getResourceId();
+            String resourceType = resource.getResourceType();
 
-        List<VF> vfList = serviceDecompCtx.getVf();
+            // The old_requestId is inherited from ServiceDecomposition.
+            // Before we send a
+            // message to NetworkDiscoveryMicroService for each Resource, we
+            // need to generate
+            // a new request for identification, based on the old ID.
+            String requestId = parent_requestId + NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER
+                    + uniqueSeq.incrementAndGet();
 
-        for (VF entryVF : vfList) {
-
-            List<VNFC> vnfcList = entryVF.getVnfc();
-            for (VNFC entryVnfc : vnfcList) {
-                String resourceId = entryVnfc.getUuid();
-                String resourceType = entryVnfc.getNfcNamingCode();
-
-                // The old_requestId is inheritated from ServiceDecomposition.
-                // Before we send a
-                // message to NetworkDiscoveryMicroService for each Vserver, we
-                // need to generate
-                // a new request for identification, based on the old ID.
-                String requestId = parent_requestId + NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER
-                        + uniqueSeq.incrementAndGet();
-
-                if (true == sendNetworkDiscoveryRequestToSpecificServer(partner_name, parent_requestId, requestId,
-                        resourceId, resourceType, latchSignal)) {
-                    relatedRequestIdList.add(requestId);
-                }
+            if (true == sendNetworkDiscoveryRequestToSpecificServer(partner_name, parent_requestId, requestId,
+                    resourceId, resourceType, latchSignal)) {
+                relatedRequestIdList.add(requestId);
             }
         }
 
@@ -537,18 +461,6 @@ public class SpringServiceImpl implements SpringService {
         }
 
         return relatedRequestIdList;
-    }
-
-    /* Return number of messages sent to network-discovery microService. */
-    private int sizeOfMsgToNetworkDiscovery(ModelContext serviceDecompCtx) {
-        int msg_count = 0;
-
-        List<VF> vfList = serviceDecompCtx.getVf();
-        for (VF entryVF : vfList) {
-            List<VNFC> vnfcList = entryVF.getVnfc();
-            msg_count = msg_count + vnfcList.size();
-        }
-        return msg_count;
     }
 
     // Return true when message is sent to network-discovery microService,
