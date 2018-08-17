@@ -25,6 +25,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
+import com.github.jknack.handlebars.internal.Files;
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,11 +39,9 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -61,11 +63,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
-import com.github.jknack.handlebars.internal.Files;
-import com.github.tomakehurst.wiremock.client.WireMock;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import com.github.tomakehurst.wiremock.matching.UrlPattern;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class })

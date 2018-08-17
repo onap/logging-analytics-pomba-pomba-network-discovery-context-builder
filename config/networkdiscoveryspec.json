@@ -1,0 +1,25 @@
+[
+  {
+    "operation": "shift",
+    "spec": {
+      "service-instance-name": "service-instance-name",
+      "uuid": "uuid",
+      "service-instance-id": "service-instance-id",
+      "model-invariant-id": "model-invariant-id",
+      "generic-vnfs": {
+        "*": {
+          "vservers": {
+            "*": {
+              "vserver-id": "generic-vnfs[&3].vservers[&1].uuid"
+            }
+          },
+          "l3-networks": {
+            "*": {
+              "network-id": "generic-vnfs[&3].l3-networks[&1].uuid"
+            }
+          }
+        }
+      }
+    }
+    }
+  ]

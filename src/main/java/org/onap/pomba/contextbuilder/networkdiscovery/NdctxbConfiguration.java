@@ -20,7 +20,6 @@ package org.onap.pomba.contextbuilder.networkdiscovery;
 
 import java.net.InetAddress;
 import java.util.Base64;
-
 import org.eclipse.jetty.util.security.Password;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.slf4j.Logger;
@@ -33,13 +32,23 @@ import org.springframework.stereotype.Component;
 public class NdctxbConfiguration {
     private static Logger log = LoggerFactory.getLogger(NdctxbConfiguration.class);
 
-    // Network Discover Configuration values
+    // Network Discovery Context Builder Configuration values
+
+    @Value("${networkDiscoveryCtxBuilder.httpProtocol}")
+    private String httpNetworkDiscoveryCtxBuilderProtocol;
+
+    @Value("${networkDiscoveryCtxBuilder.port}")
+    private String networkDiscoveryCtxBuilderPort;
 
     @Value("${networkDiscoveryCtxBuilder.userId:admin}")
     private String networkDiscoveryCtxBuilderUserId;
 
     @Value("${networkDiscoveryCtxBuilder.password:OBF:1u2a1toa1w8v1tok1u30}")
     private String networkDiscoveryCtxBuilderPassword;
+
+    @Value("${networkDiscoveryCtxBuilder.resourceList:vnfcs}")
+    private String networkDiscoveryCtxBuilderResourceList;
+
 
     // Service Decomposition Configuration values
 
@@ -61,6 +70,30 @@ public class NdctxbConfiguration {
     @Value("${serviceDecomposition.password:OBF:1u2a1toa1w8v1tok1u30}")
     private String serviceDecompositionPassword;
 
+    // Network Discovery Micro Service Configuration values
+
+    @Value("${networkDiscoveryMicroService.host}")
+    private String networkDiscoveryMicroServiceHost;
+
+    @Value("${networkDiscoveryMicroService.port}")
+    private String networkDiscoveryMicroServicePort;
+
+    @Value("${networkDiscoveryMicroService.httpProtocol}")
+    private String httpNetworkDiscoveryMicroServiceProtocol;
+
+    @Value("${networkDiscoveryMicroService.networkDiscoveryPath}")
+    private String networkDiscoveryMicroServicePath;
+
+    @Value("${networkDiscoveryMicroService.responseTimeOutInMilliseconds}")
+    private String networkDiscoveryResponseTimeOutInMilliseconds;
+
+    @Value("${networkDiscoveryMicroService.userId:admin}")
+    private String networkDiscoveryMicroServiceUserId;
+
+    @Value("${networkDiscoveryMicroService.password:OBF:1u2a1toa1w8v1tok1u30}")
+    private String networkDiscoveryMicroServicePassword;
+
+
     @Bean(name = "serviceDecompositionBaseUrl")
     public String getURL() {
         String url = this.serviceDecompositionHttpProtocol + "://" + this.serviceDecompositionHost + ":"
@@ -81,21 +114,26 @@ public class NdctxbConfiguration {
         return ("Basic " + Base64.getEncoder().encodeToString(auth.getBytes()));
     }
 
-    /* Network Discovery related */
-    @Value("${networkDiscoveryMicroService.host}")
-    private String networkDiscoveryMicroServiceHost;
+    @Bean(name = "networkDiscoveryCtxBuilderBaseUrl")
+    public String getNetworkDiscoveryCtxBuilderBaseUrl() throws DiscoveryException {
+        String url = null;
+        try {
+            String localIp = InetAddress.getLocalHost().getHostAddress();
+            url = this.httpNetworkDiscoveryCtxBuilderProtocol + "://" + localIp + ":"
+                    + this.networkDiscoveryCtxBuilderPort;
+        } catch (Exception e) {
+            log.error("Unable to obtain localIp: " + e.getMessage());
+            throw new DiscoveryException(e.getMessage(), e);
+        }
 
-    @Value("${networkDiscoveryMicroService.port}")
-    private String networkDiscoveryMicroServicePort;
+        return url;
+    }
 
-    @Value("${networkDiscoveryMicroService.httpProtocol}")
-    private String httpNetworkDiscoveryMicroServiceProtocol;
+    @Bean(name = "networkDiscoveryCtxBuilderResources")
+        public String getNetworkDiscoveryCtxBuilderResourcs() {
+            return this.networkDiscoveryCtxBuilderResourceList;
+    }
 
-    @Value("${networkDiscoveryMicroService.networkDiscoveryPath}")
-    private String networkDiscoveryMicroServicePath;
-
-    @Value("${networkDiscoveryMicroService.responseTimeOutInMilliseconds}")
-    private String networkDiscoveryResponseTimeOutInMilliseconds;
 
     @Bean(name = "networkDiscoveryMicroServiceBaseUrl")
     public String getNetworkDiscoveryURL() {
@@ -104,7 +142,7 @@ public class NdctxbConfiguration {
         return url;
     }
 
-    @Bean(name = "ndResponseTimeOutInMilliseconds")
+    @Bean(name = "networkDiscoveryResponseTimeOutInMilliseconds")
     public long getNdResponseTimeOutInMilliseconds() {
         long timeoutV = Integer.parseUnsignedInt(this.networkDiscoveryResponseTimeOutInMilliseconds);
         return timeoutV;
@@ -115,40 +153,6 @@ public class NdctxbConfiguration {
         String hostNPort = this.networkDiscoveryMicroServiceHost + ":" + this.networkDiscoveryMicroServicePort;
         return hostNPort;
     }
-
-    /* Network Discovery Context Builder related */
-    @Value("${server.port:8080}")
-    private int networkDiscoveryCtxBuilderPort;
-
-    @Value("${networkDiscoveryCtxBuilder.httpProtocol}")
-    private String httpNetworkDiscoveryCtxBuilderProtocol;
-
-    @Bean(name = "networkDiscoveryCtxBuilderPort")
-    public String getNetworkDiscoveryCtxBuilderPort() {
-        return Integer.toString(networkDiscoveryCtxBuilderPort);
-    }
-
-    @Bean(name = "networkDiscoveryCtxBuilderBaseUrl")
-    public String getNetworkDiscoveryCtxBuilderBaseUrl() throws DiscoveryException {
-        String url = null;
-        try {
-            String localIp = InetAddress.getLocalHost().getHostAddress();
-            url = this.httpNetworkDiscoveryCtxBuilderProtocol + "://" + localIp + ":"
-                    + getNetworkDiscoveryCtxBuilderPort();
-        } catch (Exception e) {
-            log.error("Unable to obtain localIp: " + e.getMessage());
-            throw new DiscoveryException(e.getMessage(), e);
-        }
-
-        return url;
-    }
-
-    // Network Discovery Configuration values
-    @Value("${networkDiscoveryMicroService.userId:admin}")
-    private String networkDiscoveryMicroServiceUserId;
-
-    @Value("${networkDiscoveryMicroService.password:OBF:1u2a1toa1w8v1tok1u30}")
-    private String networkDiscoveryMicroServicePassword;
 
     @Bean(name = "networkDiscoveryMicroServiceBasicAuthorization")
     public String getNetworkDiscoveryMicroServiceBasicAuth() {
