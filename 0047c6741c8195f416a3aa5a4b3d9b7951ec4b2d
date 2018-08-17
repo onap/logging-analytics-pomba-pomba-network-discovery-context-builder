@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_04947fe0",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-08-17T17:24:16Z",
+      "side": 1,
+      "message": "Yes, I agree.\n\nBut what would we like to archive here?  Would we just like to include swagger when we build the docker image or we would like include swagger in a normal build?\n\nPlus this is not how the other context builder does, I would prefer to keep all of the context builders the same way.",
+      "parentUuid": "1a76adc5_a4ecab90",
+      "revId": "0047c6741c8195f416a3aa5a4b3d9b7951ec4b2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_2fe879e1",
         "filename": "pom.xml",
         "patchSetId": 1
