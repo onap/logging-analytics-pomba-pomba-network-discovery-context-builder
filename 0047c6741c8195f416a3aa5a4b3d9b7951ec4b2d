@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_104a7aac",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-08-17T14:19:37Z",
+      "side": 1,
+      "message": "The plug-in is expected to take care of copying swagger resources to the output directory. \nremoved the plugin and build is still successful. \n\nA fresh set of swagger files were again  created under target\\classes\\META-INF\\resources\\swagger.",
+      "parentUuid": "1a76adc5_8fe18d00",
+      "revId": "0047c6741c8195f416a3aa5a4b3d9b7951ec4b2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_2fe879e1",
         "filename": "pom.xml",
         "patchSetId": 1
