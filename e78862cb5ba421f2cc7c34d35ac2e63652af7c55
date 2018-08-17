@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_a70d8d39",
+        "filename": "src/test/resources/SD_response.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-17T18:10:51Z",
+      "side": 1,
+      "message": "I\u0027ll make this more readable",
+      "revId": "e78862cb5ba421f2cc7c34d35ac2e63652af7c55",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
