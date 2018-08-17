@@ -121,11 +121,6 @@ limitations under the License.
             <artifactId>jersey-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.onap.aai</groupId>
-            <artifactId>rest-client</artifactId>
-            <version>1.2.2-SNAPSHOT</version>
-        </dependency>
-        <dependency>
            <groupId>org.json</groupId>
            <artifactId>json</artifactId>
         </dependency>
