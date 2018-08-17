@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_4721194c",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-08-17T20:01:26Z",
+      "side": 1,
+      "message": "Odd that something more specific than Object is used in this parameterized return - would need to look at the libary more to comment",
+      "revId": "a6bb3bf3afa5a36096ed4ae7c8a15b035b94aa21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_071b211c",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-08-17T20:01:26Z",
+      "side": 1,
+      "message": "NPE check",
+      "revId": "a6bb3bf3afa5a36096ed4ae7c8a15b035b94aa21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_c7d44922",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/test/NetworkDiscoveryRspInfoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-08-17T20:01:26Z",
+      "side": 1,
+      "message": "only whitespace in this file - remove",
+      "revId": "a6bb3bf3afa5a36096ed4ae7c8a15b035b94aa21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_47e839e2",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/unittest/service/NetworkDiscoveryContextBuilderTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-08-17T20:01:26Z",
+      "side": 1,
+      "message": "fixed alpha order",
+      "revId": "a6bb3bf3afa5a36096ed4ae7c8a15b035b94aa21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
