@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_e4670324",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-08-17T17:52:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_04947fe0",
+      "revId": "0047c6741c8195f416a3aa5a4b3d9b7951ec4b2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_2fe879e1",
         "filename": "pom.xml",
         "patchSetId": 1
