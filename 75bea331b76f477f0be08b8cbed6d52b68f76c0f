@@ -1,0 +1,8 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Shane Daniel <shane.daniel@amdocs.com>
+Verified+1: Shane Daniel <shane.daniel@amdocs.com>
+Submitted-by: Shane Daniel <shane.daniel@amdocs.com>
+Submitted-at: Fri, 17 Aug 2018 19:25:52 +0000
+Reviewed-on: https://gerrit.onap.org/r/61103
+Project: logging-analytics/pomba/pomba-network-discovery-context-builder
+Branch: refs/heads/master
