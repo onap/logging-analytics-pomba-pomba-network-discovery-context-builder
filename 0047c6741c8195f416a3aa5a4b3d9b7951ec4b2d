@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_30dc56e4",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-08-17T14:24:51Z",
+      "side": 1,
+      "message": "But is it redundant if it\u0027s already included in the docker profile section?",
+      "parentUuid": "1a76adc5_104a7aac",
+      "revId": "0047c6741c8195f416a3aa5a4b3d9b7951ec4b2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_2fe879e1",
         "filename": "pom.xml",
         "patchSetId": 1
