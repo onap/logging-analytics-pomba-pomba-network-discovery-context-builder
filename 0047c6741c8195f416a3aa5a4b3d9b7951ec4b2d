@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_8fe18d00",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-08-17T00:21:12Z",
+      "side": 1,
+      "message": "Is this section needed here?",
+      "revId": "0047c6741c8195f416a3aa5a4b3d9b7951ec4b2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_2fe879e1",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-08-17T00:21:12Z",
+      "side": 1,
+      "message": "If you are going to update the patch, please remove this unrelated comment.",
+      "revId": "0047c6741c8195f416a3aa5a4b3d9b7951ec4b2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
