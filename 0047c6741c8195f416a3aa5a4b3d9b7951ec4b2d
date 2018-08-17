@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_a4ecab90",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-08-17T17:02:44Z",
+      "side": 1,
+      "message": "While those 2 artifacts are the same, but they have different tasks.\n\nThis is my understanding: \n\nThe maven-resources-plugin artifact in \u003cprofile\u003e is responsible for copying resources, config file, .properties, ... to the docker image. \n\nThe maven-resources-plugin in the \u003cbuild\u003e is responsible for copying swagger files from src/main/resources to target/classes/META-INF/resources, during code build process.\n\nI noticed removing the artifact from \u003cbuild\u003e and keeping it in \u003cprofile\u003e, swagger files are recreated in target/classes/META-INF/resources.",
+      "parentUuid": "1a76adc5_30dc56e4",
+      "revId": "0047c6741c8195f416a3aa5a4b3d9b7951ec4b2d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_2fe879e1",
         "filename": "pom.xml",
         "patchSetId": 1
