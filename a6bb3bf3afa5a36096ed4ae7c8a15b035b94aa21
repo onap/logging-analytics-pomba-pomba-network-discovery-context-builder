@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_da9f3cb3",
+        "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/test/NetworkDiscoveryRspInfoTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-18T19:10:07Z",
+      "side": 1,
+      "message": "Phillip - was this file supposed to have Junits?  Are they somewhere else?",
+      "parentUuid": "1a76adc5_c7d44922",
+      "revId": "a6bb3bf3afa5a36096ed4ae7c8a15b035b94aa21",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_47e839e2",
         "filename": "src/test/java/org/onap/pomba/contextbuilder/networkdiscovery/unittest/service/NetworkDiscoveryContextBuilderTest.java",
         "patchSetId": 2
