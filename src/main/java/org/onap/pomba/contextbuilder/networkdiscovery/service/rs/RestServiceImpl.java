@@ -67,7 +67,7 @@ public class RestServiceImpl implements RestService {
                 return Response.ok().entity(gson.toJson(sdContext)).build();
             }
         } catch (DiscoveryException x) {
-            log.error(ErrorMessage.CONTEXT_BUILDER_FAILED);
+            log.error(ErrorMessage.CONTEXT_BUILDER_FAILED, x);
             return Response.status(x.getHttpStatus()).entity(x.getMessage()).build();
 
         } catch (Exception x) {

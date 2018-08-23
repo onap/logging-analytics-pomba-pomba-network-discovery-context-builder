@@ -220,6 +220,7 @@ public class SpringServiceImpl implements SpringService {
             // If, for some reason we are unable to get the canonical host name,
             // we
             // just want to leave the field null.
+        	log.info("Could not get canonical host name for " + MDC_SERVER_FQDN + ", leaving field null");
         }
     }
 
@@ -577,6 +578,7 @@ public class SpringServiceImpl implements SpringService {
             // If, for some reason we are unable to get the canonical host name,
             // we
             // just want to leave the field null.
+        	log.info("Could not get canonical host name for " + MDC_SERVER_FQDN + ", leaving field null");
         }
     }
 
@@ -599,6 +601,7 @@ public class SpringServiceImpl implements SpringService {
             // If, for some reason we are unable to get the canonical host name,
             // we
             // just want to leave the field null.
+        	log.info("Could not get canonical host name for " + MDC_SERVER_FQDN + ", leaving field null");
         }
     }
 
