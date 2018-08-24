@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_9c30c0e9",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 2475
+      },
+      "writtenOn": "2018-08-24T20:11:41Z",
+      "side": 1,
+      "message": "Useful technique, no?  Some comments/Javadoc explaining what this is actually doing would be helpful though.",
+      "revId": "512a97eeb979bf5025f338d4c75f2305bdca711f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
