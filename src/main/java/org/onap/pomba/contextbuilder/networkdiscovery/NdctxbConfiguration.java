@@ -19,18 +19,30 @@
 package org.onap.pomba.contextbuilder.networkdiscovery;
 
 import java.net.InetAddress;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.StreamSupport;
+
 import org.eclipse.jetty.util.security.Password;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.AbstractEnvironment;
+import org.springframework.core.env.EnumerablePropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.MutablePropertySources;
 import org.springframework.stereotype.Component;
 
 @Component
 public class NdctxbConfiguration {
     private static Logger log = LoggerFactory.getLogger(NdctxbConfiguration.class);
+    private final String prefixResourceType = "networkDiscoveryCtxBuilder.resourceTypeMapping.";
+    private final String whiteSpace = "\\s";
 
     // Network Discovery Context Builder Configuration values
 
@@ -161,4 +173,34 @@ public class NdctxbConfiguration {
         return ("Basic " + Base64.getEncoder().encodeToString(auth.getBytes()));
     }
 
+    @Autowired
+    private Environment env;
+    
+    // This method builds a map between Service Decomposition resource type and Network Discovery
+    // Context Builder resource type using dynamic mapping technique.
+    // It scans the contents of the configuration file "application.properties",
+    // searching for the string "networkDiscoveryCtxBuilder.resourceTypeMapping.", and if found,
+    // anything from the remaining string will be used as the key (Service Decomposition resource Type)
+    // to match to the value of assignment (network discovery context builder resource type).
+    // For example,"networkDiscoveryCtxBuilder.resourceTypeMapping.BBB = bbb",
+    // Service Decomposition resource type BBB matches to context builder resource type bbb    
+    @Bean(name = "networkDiscoveryCtxBuilderResourceTypeMapping")
+    public Map<String, String> getResourceTypeMapping() {
+        Map<String, String> props = new HashMap<>();
+        MutablePropertySources propSrcs = ((AbstractEnvironment) this.env).getPropertySources();
+        StreamSupport.stream(propSrcs.spliterator(), false)
+                .filter(ps -> ps instanceof EnumerablePropertySource)
+                .map(ps -> ((EnumerablePropertySource<?>) ps).getPropertyNames())
+                .flatMap(Arrays::<String>stream)
+                .forEach(propName -> {
+                    if (propName.startsWith(prefixResourceType)) {
+                        String myKey = propName.substring(prefixResourceType.length()).replaceAll(whiteSpace,"");
+                        String myValue = this.env.getProperty(propName).replaceAll(whiteSpace, "");
+                        props.put( myKey , myValue);
+                    }
+                });
+
+        log.info(props.toString());
+        return props;
+    }    
 }
