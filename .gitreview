@@ -2,3 +2,4 @@
 host=gerrit.onap.org
 port=29418
 project=logging-analytics/pomba/pomba-network-discovery-context-builder.git
+defaultbranch=master
