@@ -154,6 +154,9 @@ public class SpringServiceImpl implements SpringService {
     @Autowired
     private Client jerseyClient;
 
+    @javax.annotation.Resource
+    private Map<String, String> networkDiscoveryCtxBuilderResourceTypeMapping;
+
     private static final ReentrantLock lock = new ReentrantLock();
 
     @Override
@@ -436,7 +439,12 @@ public class SpringServiceImpl implements SpringService {
 
         for (Resource resource : resourceList) {
             String resourceId = resource.getResourceId();
-            String resourceType = resource.getResourceType();
+            String origResourceType = resource.getResourceType();
+            String resourceType = networkDiscoveryCtxBuilderResourceTypeMapping.get(origResourceType);            
+            if (resourceType == null) {
+                log.error("Unable to find " + origResourceType + " from networkDiscoveryCtxBuilderResourceTypeMapping");
+                continue;
+            }
 
             // The old_requestId is inherited from ServiceDecomposition.
             // Before we send a

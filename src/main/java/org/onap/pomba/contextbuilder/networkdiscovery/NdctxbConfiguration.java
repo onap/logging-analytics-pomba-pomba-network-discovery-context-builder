@@ -19,7 +19,11 @@
 package org.onap.pomba.contextbuilder.networkdiscovery;
 
 import java.net.InetAddress;
+import java.util.Arrays;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.jetty.util.security.Password;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.slf4j.Logger;
@@ -27,6 +31,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+
+import org.springframework.core.env.AbstractEnvironment;
+import org.springframework.core.env.Environment;
+import org.springframework.core.env.MutablePropertySources;
+import org.springframework.core.env.EnumerablePropertySource;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+import static java.util.stream.Collectors.toList;
+
 
 @Component
 public class NdctxbConfiguration {
@@ -161,4 +176,29 @@ public class NdctxbConfiguration {
         return ("Basic " + Base64.getEncoder().encodeToString(auth.getBytes()));
     }
 
+    @Autowired
+    private Environment env;
+    
+    @Bean(name = "networkDiscoveryCtxBuilderResourceTypeMapping")
+    public Map<String, String> getResourceTypeMapping() {
+        Map<String, String> props = new HashMap<>();
+        MutablePropertySources propSrcs = ((AbstractEnvironment) this.env).getPropertySources();
+        StreamSupport.stream(propSrcs.spliterator(), false)
+                .filter(ps -> ps instanceof EnumerablePropertySource)
+                .map(ps -> ((EnumerablePropertySource<?>) ps).getPropertyNames())
+                .flatMap(Arrays::<String>stream)
+                .forEach(propName -> {
+                    String prefixResourceType = "networkDiscoveryCtxBuilder.resourceTypeMapping.";
+                    if (propName.startsWith(prefixResourceType)) {
+                        String myKey = propName.substring(prefixResourceType.length()).replaceAll("\\s","");
+                        String myValue = this.env.getProperty(propName).replaceAll("\\s", "");
+                        props.put( myKey , myValue);
+                    }
+                });
+
+        log.info(props.toString());
+        return props;
+    }
+    
+    
 }
