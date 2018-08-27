@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_f7022a6e",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-27T14:22:12Z",
+      "side": 1,
+      "message": "Thanks for the suggestion.",
+      "parentUuid": "1a76adc5_9c30c0e9",
+      "revId": "512a97eeb979bf5025f338d4c75f2305bdca711f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_321af57d",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_57f3de9d",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-27T14:22:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_321af57d",
+      "revId": "512a97eeb979bf5025f338d4c75f2305bdca711f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_521d3172",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2018-08-26T16:12:09Z",
       "side": 1,
       "message": "make \\\\s a constant",
+      "revId": "512a97eeb979bf5025f338d4c75f2305bdca711f",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_77ee1ab6",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 4353
+      },
+      "writtenOn": "2018-08-27T14:22:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_521d3172",
       "revId": "512a97eeb979bf5025f338d4c75f2305bdca711f",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
