@@ -16,6 +16,24 @@
       "revId": "11624e0f91daddf9bf65d139436b5ffaeeccdc3e",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_dab5d3ee",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-08-27T16:00:54Z",
+      "side": 1,
+      "message": "And JUnit tests if at all possible.",
+      "parentUuid": "1a76adc5_7aed9fee",
+      "revId": "11624e0f91daddf9bf65d139436b5ffaeeccdc3e",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
