@@ -156,6 +156,11 @@ limitations under the License.
             <version>2.18.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.onap.aai</groupId>
+            <artifactId>rest-client</artifactId>
+            <version>1.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>
