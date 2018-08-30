@@ -19,6 +19,7 @@ package org.onap.pomba.contextbuilder.networkdiscovery.service;
 
 import com.bazaarvoice.jolt.Chainr;
 import com.bazaarvoice.jolt.JsonUtils;
+import com.google.gson.Gson;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,15 +37,20 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.onap.pomba.common.datatypes.Attribute;
 import org.onap.pomba.common.datatypes.ModelContext;
+import org.onap.pomba.common.datatypes.Network;
+import org.onap.pomba.common.datatypes.VF;
+import org.onap.pomba.common.datatypes.VFModule;
+import org.onap.pomba.common.datatypes.VM;
+import org.onap.pomba.common.datatypes.VNFC;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.onap.pomba.contextbuilder.networkdiscovery.model.NetworkDiscoveryRspInfo;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.rs.RestService;
 import org.onap.pomba.contextbuilder.networkdiscovery.util.RestUtil;
 import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
 import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryResponse;
+import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -97,29 +103,24 @@ public class SpringServiceImpl implements SpringService {
     public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS_UNKNOWN_REQ = "EntryRemoved_dueTo_timeOut_or_error_or_neverExisit";
     public static final String MDC_FROM_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS_SUCCESS = "SUCCESS";
 
-    private static final String ENTITY_GENERIC_VNFS = "generic-vnfs";
-    private static final String ENTITY_UUID = "uuid";
-
     private static UUID instanceUUID = UUID.randomUUID();
     private static Map<String, NetworkDiscoveryRspInfo> networkDiscoveryInfoList = new HashMap<>();
     private static final AtomicLong uniqueSeq = new AtomicLong();
 
-    private class Resource {
+    private class NdResource {
 
         private String resourceType;
         private String resourceId;
 
+        public NdResource(String type, String id) {
+            this.resourceType = type;
+            this.resourceId = id;        };
+
         public String getResourceType() {
             return this.resourceType;
         }
-        public void setResourceType(String resourceType) {
-            this.resourceType = resourceType;
-        }
         public String getResourceId() {
             return this.resourceId;
-        }
-        public void setResourceId(String resourceId) {
-            this.resourceId = resourceId;
         }
     }
 
@@ -132,9 +133,6 @@ public class SpringServiceImpl implements SpringService {
 
     @Autowired
     private String networkDiscoveryCtxBuilderBasicAuthorization;
-
-    @Autowired
-    private String networkDiscoveryCtxBuilderResources;
 
     @Autowired
     private String serviceDecompositionBasicAuthorization;
@@ -154,9 +152,6 @@ public class SpringServiceImpl implements SpringService {
     @Autowired
     private Client jerseyClient;
 
-    @javax.annotation.Resource
-    private Map<String, String> networkDiscoveryCtxBuilderResourceTypeMapping;
-
     private static final ReentrantLock lock = new ReentrantLock();
 
     @Override
@@ -170,17 +165,16 @@ public class SpringServiceImpl implements SpringService {
             RestUtil.validateServiceInstanceId(serviceInstanceId);
             RestUtil.validatePartnerName(partnerName);
             validateBasicAuth(authorization);
-            ModelContext serviceDecompCtx = new ModelContext();
-            List<Resource> resourceList = getServiceDeomposition(serviceInstanceId, partnerName, requestId);
+            ModelContext networkDiscoveryCtx = getServiceDeomposition(serviceInstanceId, partnerName, requestId);
 
-            CountDownLatch latchSignal = createCountDownLatch(resourceList);
+            CountDownLatch latchSignal = createCountDownLatch(networkDiscoveryCtx);
 
             if (latchSignal == null) {
                 // Nothing to send
-                return serviceDecompCtx;
+                return networkDiscoveryCtx;
             }
 
-            List<String> sentRequestIdList = sendNetworkDiscoveryRequest(resourceList, serviceInstanceId, requestId,
+            List<String> sentRequestIdList = sendNetworkDiscoveryRequest(networkDiscoveryCtx, serviceInstanceId, requestId,
                     partnerName, latchSignal);
 
             int numOfMsgSent = sentRequestIdList.size();
@@ -190,9 +184,9 @@ public class SpringServiceImpl implements SpringService {
                     // When it comes here, it is due to time out.
                     log.info("Wait for Latch Signal time out " + serviceInstanceId);
                 }
-                return updateServiceDecompCtx_and_networkDiscoveryInfoList(serviceDecompCtx, sentRequestIdList);
+                return updateServiceDecompCtx(networkDiscoveryCtx, sentRequestIdList);
             } else {
-                return serviceDecompCtx;
+                return networkDiscoveryCtx;
             }
 
         } catch (Exception x) {
@@ -223,14 +217,14 @@ public class SpringServiceImpl implements SpringService {
             // If, for some reason we are unable to get the canonical host name,
             // we
             // just want to leave the field null.
-        	log.info("Could not get canonical host name for " + MDC_SERVER_FQDN + ", leaving field null");
+            log.info("Could not get canonical host name for " + MDC_SERVER_FQDN + ", leaving field null");
         }
     }
 
     /**
      * Given a service instance ID, GET the resources from Service Decompostion.
      */
-    private List<Resource> getServiceDeomposition(String serviceInstanceId, String partnerName, String requestId)
+    private ModelContext getServiceDeomposition(String serviceInstanceId, String partnerName, String requestId)
             throws DiscoveryException {
         if (serviceInstanceId == null) {
             return null;
@@ -241,8 +235,10 @@ public class SpringServiceImpl implements SpringService {
         String urlStr = getUrl(serviceInstanceId);
 
         try {
-            Response response = jerseyClient.target(urlStr).request().header("Accept", "application/json")
-                    .header("Authorization", getSdBasicAuthorization()).header("X-ONAP-PartnerName", partnerName)
+            Response response = jerseyClient.target(urlStr).request()
+                    .header("Accept", "application/json")
+                    .header("Authorization", getSdBasicAuthorization())
+                    .header("X-ONAP-PartnerName", partnerName)
                     .header("X-ONAP-RequestID", requestId).get();
 
             String reply = null;
@@ -264,9 +260,8 @@ public class SpringServiceImpl implements SpringService {
             Object jsonInput = JsonUtils.jsonToObject(reply);
             Chainr chainr = Chainr.fromSpec(jsonSpec);
             Object transObject = chainr.transform(jsonInput);
-            System.out.println(JsonUtils.toPrettyJsonString(transObject));
-            JSONObject transJobject = new JSONObject(JsonUtils.toPrettyJsonString(transObject));
-            return parseServiceDecomposition(transJobject);
+            Gson gson = new Gson();
+            return gson.fromJson(JsonUtils.toPrettyJsonString(transObject), ModelContext.class);
         } catch (Exception x) {
             throw new DiscoveryException(x.getMessage(), x);
         }
@@ -281,35 +276,6 @@ public class SpringServiceImpl implements SpringService {
         return serviceDecompositionBasicAuthorization;
     }
 
-    private List<Resource> parseServiceDecomposition(JSONObject jObject) {
-
-        List<Resource> response = new ArrayList<Resource>();
-        // Find generic-vnfs
-        if (jObject.has(ENTITY_GENERIC_VNFS)) {
-            JSONArray genericVnfs = jObject.getJSONArray(ENTITY_GENERIC_VNFS);
-            for (int i = 0; i < genericVnfs.length(); i++) {
-                JSONObject genericVnfInst = genericVnfs.getJSONObject(i);
-                // Find resources
-                String[] resources = networkDiscoveryCtxBuilderResources.split(",");
-                for (int j = 0; j< resources.length; j++) {
-                    if (genericVnfInst.has(resources[j])) {
-                        JSONArray resourceList = genericVnfInst.getJSONArray(resources[j]);
-                        for (int k = 0; k < resourceList.length(); k++) {
-                            Resource resource  = new Resource();
-                            JSONObject resourceInst = resourceList.getJSONObject(k);
-                            if (resourceInst.has(ENTITY_UUID)) {
-                                resource.setResourceId(resourceInst.getString(ENTITY_UUID));
-                            }
-                            resource.setResourceType(resources[j]);
-                            response.add(resource);
-                        }
-                    }
-                }
-            }
-        }
-
-        return response;
-    }
 
     /**
      * Validates the Basic authorization header as admin:admin.
@@ -370,10 +336,10 @@ public class SpringServiceImpl implements SpringService {
         return;
     }
 
-    private ModelContext updateServiceDecompCtx_and_networkDiscoveryInfoList(ModelContext serviceDecompCtx,
+    private ModelContext updateServiceDecompCtx(ModelContext networkDiscoveryCtx,
             List<String> sentRequestIdList) {
         /*
-         * TO DO: We can't add network discovery data to serviceDecompCtx
+         * TO DO: We can't add network discovery data to networkDiscoveryCtx
          * because the existing "v0" context aggregator context model doesn't
          * support it. We will have to wait for the real "v1" context model
          * which contains attributes, vservers and networks.
@@ -397,15 +363,15 @@ public class SpringServiceImpl implements SpringService {
             lock.unlock();
 
             sbl.append(", Resource :" + tNdRspInfo.getResourceType());
-            sbl.append(", ServerId :" + tNdRspInfo.getResourceId());
+            sbl.append(", ResourceId :" + tNdRspInfo.getResourceId());
             sbl.append(", RelatedRequestId :" + tNdRspInfo.getRelatedRequestIdList());
-            List<NetworkDiscoveryNotification> nList = tNdRspInfo.getNetworkDiscoveryNotificationList();
-            if (nList.size() > 0) {
-                for (NetworkDiscoveryNotification nt : tNdRspInfo.getNetworkDiscoveryNotificationList()) {
-                    sbl.append(" Notification :" + nt.toString());
+            for (NetworkDiscoveryNotification nt : tNdRspInfo.getNetworkDiscoveryNotificationList()) {
+                List <Resource> resourceList = nt.getResources();
+                for (Resource resource : resourceList) {
+                    updateServiceDecompCtx(networkDiscoveryCtx, resource);
                 }
+                sbl.append(" Notification :" + nt.toString());
             }
-
         }
 
         String infoStr = sbl.toString();
@@ -413,14 +379,68 @@ public class SpringServiceImpl implements SpringService {
                 "updateServiceDecompCtx_and_networkDiscoveryInfoList: All Notifications from NetworkDiscoveryMicroService: "
                         + infoStr);
 
-        return serviceDecompCtx;
+        return networkDiscoveryCtx;
     }
 
-    private CountDownLatch createCountDownLatch(List<Resource> resourceList) {
+    private void updateServiceDecompCtx(ModelContext networkDiscoveryCtx, Resource resource) {
+        for (VF vf : networkDiscoveryCtx.getVfs()) {
+            for (VFModule vfModule : vf.getVfModules()) {
+                for (VM vm : vfModule.getVms()) {
+                    if (vm.getUuid().equals(resource.getId())) {
+                        vm.setDataQuality(resource.getDataQuality());
+                        if (null != resource.getAttributeList()) {
+                            for (org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Attribute ndattribute : resource.getAttributeList()) {
+                                try {
+                                    Attribute attribute = new Attribute();
+                                    attribute.setName(Attribute.Name.valueOf(ndattribute.getName()));
+                                    attribute.setValue(ndattribute.getValue());
+                                    attribute.setDataQuality(ndattribute.getDataQuality());
+                                    vm.addAttribute(attribute);
+                                } catch (IllegalArgumentException ex) {
+                                    // The attribute Name passed back from Network Discovery is not in our enum
+                                    log.info("Atribute Name: " + ndattribute.getName() + " for Resource:" + resource.getName() + " Id:"  +resource.getId() +  " is invalid");
+                                }
+
+                            }
+                        }
+                    }
+                }
+                for (Network network : vfModule.getNetworks()) {
+                    if (network.getUuid().equals(resource.getId())) {
+                        network.setDataQuality(resource.getDataQuality());
+                        if (null != resource.getAttributeList()) {
+                            for (org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Attribute ndattribute : resource.getAttributeList()) {
+                                try {
+                                    Attribute attribute = new Attribute();
+                                    attribute.setName(Attribute.Name.valueOf(ndattribute.getName()));
+                                    attribute.setValue(ndattribute.getValue());
+                                    network.addAttribute(attribute);
+                                } catch (IllegalArgumentException ex) {
+                                    // The attribute Name passed back from Network Discovery is not in our enum
+                                    log.info("Atribute Name: " + ndattribute.getName() + " for Resource:" + resource.getName() + " Id:"  + resource.getId() +  " is invalid");
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    private CountDownLatch createCountDownLatch(ModelContext networkDiscoveryCtx) {
 
         // Obtain the possible total count of messages to NetworkDiscovery
         // for CountDownLatch.
-        int latch_count = resourceList.size();
+        int latch_count = 0;
+        for (VF vf : networkDiscoveryCtx.getVfs()) {
+            latch_count += vf.getVnfcs().size();
+            for (VFModule vfModule : vf.getVfModules()) {
+                latch_count += vfModule.getVms().size();
+                latch_count += vfModule.getNetworks().size();
+            }
+        }
         if (latch_count > 0) {
             // Let us create task that is going to
             // wait for all threads before it starts
@@ -432,19 +452,26 @@ public class SpringServiceImpl implements SpringService {
     }
 
     /* Return list of requestIds sent to network-discovery microService. */
-    private List<String> sendNetworkDiscoveryRequest(List<Resource> resourceList, String serviceInstanceId, String parent_requestId,
+    private List<String> sendNetworkDiscoveryRequest(ModelContext networkDiscoveryCtx, String serviceInstanceId, String parent_requestId,
             String partner_name, CountDownLatch latchSignal) throws DiscoveryException {
 
-        List<String> relatedRequestIdList = new ArrayList<>();
+        List<String> relatedRequestIdList = new ArrayList<String>();
+        List<NdResource> ndresourceList = new ArrayList<NdResource>();
 
-        for (Resource resource : resourceList) {
-            String resourceId = resource.getResourceId();
-            String origResourceType = resource.getResourceType();
-            String resourceType = networkDiscoveryCtxBuilderResourceTypeMapping.get(origResourceType);            
-            if (resourceType == null) {
-                log.error("Unable to find " + origResourceType + " from networkDiscoveryCtxBuilderResourceTypeMapping");
-                continue;
+        for (VF vf : networkDiscoveryCtx.getVfs()) {
+            for (VNFC vnfc : vf.getVnfcs()) {
+                ndresourceList.add(new NdResource(vnfc.getNfcNamingCode(), vnfc.getUuid()));
             }
+            for (VFModule vfModule : vf.getVfModules()) {
+                for (VM vm : vfModule.getVms() ) {
+                    ndresourceList.add(new NdResource(vm.getNfcNamingCode(), vm.getUuid()));
+                }
+                for (Network network : vfModule.getNetworks()) {
+                    ndresourceList.add(new NdResource(network.getNfcNamingCode(), network.getUuid()));
+                }
+            }
+        }
+        for (NdResource resource : ndresourceList) {
 
             // The old_requestId is inherited from ServiceDecomposition.
             // Before we send a
@@ -455,7 +482,7 @@ public class SpringServiceImpl implements SpringService {
                     + uniqueSeq.incrementAndGet();
 
             if (true == sendNetworkDiscoveryRequestToSpecificServer(partner_name, parent_requestId, requestId,
-                    resourceId, resourceType, latchSignal)) {
+                    resource.getResourceId(), resource.getResourceType(), latchSignal)) {
                 relatedRequestIdList.add(requestId);
             }
         }
@@ -586,7 +613,7 @@ public class SpringServiceImpl implements SpringService {
             // If, for some reason we are unable to get the canonical host name,
             // we
             // just want to leave the field null.
-        	log.info("Could not get canonical host name for " + MDC_SERVER_FQDN + ", leaving field null");
+            log.info("Could not get canonical host name for " + MDC_SERVER_FQDN + ", leaving field null");
         }
     }
 
@@ -609,7 +636,7 @@ public class SpringServiceImpl implements SpringService {
             // If, for some reason we are unable to get the canonical host name,
             // we
             // just want to leave the field null.
-        	log.info("Could not get canonical host name for " + MDC_SERVER_FQDN + ", leaving field null");
+            log.info("Could not get canonical host name for " + MDC_SERVER_FQDN + ", leaving field null");
         }
     }
 

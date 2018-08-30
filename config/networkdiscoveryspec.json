@@ -1,25 +1,140 @@
 [
+  // Use https://jolt-demo.appspot.com/#inception to develop/test
+  // any changes to this file
+
   {
-    "operation": "shift",
+    // This sections adds nfNamingCode and dataQuality to the json
+    // fields returned from service-decomposition that we are
+    // interested in
+
+    "operation": "default",
     "spec": {
-      "service-instance-name": "service-instance-name",
-      "uuid": "uuid",
-      "service-instance-id": "service-instance-id",
-      "model-invariant-id": "model-invariant-id",
-      "generic-vnfs": {
+      "dataQuality": {
+        "status": "ok"
+      },
+      "generic-vnfs[]": {
         "*": {
-          "vservers": {
-            "*": {
-              "vserver-id": "generic-vnfs[&3].vservers[&1].uuid"
+          "dataQuality": {
+            "status": "ok"
+          },
+          "nfNamingCode": "vf",
+          "vf-modules": {
+            "vf-module[]": {
+              "*": {
+                "dataQuality": {
+                  "status": "ok"
+                },
+                "nfNamingCode": "vfModule"
+              }
             }
           },
-          "l3-networks": {
+          "vservers[]": {
             "*": {
-              "network-id": "generic-vnfs[&3].l3-networks[&1].uuid"
+              "dataQuality": {
+                "status": "ok"
+              },
+              "nfNamingCode": "vserver"
+            }
+          },
+          "l3-networks[]": {
+            "*": {
+              "dataQuality": {
+                "status": "ok"
+              },
+              "nfNamingCode": "l3-network"
+            }
+          },
+          "vnfcList[]": {
+            "*": {
+              "dataQuality": {
+                "status": "ok"
+              },
+              "nfNamingCode": "vnfc"
             }
           }
         }
       }
     }
+  },
+  {
+    // This section converts the updated json from service-decompostion
+    // to org.onap.pomba.common.datatypes.ModelContext
+
+    "operation": "shift",
+    "spec": {
+      "dataQuality": {
+        "status": "dataQuality.status"
+      },
+      "service-instance-name": "service.name",
+      "model-invariant-id": "service.invariantUUID",
+      "service-instance-id": "service.uuid",
+      "generic-vnfs": {
+        "*": {
+          "vnf-name": "vfList[&1].name",
+          "model-invariant-id": "vfList[&1].invariantUUID",
+          "vnf-id": "vfList[&1].uuid",
+          "nfNamingCode": "vfList[&1].nfNamingCode",
+          "dataQuality": {
+            "status": "vfList[&2].dataQuality.status"
+          },
+          "vf-modules": {
+            "vf-module": {
+              "*": {
+                "vf-module-name": "vfList[&4].vfModuleList[0].name",
+                "model-invariant-id": "vfList[&4].vfModuleList[0].invariantUUID",
+                "vf-module-id": "vfList[&4].vfModuleList[0].uuid",
+                "nfNamingCode": "vfList[&4].vfModuleList[0].nfNamingCode",
+                "dataQuality": {
+                  "status": "vfList[&5].vfModuleList[0].dataQuality.status"
+                }
+              }
+            }
+          },
+          "vservers": {
+            "*": {
+              "vserver-name": "vfList[&3].vfModuleList[0].vmList[&1].name",
+              "model-invariant-id": "vfList[&3].vfModuleList[0].vmList[&1].invariantUUID",
+              "vserver-id": "vfList[&3].vfModuleList[0].vmList[&1].uuid",
+              "nfNamingCode": "vfList[&3].vfModuleList[0].vmList[&1].nfNamingCode",
+              "dataQuality": {
+                "status": "vfList[&4].vfModuleList[0].vmList[&2].dataQuality.status"
+              }
+            }
+          },
+          "l3-networks": {
+            "*": {
+              "network-name": "vfList[&3].vfModuleList[0].networkList[&1].name",
+              "model-invariant-id": "vfList[&3].vfModuleList[0].networkList[&1].invariantUUID",
+              "network-id": "vfList[&3].vfModuleList[0].networkList[&1].uuid",
+              "nfNamingCode": "vfList[&3].vfModuleList[0].networkList[&1].nfNamingCode",
+              "dataQuality": {
+                "status": "vfList[&4].vfModuleList[0].networkList[&2].dataQuality.status"
+              }
+            },
+            "vnfcs": {
+              "*": {
+                "vnfc-name": "vfList[&2].vnfcList[&1].name",
+                "model-invariant-id": "vfList[&2].vnfcList[&1].invariantUUID",
+                "vnfc-id": "vfList[&2].vnfcList[&1].uuid",
+                "nfNamingCode": "vfList[&2].vfModuleList[0].nfNamingCode",
+                "dataQuality": {
+                  "status": "vfList[&3].vfModuleList[0].dataQuality.status"
+                }
+              }
+            }
+          }
+        }
+      }
     }
+  },
+  {
+    "operation": "default",
+    "spec": {
+      "service": {
+        "dataQuality": {
+          "status": "ok"
+        }
+      }
+    }
+  }
   ]
