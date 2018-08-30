@@ -106,7 +106,7 @@ public class NetworkDiscoveryContextBuilderTest {
 
     @Test
     public void testVerifyNoAuthoriztion() throws Exception {
-        Response response = this.restService.getContext(httpServletRequest, null, partnerName, transactionId,
+        Response response = this.restService.getContext(httpServletRequest, null, partnerName, transactionId, null, null,
                 serviceInstanceId, null, null);
         assertTrue(response.getEntity().toString().contains("Missing Authorization: "));
         assertEquals(Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
@@ -116,7 +116,7 @@ public class NetworkDiscoveryContextBuilderTest {
     public void testVerifyBadAuthoriztion() throws Exception {
         String authorization = "Basic "
                 + Base64.getEncoder().encodeToString(("Test" + ":" + "Fake").getBytes(StandardCharsets.UTF_8));
-        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
+        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId, null, null,
                 serviceInstanceId, null, null);
         assertEquals("Authorization Failed", response.getEntity().toString());
         assertEquals(Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
@@ -124,7 +124,7 @@ public class NetworkDiscoveryContextBuilderTest {
 
     @Test
     public void testVerifyPartnerName() throws Exception {
-        Response response = this.restService.getContext(httpServletRequest, authorization, null, transactionId,
+        Response response = this.restService.getContext(httpServletRequest, authorization, null, transactionId, null, null,
                 serviceInstanceId, null, null);
         assertTrue(response.getEntity().toString().contains("X-ONAP-PartnerName"));
         assertEquals(Status.BAD_REQUEST.getStatusCode(), response.getStatus());
@@ -132,7 +132,7 @@ public class NetworkDiscoveryContextBuilderTest {
 
     @Test
     public void testVerifyServiceInstanceId() throws Exception {
-        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
+        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId, null, null,
                 null, null, null);
         assertTrue(response.getEntity().toString().contains("serviceInstanceId"));
         assertEquals(Status.BAD_REQUEST.getStatusCode(), response.getStatus());
@@ -148,7 +148,7 @@ public class NetworkDiscoveryContextBuilderTest {
 
         this.serviceDecompositionRule.stubFor(get(urlStr).willReturn(okJson(sdResonse)));
         addResponse_any("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
-        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
+        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId, null, null,
                 serviceInstanceId, null, null);
         assertEquals(Status.OK.getStatusCode(), response.getStatus());
     }
@@ -160,7 +160,7 @@ public class NetworkDiscoveryContextBuilderTest {
         addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
         addResponse_any("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
 
-        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
+        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId, null, null,
                 serviceInstanceId, null, null);
 
         assertEquals(Status.OK.getStatusCode(), response.getStatus());
@@ -190,6 +190,50 @@ public class NetworkDiscoveryContextBuilderTest {
         NetworkDiscoveryRspInfo rsp = networkDiscoveryInfoAccess.getList(requestId);
         assertEquals(Status.OK.getStatusCode(), response.getStatus());
         assertEquals(rsp.getNetworkDiscoveryNotificationList().size(), 1);
+    }
+
+    @Test
+    public void testVerifyNoPartnerNameWithFromAppId() throws Exception {
+    	String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
+        addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
+        addResponse_any("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+
+        Response response = this.restService.getContext(httpServletRequest, authorization, null, transactionId, partnerName, null,
+                serviceInstanceId, null, null);
+        assertEquals(Status.OK.getStatusCode(), response.getStatus());
+    }
+
+    @Test
+    public void testVerifyNoRequestIdNoTransactionId() throws Exception {
+    	String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
+        addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
+        addResponse_any("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+
+        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, null, null, null,
+                serviceInstanceId, null, null);
+        assertEquals(Status.OK.getStatusCode(), response.getStatus());
+    }
+
+    @Test
+    public void testVerifyNoPartnerNameNoFromAppId() throws Exception {
+    	String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
+        addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
+        addResponse_any("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+
+        Response response = this.restService.getContext(httpServletRequest, authorization, null, transactionId, null, null,
+                serviceInstanceId, null, null);
+        assertEquals(Status.BAD_REQUEST.getStatusCode(), response.getStatus());
+    }
+
+    @Test
+    public void testVerifyNoRequestIdWithTransactionId() throws Exception {
+    	String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
+        addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
+        addResponse_any("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+
+        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, null, null, transactionId,
+                serviceInstanceId, null, null);
+        assertEquals(Status.OK.getStatusCode(), response.getStatus());
     }
 
     private void addResponse(String path, String classpathResource, WireMockRule thisMock) throws IOException {
