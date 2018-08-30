@@ -255,15 +255,14 @@ public class NetworkDiscoveryContextBuilderTest {
     }
 
     private NetworkDiscoveryNotification simulateNetworkDiscoveryNotification() {
-        NetworkDiscoveryNotification notification = new NetworkDiscoveryNotification();
         Resource myResource = new Resource();
         myResource.setId("25fb07ab-0478-465e-a021-6384ac299671");
         myResource.setType("vserver");
         DataQuality dataQuality = new DataQuality();
         dataQuality.setStatus(DataQuality.Status.ok);
         myResource.setDataQuality(dataQuality);
-        List<Attribute> attributeList = new ArrayList<>();;
         Attribute attribute = new Attribute();
+        List<Attribute> attributeList = new ArrayList<>();
         attribute.setName("vserver-id");
         attribute.setValue("25fb07ab-0478-465e-a021-6384ac299671");
         attribute.setDataQuality(dataQuality);
@@ -315,6 +314,7 @@ public class NetworkDiscoveryContextBuilderTest {
         attributeList.add(attribute);
         myResource.setAttributeList(attributeList);
 
+        NetworkDiscoveryNotification notification = new NetworkDiscoveryNotification();
         notification.setResources(Arrays.asList(myResource));
         notification.setAckFinalIndicator(true);
         notification.setCode(200);
@@ -325,7 +325,6 @@ public class NetworkDiscoveryContextBuilderTest {
     }
 
     private void simulateNetworkDiscoveryInfoList() {
-        NetworkDiscoveryInfoAccess networkDiscoveryInfoAccess = new NetworkDiscoveryInfoAccess();
 
         String requestId2 = "2131__2";
         List<String> related_request_list = new ArrayList<>();
@@ -337,6 +336,8 @@ public class NetworkDiscoveryContextBuilderTest {
         notif1.setResourceType(resourceType);
         notif1.setResourceId(resourceId);
         notif1.setRelatedRequestIdList(related_request_list);
+
+        NetworkDiscoveryInfoAccess networkDiscoveryInfoAccess = new NetworkDiscoveryInfoAccess();
         networkDiscoveryInfoAccess.updateList(requestId, notif1);
 
         NetworkDiscoveryRspInfo notif2 = new NetworkDiscoveryRspInfo();

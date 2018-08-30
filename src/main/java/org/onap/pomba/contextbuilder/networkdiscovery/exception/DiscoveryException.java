@@ -48,6 +48,9 @@ public class DiscoveryException extends Exception {
     }
 
     private Status matchErrorCode(String errorMessage) {
+        if(null == errorMessage) {
+            return Status.INTERNAL_SERVER_ERROR;
+        }
         if (errorMessage.toLowerCase().contains("auth")) {
             return Status.UNAUTHORIZED;
         }
