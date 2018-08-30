@@ -51,6 +51,7 @@ public interface RestService {
             @ApiResponse(code = 500, message = "Unexpected Runtime error") })
     public Response getContext(@Context HttpServletRequest req, @HeaderParam("Authorization") String authorization,
             @HeaderParam("X-ONAP-PartnerName") String xpartnerName, @HeaderParam("X-ONAP-RequestID") String xRequestId,
+            @HeaderParam("X-FromAppId") String xFromAppId, @HeaderParam("X-TransactionId") String xTransactionId,
             @QueryParam("serviceInstanceId") String serviceInstanceId,
             @QueryParam("modelVersionId") String modelVersionId,
             @QueryParam("modelInvariantId") String modelInvariantId) throws DiscoveryException;

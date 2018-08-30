@@ -46,15 +46,27 @@ public class RestServiceImpl implements RestService {
     private SpringService service;
 
     @Override
-    public Response getContext(HttpServletRequest req, String authorization, String partnerName, String requestId,
+    public Response getContext(HttpServletRequest req, String authorization, String partnerName, String requestId, String fromAppId, String transactionId,
             String serviceInstanceId, String modelVersionId, String modelInvariantId) throws DiscoveryException {
 
         // Do some validation on Http headers and URL parameters
 
-        if (requestId == null || requestId.isEmpty()) {
-            requestId = UUID.randomUUID().toString();
-            log.debug(HEADER_REQUEST_ID + " is missing; using newly generated value: " + requestId);
-        }
+    	//The request ID in the header is not yet standardized to X-ONAP-RequestID.  We would still support X-TransactionId until further notice.
+    	if(requestId == null || requestId.isEmpty()) {
+    		if(transactionId != null) {
+    			requestId = transactionId;
+    		} else {
+    			requestId = UUID.randomUUID().toString();
+    			log.debug(HEADER_REQUEST_ID + " is missing; using newly generated value: " + requestId);
+    		}
+    	}
+
+    	//The partner name in the header is not yet standardized to X-PartnerName.  We would still support X-FromAppId until further notice.
+    	if(partnerName == null || partnerName.isEmpty()) {
+    		if(fromAppId != null) {
+    			partnerName = fromAppId;
+    		}
+    	}
 
         try {
             ModelContext sdContext = service.getContext(req, partnerName, authorization, requestId, serviceInstanceId,
