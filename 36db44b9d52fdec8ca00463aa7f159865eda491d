@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_16c46df3",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-08-31T14:10:08Z",
+      "side": 1,
+      "message": "I would like to get an explanation this changes.\n\nFor example, why did we change from ServiceDecompositionCtx to NetworkDiscoveryCtx?",
+      "revId": "36db44b9d52fdec8ca00463aa7f159865eda491d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
