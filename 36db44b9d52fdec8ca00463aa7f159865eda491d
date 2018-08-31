@@ -16,6 +16,24 @@
       "revId": "36db44b9d52fdec8ca00463aa7f159865eda491d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_d67035de",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-31T14:21:09Z",
+      "side": 1,
+      "message": "I changed the name of this internal class to distinguish it from org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Resource to make the code more readable.\n\nModelContext networkDiscoveryCtx is what network-discovery-context-builder returns to the context-aggregator so this seemed a better name than serviceDecompostionCtx which was what we got in phaseI before we did discovery-and-stitch.",
+      "parentUuid": "1a76adc5_16c46df3",
+      "revId": "36db44b9d52fdec8ca00463aa7f159865eda491d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }

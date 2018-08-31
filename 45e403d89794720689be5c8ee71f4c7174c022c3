@@ -16,6 +16,24 @@
       "revId": "45e403d89794720689be5c8ee71f4c7174c022c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_d6b9157a",
+        "filename": "config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-31T14:21:09Z",
+      "side": 0,
+      "message": "All of the transformation of the service-decompostion json response into ModelContext (pomba-audit-common) is done by the config/networkdiscoveryspec.json. This is no longer necessary since the java code is completely generic however we do still filter out befor discovery and stitch based on the three values immediately below.",
+      "parentUuid": "1a76adc5_768b61c3",
+      "revId": "45e403d89794720689be5c8ee71f4c7174c022c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
