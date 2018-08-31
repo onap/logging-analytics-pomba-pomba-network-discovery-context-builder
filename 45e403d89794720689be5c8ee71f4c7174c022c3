@@ -34,6 +34,23 @@
       "revId": "45e403d89794720689be5c8ee71f4c7174c022c3",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_b110235a",
+        "filename": "config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-08-31T16:53:29Z",
+      "side": 0,
+      "message": "I\u0027m going to remove these attributes, this mapping is all done in config/networkdiscoveryspec.json",
+      "revId": "45e403d89794720689be5c8ee71f4c7174c022c3",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
