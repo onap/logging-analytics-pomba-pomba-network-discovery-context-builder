@@ -256,7 +256,7 @@ public class SpringServiceImpl implements SpringService {
                         + serviceInstanceId + ", message body: " + reply);
             }
 
-            List<Object> jsonSpec = JsonUtils.filepathToList("config/networkdiscoveryspec.json");
+            List<Object> jsonSpec = JsonUtils.filepathToList("config/networkdiscovery.spec");
             Object jsonInput = JsonUtils.jsonToObject(reply);
             Chainr chainr = Chainr.fromSpec(jsonSpec);
             Object transObject = chainr.transform(jsonInput);
@@ -460,14 +460,14 @@ public class SpringServiceImpl implements SpringService {
 
         for (VF vf : networkDiscoveryCtx.getVfs()) {
             for (VNFC vnfc : vf.getVnfcs()) {
-                ndresourceList.add(new NdResource(vnfc.getNfcNamingCode(), vnfc.getUuid()));
+                ndresourceList.add(new NdResource(vnfc.getType(), vnfc.getUuid()));
             }
             for (VFModule vfModule : vf.getVfModules()) {
                 for (VM vm : vfModule.getVms() ) {
                     ndresourceList.add(new NdResource(vm.getNfcNamingCode(), vm.getUuid()));
                 }
                 for (Network network : vfModule.getNetworks()) {
-                    ndresourceList.add(new NdResource(network.getNfcNamingCode(), network.getUuid()));
+                    ndresourceList.add(new NdResource(network.getType(), network.getUuid()));
                 }
             }
         }
