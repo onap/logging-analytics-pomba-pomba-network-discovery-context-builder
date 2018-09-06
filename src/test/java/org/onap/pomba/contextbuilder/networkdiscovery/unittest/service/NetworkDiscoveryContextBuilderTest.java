@@ -21,6 +21,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
+import com.github.jknack.handlebars.internal.Files;
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.github.tomakehurst.wiremock.matching.UrlPattern;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,10 +59,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import com.github.jknack.handlebars.internal.Files;
-import com.github.tomakehurst.wiremock.client.WireMock;
-import com.github.tomakehurst.wiremock.junit.WireMockRule;
-import com.github.tomakehurst.wiremock.matching.UrlPattern;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -262,10 +262,10 @@ public class NetworkDiscoveryContextBuilderTest {
         dataQuality.setStatus(DataQuality.Status.ok);
         myResource.setDataQuality(dataQuality);
         Attribute attribute = new Attribute();
-        List<Attribute> attributeList = new ArrayList<>();
         attribute.setName("vserver-id");
         attribute.setValue("25fb07ab-0478-465e-a021-6384ac299671");
         attribute.setDataQuality(dataQuality);
+        List<Attribute> attributeList = new ArrayList<>();
         attributeList.add(attribute);
 
         attribute.setName("power-state");
