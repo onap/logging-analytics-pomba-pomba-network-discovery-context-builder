@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_8165821f",
+        "filename": "config/networkdiscoveryspec.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-09-06T13:27:31Z",
+      "side": 0,
+      "message": "This is not strictly speaking a JSON formatted file, so I changed it to networkdiscovery.spec as well as updating it to exclude the attributes that were identified at the demo.",
+      "revId": "42eb3f556ceda1287bd80ad74cbe0c8919b33ded",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
