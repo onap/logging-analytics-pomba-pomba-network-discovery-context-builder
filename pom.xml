@@ -305,6 +305,7 @@ limitations under the License.
                                             <includes>
                                                 <include>*.properties</include>
                                                 <include>*.xml</include>
+                                                <include>*.spec</include>
                                             </includes>
                                             <filtering>false</filtering>
                                         </resource>
