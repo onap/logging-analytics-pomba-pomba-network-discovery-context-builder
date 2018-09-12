@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_80431cae",
+        "filename": "config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-09-12T18:20:29Z",
+      "side": 1,
+      "message": "This complies with the nomenclature for all of the context builders",
+      "parentUuid": "1a76adc5_20e1e8d0",
+      "range": {
+        "startLine": 6,
+        "startChar": 7,
+        "endLine": 6,
+        "endChar": 18
+      },
+      "revId": "1b74399de451eca25a4a6bb31817073af5f4a0b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_80bebcac",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-09-12T18:03:02Z",
       "side": 1,
       "message": "Can you change it to ndContextBuilder?",
+      "range": {
+        "startLine": 91,
+        "startChar": 101,
+        "endLine": 91,
+        "endChar": 117
+      },
+      "revId": "1b74399de451eca25a4a6bb31817073af5f4a0b4",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_2016c8a8",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 3131
+      },
+      "writtenOn": "2018-09-12T18:20:29Z",
+      "side": 1,
+      "message": "same as previous",
+      "parentUuid": "1a76adc5_80bebcac",
       "range": {
         "startLine": 91,
         "startChar": 101,
