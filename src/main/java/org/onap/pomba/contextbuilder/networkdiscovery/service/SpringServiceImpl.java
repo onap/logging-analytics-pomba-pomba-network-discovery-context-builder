@@ -88,7 +88,7 @@ public class SpringServiceImpl implements SpringService {
     public static final String NETWORK_DISCOVERY_RSP_STATE_REQUEST_SENT = "RequestSent";
     public static final String NETWORK_DISCOVERY_RSP_STATE_RSP_ALL_RECEIVED = "AllRspReceived";
     public static final String NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER = "___";
-    public static final String NETWORK_DISCOVERY_CTX_BUILDER_NETWORK_DISCOVERY_NOTIFICATION_PATH = "/network-discovery/service/networkDiscoveryNotification";
+    public static final String NETWORK_DISCOVERY_CTX_BUILDER_NETWORK_DISCOVERY_NOTIFICATION_PATH = "/ndcontextbuilder/service/networkDiscoveryNotification";
     public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_PARTNER_NAME = "X-ONAP-PartnerName";
     public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID = "X-ONAP-RequestID";
     public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_REQUEST_ID = "requestId";
