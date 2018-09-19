@@ -1,0 +1,7 @@
+Code-Review+2: Shane Daniel <shane.daniel@amdocs.com>
+Verified+1: Shane Daniel <shane.daniel@amdocs.com>
+Submitted-by: Shane Daniel <shane.daniel@amdocs.com>
+Submitted-at: Wed, 19 Sep 2018 18:50:10 +0000
+Reviewed-on: https://gerrit.onap.org/r/67841
+Project: logging-analytics/pomba/pomba-network-discovery-context-builder
+Branch: refs/heads/master
