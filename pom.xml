@@ -168,6 +168,14 @@ limitations under the License.
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                   <excludes>
+                     <exclude>
+                       <groupId>javax.ws.rs</groupId>
+                       <artifactId>jsr311-api</artifactId>
+                     </exclude>
+                   </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -186,6 +194,7 @@ limitations under the License.
                 </includes>
             </resource>
         </resources>
+
     </build>
 
     <profiles>
