@@ -79,6 +79,17 @@ limitations under the License.
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <dependency>
+           <groupId>com.sun.jersey</groupId>
+           <artifactId>jersey-client</artifactId>
+           <version>1.19.4</version>
+           <exclusions>
+             <exclusion>
+               <groupId>javax.ws.rs</groupId>
+               <artifactId>jsr311-api</artifactId>
+             </exclusion>
+           </exclusions>
+        </dependency>
 
         <!--  logging dependencies -->
         <dependency>
@@ -168,14 +179,6 @@ limitations under the License.
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                   <excludes>
-                     <exclude>
-                       <groupId>javax.ws.rs</groupId>
-                       <artifactId>jsr311-api</artifactId>
-                     </exclude>
-                   </excludes>
-                </configuration>
                 <executions>
                     <execution>
                         <goals>
