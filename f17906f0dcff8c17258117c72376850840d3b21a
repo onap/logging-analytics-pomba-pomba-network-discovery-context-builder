@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_f446044f",
+        "filename": "config/application.properties",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-09-26T19:59:31Z",
+      "side": 1,
+      "message": "very nice - dns calls will work better - like our rest calls in healthcheck from robot that are already validated\n\nHowever we still need the namespace name \"onap\" appended before using it",
+      "revId": "f17906f0dcff8c17258117c72376850840d3b21a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_343d5cbc",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-09-26T19:59:31Z",
+      "side": 1,
+      "message": "good if it uses the service name URL",
+      "revId": "f17906f0dcff8c17258117c72376850840d3b21a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_b4788c90",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/NdctxbConfiguration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1077
+      },
+      "writtenOn": "2018-09-26T19:59:31Z",
+      "side": 1,
+      "message": "don\u0027t we need to resolve the full name including the namespace like\nwget http://pomba-networkdiscoveryctxbuilder.onap:9530/ndcontextbuilder/health\n\nalso minor but the string concatenations should use a StringBuilder or StringBuffer",
+      "revId": "f17906f0dcff8c17258117c72376850840d3b21a",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
