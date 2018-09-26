@@ -52,6 +52,9 @@ public class NdctxbConfiguration {
     @Value("${networkDiscoveryCtxBuilder.port}")
     private String networkDiscoveryCtxBuilderPort;
 
+    @Value("${networkDiscoveryCtxBuilder.serviceName}")
+    private String networkDiscoveryCtxBuilderServiceName;
+
     @Value("${networkDiscoveryCtxBuilder.userId:admin}")
     private String networkDiscoveryCtxBuilderUserId;
 
@@ -129,15 +132,10 @@ public class NdctxbConfiguration {
     @Bean(name = "networkDiscoveryCtxBuilderBaseUrl")
     public String getNetworkDiscoveryCtxBuilderBaseUrl() throws DiscoveryException {
         String url = null;
-        try {
-            String localIp = InetAddress.getLocalHost().getHostAddress();
-            url = this.httpNetworkDiscoveryCtxBuilderProtocol + "://" + localIp + ":"
+            url = this.httpNetworkDiscoveryCtxBuilderProtocol
+                    + "://" + this.networkDiscoveryCtxBuilderServiceName
+                    + ":"
                     + this.networkDiscoveryCtxBuilderPort;
-        } catch (Exception e) {
-            log.error("Unable to obtain localIp: " + e.getMessage());
-            throw new DiscoveryException(e.getMessage(), e);
-        }
-
         return url;
     }
 
@@ -175,7 +173,7 @@ public class NdctxbConfiguration {
 
     @Autowired
     private Environment env;
-    
+
     // This method builds a map between Service Decomposition resource type and Network Discovery
     // Context Builder resource type using dynamic mapping technique.
     // It scans the contents of the configuration file "application.properties",
@@ -183,7 +181,7 @@ public class NdctxbConfiguration {
     // anything from the remaining string will be used as the key (Service Decomposition resource Type)
     // to match to the value of assignment (network discovery context builder resource type).
     // For example,"networkDiscoveryCtxBuilder.resourceTypeMapping.BBB = bbb",
-    // Service Decomposition resource type BBB matches to context builder resource type bbb    
+    // Service Decomposition resource type BBB matches to context builder resource type bbb
     @Bean(name = "networkDiscoveryCtxBuilderResourceTypeMapping")
     public Map<String, String> getResourceTypeMapping() {
         Map<String, String> props = new HashMap<>();
@@ -202,5 +200,5 @@ public class NdctxbConfiguration {
 
         log.info(props.toString());
         return props;
-    }    
+    }
 }
