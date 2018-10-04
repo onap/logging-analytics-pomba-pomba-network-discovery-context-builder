@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bada0100_8503c672",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-10-04T18:18:25Z",
+      "side": 1,
+      "message": "In the future, we can consider using a constant for \"name\".",
+      "revId": "8bb7ec5694ec34ba79cef5ccdf8e7c6d6a8120a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bada0100_25f8da7b",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-10-04T18:18:25Z",
+      "side": 1,
+      "message": "can probably use \"ndattributeName\" here",
+      "range": {
+        "startLine": 431,
+        "startChar": 66,
+        "endLine": 431,
+        "endChar": 87
+      },
+      "revId": "8bb7ec5694ec34ba79cef5ccdf8e7c6d6a8120a0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
