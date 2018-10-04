@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bada0100_227770d6",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-10-04T17:47:41Z",
+      "side": 1,
+      "message": "ndAttributeName",
+      "range": {
+        "startLine": 394,
+        "startChar": 43,
+        "endLine": 394,
+        "endChar": 58
+      },
+      "revId": "78358d023323fdb597927840507fa90579198a0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bada0100_8272dce3",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-10-04T17:47:41Z",
+      "side": 1,
+      "message": "Attribute",
+      "range": {
+        "startLine": 407,
+        "startChar": 46,
+        "endLine": 407,
+        "endChar": 54
+      },
+      "revId": "78358d023323fdb597927840507fa90579198a0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bada0100_e280888d",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-10-04T17:47:41Z",
+      "side": 1,
+      "message": "ndAttributeName",
+      "range": {
+        "startLine": 419,
+        "startChar": 43,
+        "endLine": 419,
+        "endChar": 58
+      },
+      "revId": "78358d023323fdb597927840507fa90579198a0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bada0100_4274f4ce",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 2399
+      },
+      "writtenOn": "2018-10-04T17:47:41Z",
+      "side": 1,
+      "message": "Attribute",
+      "range": {
+        "startLine": 431,
+        "startChar": 46,
+        "endLine": 431,
+        "endChar": 54
+      },
+      "revId": "78358d023323fdb597927840507fa90579198a0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
