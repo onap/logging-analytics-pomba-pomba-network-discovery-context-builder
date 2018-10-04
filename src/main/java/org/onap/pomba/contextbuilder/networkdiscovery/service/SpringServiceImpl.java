@@ -391,16 +391,21 @@ public class SpringServiceImpl implements SpringService {
                         if (null != resource.getAttributeList()) {
                             for (org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Attribute ndattribute : resource.getAttributeList()) {
                                 try {
-                                    Attribute attribute = new Attribute();
-                                    attribute.setName(Attribute.Name.valueOf(ndattribute.getName()));
-                                    attribute.setValue(ndattribute.getValue());
-                                    attribute.setDataQuality(ndattribute.getDataQuality());
-                                    vm.addAttribute(attribute);
+                                    String ndattributeName = ndattribute.getName();
+                                    if (ndattributeName.equals("name")) {
+                                        vm.setName(ndattribute.getValue());
+                                    }
+                                    else {
+                                        Attribute attribute = new Attribute();
+                                        attribute.setName(Attribute.Name.valueOf(ndattributeName));
+                                        attribute.setValue(ndattribute.getValue());
+                                        attribute.setDataQuality(ndattribute.getDataQuality());
+                                        vm.addAttribute(attribute);
+                                    }
                                 } catch (IllegalArgumentException ex) {
                                     // The attribute Name passed back from Network Discovery is not in our enum
-                                    log.info("Atribute Name: " + ndattribute.getName() + " for Resource:" + resource.getName() + " Id:"  +resource.getId() +  " is invalid");
+                                    log.info("Attribute Name: " + ndattribute.getName() + " for Resource:" + resource.getName() + " Id:"  +resource.getId() +  " is invalid");
                                 }
-
                             }
                         }
                     }
@@ -411,13 +416,19 @@ public class SpringServiceImpl implements SpringService {
                         if (null != resource.getAttributeList()) {
                             for (org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Attribute ndattribute : resource.getAttributeList()) {
                                 try {
-                                    Attribute attribute = new Attribute();
-                                    attribute.setName(Attribute.Name.valueOf(ndattribute.getName()));
-                                    attribute.setValue(ndattribute.getValue());
-                                    network.addAttribute(attribute);
+                                    String ndattributeName = ndattribute.getName();
+                                    if (ndattributeName.equals("name")) {
+                                        network.setName(ndattribute.getValue());
+                                    }
+                                    else {
+                                        Attribute attribute = new Attribute();
+                                        attribute.setName(Attribute.Name.valueOf(ndattributeName));
+                                        attribute.setValue(ndattribute.getValue());
+                                        network.addAttribute(attribute);
+                                    }
                                 } catch (IllegalArgumentException ex) {
                                     // The attribute Name passed back from Network Discovery is not in our enum
-                                    log.info("Atribute Name: " + ndattribute.getName() + " for Resource:" + resource.getName() + " Id:"  + resource.getId() +  " is invalid");
+                                    log.info("Attribute Name: " + ndattribute.getName() + " for Resource:" + resource.getName() + " Id:"  + resource.getId() +  " is invalid");
                                 }
                             }
                         }
