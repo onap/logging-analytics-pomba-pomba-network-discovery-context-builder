@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "bada0100_85b506cf",
+        "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 2151
+      },
+      "writtenOn": "2018-10-04T17:56:23Z",
+      "side": 1,
+      "message": "i used this convention as \u0027ndattribute\u0027 is used above. Wanted to be consistent",
+      "parentUuid": "bada0100_227770d6",
+      "range": {
+        "startLine": 394,
+        "startChar": 43,
+        "endLine": 394,
+        "endChar": 58
+      },
+      "revId": "78358d023323fdb597927840507fa90579198a0d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bada0100_8272dce3",
         "filename": "src/main/java/org/onap/pomba/contextbuilder/networkdiscovery/service/SpringServiceImpl.java",
         "patchSetId": 5
