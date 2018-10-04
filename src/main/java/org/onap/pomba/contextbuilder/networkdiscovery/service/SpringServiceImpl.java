@@ -465,6 +465,7 @@ public class SpringServiceImpl implements SpringService {
             for (VFModule vfModule : vf.getVfModules()) {
                 for (VM vm : vfModule.getVms() ) {
                     ndresourceList.add(new NdResource(vm.getNfcNamingCode(), vm.getUuid()));
+                    vm.setNfcNamingCode(null);
                 }
                 for (Network network : vfModule.getNetworks()) {
                     ndresourceList.add(new NdResource(network.getType(), network.getUuid()));
