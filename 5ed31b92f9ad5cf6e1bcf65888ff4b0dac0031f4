@@ -1,0 +1,7 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+2: Geora Barsky <georab@amdocs.com>
+Submitted-by: Geora Barsky <georab@amdocs.com>
+Submitted-at: Fri, 09 Nov 2018 19:56:03 +0000
+Reviewed-on: https://gerrit.onap.org/r/72329
+Project: logging-analytics/pomba/pomba-network-discovery-context-builder
+Branch: refs/heads/master
