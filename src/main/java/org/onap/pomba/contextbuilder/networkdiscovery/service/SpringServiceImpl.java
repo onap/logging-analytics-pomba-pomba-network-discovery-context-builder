@@ -152,6 +152,9 @@ public class SpringServiceImpl implements SpringService {
     @Autowired
     private Client jerseyClient;
 
+    @Autowired
+    private Client jerseySslClient;
+
     private static final ReentrantLock lock = new ReentrantLock();
 
     @Override
@@ -543,7 +546,7 @@ public class SpringServiceImpl implements SpringService {
                 callbackUrlStr, partner_name);
 
         try {
-            Response response = jerseyClient.target(networkDiscoveryUrl)
+            Response response = jerseySslClient.target(networkDiscoveryUrl)
                     .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_REQUEST_ID, requestId)
                     .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_TYPE, resourceType)
                     .queryParam(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_ID, resourceId)

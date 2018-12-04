@@ -18,13 +18,11 @@
 
 package org.onap.pomba.contextbuilder.networkdiscovery;
 
-import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.StreamSupport;
-
 import org.eclipse.jetty.util.security.Password;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.slf4j.Logger;
