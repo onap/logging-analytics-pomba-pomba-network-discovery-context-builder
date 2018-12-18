@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9adffdf1_d4f820c5",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 3479
+      },
+      "writtenOn": "2018-12-18T13:55:08Z",
+      "side": 1,
+      "message": "Perhaps we should consider having a variable for this to save time in the future.",
+      "revId": "a39e4fc1942d75117834245d3f87c369d2f4a66b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
