@@ -23,8 +23,8 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.StreamSupport;
+
 import org.eclipse.jetty.util.security.Password;
-import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +39,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class NdctxbConfiguration {
     private static Logger log = LoggerFactory.getLogger(NdctxbConfiguration.class);
-    private final String prefixResourceType = "networkDiscoveryCtxBuilder.resourceTypeMapping.";
-    private final String whiteSpace = "\\s";
+    private static final String PREFIX_RESOURCE_TYPE = "networkDiscoveryCtxBuilder.resourceTypeMapping.";
+    private static final String WHITE_SPACE = "\\s";
 
     // Network Discovery Context Builder Configuration values
 
@@ -109,9 +109,8 @@ public class NdctxbConfiguration {
 
     @Bean(name = "serviceDecompositionBaseUrl")
     public String getURL() {
-        String url = this.serviceDecompositionHttpProtocol + "://" + this.serviceDecompositionHost + ":"
+        return this.serviceDecompositionHttpProtocol + "://" + this.serviceDecompositionHost + ":"
                 + this.serviceDecompositionPort + this.serviceDecompositionServiceInstancePath;
-        return url;
     }
 
     @Bean(name = "serviceDecompositionBasicAuthorization")
@@ -128,38 +127,33 @@ public class NdctxbConfiguration {
     }
 
     @Bean(name = "networkDiscoveryCtxBuilderBaseUrl")
-    public String getNetworkDiscoveryCtxBuilderBaseUrl() throws DiscoveryException {
-        String url = null;
-            url = this.httpNetworkDiscoveryCtxBuilderProtocol
+    public String getNetworkDiscoveryCtxBuilderBaseUrl() {
+        return this.httpNetworkDiscoveryCtxBuilderProtocol
                     + "://" + this.networkDiscoveryCtxBuilderServiceName
                     + ":"
                     + this.networkDiscoveryCtxBuilderPort;
-        return url;
     }
 
     @Bean(name = "networkDiscoveryCtxBuilderResources")
-        public String getNetworkDiscoveryCtxBuilderResourcs() {
+    public String getNetworkDiscoveryCtxBuilderResourcs() {
             return this.networkDiscoveryCtxBuilderResourceList;
     }
 
 
     @Bean(name = "networkDiscoveryMicroServiceBaseUrl")
     public String getNetworkDiscoveryURL() {
-        String url = this.httpNetworkDiscoveryMicroServiceProtocol + "://" + this.networkDiscoveryMicroServiceHost + ":"
+        return this.httpNetworkDiscoveryMicroServiceProtocol + "://" + this.networkDiscoveryMicroServiceHost + ":"
                 + this.networkDiscoveryMicroServicePort + this.networkDiscoveryMicroServicePath;
-        return url;
     }
 
     @Bean(name = "networkDiscoveryResponseTimeOutInMilliseconds")
     public long getNdResponseTimeOutInMilliseconds() {
-        long timeoutV = Integer.parseUnsignedInt(this.networkDiscoveryResponseTimeOutInMilliseconds);
-        return timeoutV;
+        return Integer.parseUnsignedInt(this.networkDiscoveryResponseTimeOutInMilliseconds);
     }
 
     @Bean(name = "networkDiscoveryMicroServiceHostAndPort")
     public String getNetworkDiscoveryMicroServiceHostAndPort() {
-        String hostNPort = this.networkDiscoveryMicroServiceHost + ":" + this.networkDiscoveryMicroServicePort;
-        return hostNPort;
+        return this.networkDiscoveryMicroServiceHost + ":" + this.networkDiscoveryMicroServicePort;
     }
 
     @Bean(name = "networkDiscoveryMicroServiceBasicAuthorization")
@@ -189,9 +183,9 @@ public class NdctxbConfiguration {
                 .map(ps -> ((EnumerablePropertySource<?>) ps).getPropertyNames())
                 .flatMap(Arrays::<String>stream)
                 .forEach(propName -> {
-                    if (propName.startsWith(prefixResourceType)) {
-                        String myKey = propName.substring(prefixResourceType.length()).replaceAll(whiteSpace,"");
-                        String myValue = this.env.getProperty(propName).replaceAll(whiteSpace, "");
+                    if (propName.startsWith(PREFIX_RESOURCE_TYPE)) {
+                        String myKey = propName.substring(PREFIX_RESOURCE_TYPE.length()).replaceAll(WHITE_SPACE,"");
+                        String myValue = this.env.getProperty(propName).replaceAll(WHITE_SPACE, "");
                         props.put( myKey , myValue);
                     }
                 });

@@ -20,7 +20,6 @@ package org.onap.pomba.contextbuilder.networkdiscovery.service.rs;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -29,8 +28,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
-import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
-import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -56,14 +53,4 @@ public interface RestService {
             @QueryParam("modelVersionId") String modelVersionId,
             @QueryParam("modelInvariantId") String modelInvariantId) throws DiscoveryException;
 
-    @POST
-    @Path("/networkDiscoveryNotification")
-    @Produces(MediaType.TEXT_PLAIN)
-    @ApiOperation(value = "Send query request to Network Discovery", notes = "Retrieve information from primary data sources", response = NetworkDiscoveryResponse.class)
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Request has completed and no more information is forthcoming."),
-            @ApiResponse(code = 400, message = "Missing mandatory field in the request or HTTP header."),
-            @ApiResponse(code = 500, message = "Request failed due to internal error") })
-    public Response networkDiscoveryNotification(NetworkDiscoveryNotification notification,
-            @HeaderParam("Authorization") String authorization) throws DiscoveryException;
 }

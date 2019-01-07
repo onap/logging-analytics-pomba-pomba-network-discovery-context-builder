@@ -27,6 +27,10 @@ public class RestUtil {
     private static final String SERVICE_INSTANCE_ID = "serviceInstanceId";
     private static final String HEADER_PARTNER_NAME = "X-ONAP-PartnerName";
 
+    private RestUtil() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      * Validates the URL parameter seriveInstanceId.
      *

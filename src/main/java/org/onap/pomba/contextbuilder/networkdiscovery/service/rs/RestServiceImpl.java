@@ -17,6 +17,9 @@
  */
 package org.onap.pomba.contextbuilder.networkdiscovery.service.rs;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,14 +30,10 @@ import org.onap.pomba.common.datatypes.ModelContext;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.ErrorMessage;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.SpringService;
-import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 @Component
 public class RestServiceImpl implements RestService {
@@ -57,7 +56,7 @@ public class RestServiceImpl implements RestService {
     			requestId = transactionId;
     		} else {
     			requestId = UUID.randomUUID().toString();
-    			log.debug(HEADER_REQUEST_ID + " is missing; using newly generated value: " + requestId);
+    			log.debug("{} is missing; using newly generated value: {}", HEADER_REQUEST_ID, requestId);
     		}
     	}
 
@@ -88,24 +87,4 @@ public class RestServiceImpl implements RestService {
         }
     }
 
-    @Override
-    public Response networkDiscoveryNotification(NetworkDiscoveryNotification notification, String authorization)
-            throws DiscoveryException {
-
-        try {
-            // The calling server (network discovery microService)
-            // doesn't check the response.
-            this.service.validateBasicAuth(authorization);
-            this.service.networkDiscoveryNotification(notification, authorization);
-            return Response.ok("Ack").build();
-
-        } catch (DiscoveryException x) {
-            log.error("context builder failed", x);
-            return Response.status(x.getHttpStatus()).entity(x.getMessage()).build();
-
-        } catch (Exception x) {
-            log.error("context builder failed", x);
-            return Response.status(Status.INTERNAL_SERVER_ERROR).entity(x.getMessage()).build();
-        }
-    }
 }

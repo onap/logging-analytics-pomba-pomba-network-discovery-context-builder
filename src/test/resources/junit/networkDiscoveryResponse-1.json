@@ -1,6 +1,91 @@
 {
     "requestId": "2131_1",
-    "code": 202,
-    "message": "Accepted",
-    "ackFinalIndicator": false
+    "code": 200,
+    "message": "OK",
+    "ackFinalIndicator": true,
+    "resources": [
+        {
+            "id": "2c311eae-f542-4173-8a01-582922abd495",
+            "name": null,
+            "type": "vserver",
+            "dataQuality": {
+                "status": "ok",
+                "errorText": null
+            },
+            "attributeList": [
+                {
+                    "name": "id",
+                    "value": "2c311eae-f542-4173-8a01-582922abd495",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "name",
+                    "value": "norm_bouygues",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "inMaintenance",
+                    "value": "false",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "imageId",
+                    "value": "c0022890-d91f-422c-91c5-3866edeae768",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "status",
+                    "value": "ACTIVE",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "vmState",
+                    "value": "active",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "tenantId",
+                    "value": "15ad36d394e744838e947ca90609f805",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "hostId",
+                    "value": "ea1660efbbedda164379afacdc622305c4b88cebfb84119472d286a8",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "hostStatus",
+                    "value": "UNKNOWN",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                }
+            ]
+        }
+    ]
 }

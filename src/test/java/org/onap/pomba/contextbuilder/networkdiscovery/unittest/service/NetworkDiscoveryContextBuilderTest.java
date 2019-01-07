@@ -24,6 +24,7 @@ import static org.mockito.Mockito.mock;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.github.tomakehurst.wiremock.matching.UrlPattern;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -33,17 +34,17 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.onap.pomba.common.datatypes.DataQuality;
-import org.onap.pomba.contextbuilder.networkdiscovery.model.NetworkDiscoveryRspInfo;
-import org.onap.pomba.contextbuilder.networkdiscovery.service.SpringServiceImpl;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.rs.RestService;
 import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Attribute;
 import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
@@ -75,8 +76,6 @@ public class NetworkDiscoveryContextBuilderTest {
     private String transactionId = UUID.randomUUID().toString();
     private String serviceInstanceId = "c6456519-6acf-4adb-997c-3c363dd4caaf";
     private String requestId = "2131__1";
-    private String resourceType = "vserver";
-    private String resourceId = "25fb07ab-0478-465e-a021-6384ac299671";
 
     HttpServletRequest httpServletRequest = mock(HttpServletRequest.class);
     NetworkDiscoveryNotification networkDiscoveryNotification = simulateNetworkDiscoveryNotification();
@@ -154,32 +153,6 @@ public class NetworkDiscoveryContextBuilderTest {
                 null, null, serviceInstanceId, null, null);
 
         assertEquals(Status.OK.getStatusCode(), response.getStatus());
-    }
-
-    @Test
-    public void testUnauthorizedNetworkDiscoveryNotfi() throws Exception {
-        String networkDiscoveryCallBackUrl = "/network-discovery/service/networkDiscoveryNotification";
-        addResponse(networkDiscoveryCallBackUrl, "junit/networkDiscovery-1.json", networkDiscoveryMicroServiceRule);
-
-        String badAuthorization =
-                "Basic " + Base64.getEncoder().encodeToString(("Test" + ":" + "Fake").getBytes(StandardCharsets.UTF_8));
-        Response response =
-                this.restService.networkDiscoveryNotification(networkDiscoveryNotification, badAuthorization);
-
-        assertEquals(Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
-    }
-
-    @Test
-    public void testNetworkDiscoveryNotfi() throws Exception {
-        NetworkDiscoveryInfoAccess networkDiscoveryInfoAccess = new NetworkDiscoveryInfoAccess();
-        simulateNetworkDiscoveryInfoList();
-        String networkDiscoveryCallBackUrl = "/network-discovery/service/networkDiscoveryNotification";
-        addResponse(networkDiscoveryCallBackUrl, "junit/networkDiscovery-1.json", networkDiscoveryMicroServiceRule);
-
-        Response response = this.restService.networkDiscoveryNotification(networkDiscoveryNotification, authorization);
-        NetworkDiscoveryRspInfo rsp = networkDiscoveryInfoAccess.getList(requestId);
-        assertEquals(Status.OK.getStatusCode(), response.getStatus());
-        assertEquals(rsp.getNetworkDiscoveryNotificationList().size(), 1);
     }
 
     @Test
@@ -319,37 +292,4 @@ public class NetworkDiscoveryContextBuilderTest {
         return notification;
     }
 
-    private void simulateNetworkDiscoveryInfoList() {
-
-        String requestId2 = "2131__2";
-        List<String> relatedRequestList = new ArrayList<>();
-        relatedRequestList.add(requestId);
-        relatedRequestList.add(requestId2);
-
-        NetworkDiscoveryRspInfo notif1 = new NetworkDiscoveryRspInfo();
-        notif1.setRequestId(requestId);
-        notif1.setResourceType(resourceType);
-        notif1.setResourceId(resourceId);
-        notif1.setRelatedRequestIdList(relatedRequestList);
-
-        NetworkDiscoveryInfoAccess networkDiscoveryInfoAccess = new NetworkDiscoveryInfoAccess();
-        networkDiscoveryInfoAccess.updateList(requestId, notif1);
-
-        NetworkDiscoveryRspInfo notif2 = new NetworkDiscoveryRspInfo();
-        notif2.setRequestId(requestId2);
-        notif2.setResourceType(resourceType);
-        notif2.setResourceId(resourceId);
-        notif2.setRelatedRequestIdList(relatedRequestList);
-        networkDiscoveryInfoAccess.updateList(requestId2, notif2);
-    }
-
-    private class NetworkDiscoveryInfoAccess extends SpringServiceImpl {
-        public void updateList(String requestId, NetworkDiscoveryRspInfo resp) {
-            super.updateNetworkDiscoveryInfoList(requestId, resp);
-        }
-
-        public NetworkDiscoveryRspInfo getList(String requestId) {
-            return super.getNetworkDiscoveryInfoList(requestId);
-        }
-    }
 }

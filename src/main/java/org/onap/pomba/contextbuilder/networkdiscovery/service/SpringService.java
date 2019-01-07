@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.onap.pomba.common.datatypes.ModelContext;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
-import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
 
 public interface SpringService {
 
@@ -31,6 +30,4 @@ public interface SpringService {
 
     public void validateBasicAuth(String authorization) throws DiscoveryException;
 
-    public void networkDiscoveryNotification(NetworkDiscoveryNotification notification, String authorization)
-            throws DiscoveryException;
 }

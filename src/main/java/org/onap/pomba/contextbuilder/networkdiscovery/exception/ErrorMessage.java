@@ -21,4 +21,9 @@ public class ErrorMessage {
     public static final String CONTEXT_BUILDER_FAILED = "Context Builder Failed. ";
     public static final String INVALID_REQUEST_URL = "Invalid Request URL. ";
     public static final String MISSING_PARAMTER = "Missing Parameter: ";
+    
+    private ErrorMessage() {
+        throw new IllegalStateException("Utility class");
+    }
+
 }
