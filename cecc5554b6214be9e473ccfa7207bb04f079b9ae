@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Pierre Rioux <pierre.rioux@amdocs.com>
+Code-Review+1: James MacNider <James.MacNider@amdocs.com>
+Code-Review+2: Geora Barsky <georab@amdocs.com>
+Submitted-by: Geora Barsky <georab@amdocs.com>
+Submitted-at: Wed, 09 Jan 2019 21:32:38 +0000
+Reviewed-on: https://gerrit.onap.org/r/75421
+Project: logging-analytics/pomba/pomba-network-discovery-context-builder
+Branch: refs/heads/master
