@@ -20,15 +20,12 @@ package org.onap.pomba.contextbuilder.networkdiscovery.service;
 import com.bazaarvoice.jolt.Chainr;
 import com.bazaarvoice.jolt.JsonUtils;
 import com.google.gson.Gson;
-
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.HttpHeaders;
@@ -36,16 +33,18 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.Response.Status.Family;
-
 import org.onap.aai.restclient.client.Headers;
 import org.onap.pomba.common.datatypes.Attribute;
 import org.onap.pomba.common.datatypes.ModelContext;
 import org.onap.pomba.common.datatypes.Network;
-import org.onap.pomba.common.datatypes.VF;
 import org.onap.pomba.common.datatypes.VFModule;
 import org.onap.pomba.common.datatypes.VM;
-import org.onap.pomba.common.datatypes.VNFC;
+import org.onap.pomba.common.datatypes.VNF;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
+import org.onap.pomba.contextbuilder.networkdiscovery.model.NdQuery;
+import org.onap.pomba.contextbuilder.networkdiscovery.model.NdResource;
+import org.onap.pomba.contextbuilder.networkdiscovery.model.NdResources;
+import org.onap.pomba.contextbuilder.networkdiscovery.model.NdResourcesList;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.rs.RestService;
 import org.onap.pomba.contextbuilder.networkdiscovery.util.RestUtil;
 import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
@@ -91,26 +90,6 @@ public class SpringServiceImpl implements SpringService {
     private static UUID instanceUUID = UUID.randomUUID();
     private static final AtomicLong uniqueSeq = new AtomicLong();
 
-    private class NdResource {
-
-        private String resourceType;
-        private String resourceId;
-
-        public NdResource(String type, String id) {
-            this.resourceType = type;
-            this.resourceId = id;
-        }
-
-        public String getResourceType() {
-            return this.resourceType;
-        }
-
-        public String getResourceId() {
-            return this.resourceId;
-        }
-    }
-
-
     @Autowired
     private String serviceDecompositionBaseUrl;
 
@@ -146,9 +125,10 @@ public class SpringServiceImpl implements SpringService {
             RestUtil.validateServiceInstanceId(serviceInstanceId);
             RestUtil.validatePartnerName(partnerName);
             validateBasicAuth(authorization);
-            ModelContext networkDiscoveryCtx = getServiceDeomposition(serviceInstanceId, partnerName, requestId);
-
-            sendNetworkDiscoveryRequest(networkDiscoveryCtx, requestId, partnerName);
+            String sdReply = getServiceDeomposition(serviceInstanceId, partnerName, requestId);
+            ModelContext networkDiscoveryCtx = createModelContextFromSdResonse(sdReply);
+            NdQuery ndQuery = createNdQueryFromSdResonse(sdReply);
+            sendNetworkDiscoveryRequest(networkDiscoveryCtx, ndQuery, requestId, partnerName);
             return networkDiscoveryCtx;
 
         } catch (Exception x) {
@@ -186,7 +166,7 @@ public class SpringServiceImpl implements SpringService {
     /**
      * Given a service instance ID, GET the resources from Service Decomposition.
      */
-    private ModelContext getServiceDeomposition(String serviceInstanceId, String partnerName, String requestId)
+    private String getServiceDeomposition(String serviceInstanceId, String partnerName, String requestId)
             throws DiscoveryException {
         if (serviceInstanceId == null) {
             return null;
@@ -195,7 +175,7 @@ public class SpringServiceImpl implements SpringService {
         log.info("Querying Service Decomposition for service instance {}", serviceInstanceId);
 
         String urlStr = getUrl(serviceInstanceId);
-        
+
         log.info("Querying Service Decomposition for url {}", urlStr);
 
 
@@ -222,12 +202,7 @@ public class SpringServiceImpl implements SpringService {
                         serviceInstanceId, reply);
             }
 
-            List<Object> jsonSpec = JsonUtils.filepathToList("config/networkdiscovery.spec");
-            Object jsonInput = JsonUtils.jsonToObject(reply);
-            Chainr chainr = Chainr.fromSpec(jsonSpec);
-            Object transObject = chainr.transform(jsonInput);
-            Gson gson = new Gson();
-            return gson.fromJson(JsonUtils.toPrettyJsonString(transObject), ModelContext.class);
+            return reply;
         } catch (Exception x) {
             throw new DiscoveryException(x.getMessage(), x);
         }
@@ -260,8 +235,8 @@ public class SpringServiceImpl implements SpringService {
     }
 
     private void updateServiceDecompCtx(ModelContext networkDiscoveryCtx, Resource resource) {
-        for (VF vf : networkDiscoveryCtx.getVfs()) {
-            for (VFModule vfModule : vf.getVfModules()) {
+        for (VNF vnf : networkDiscoveryCtx.getVnfs()) {
+            for (VFModule vfModule : vnf.getVfModules()) {
                 for (VM vm : vfModule.getVms()) {
                     if (vm.getUuid().equals(resource.getId())) {
                         vm.setDataQuality(resource.getDataQuality());
@@ -318,43 +293,29 @@ public class SpringServiceImpl implements SpringService {
 
 
     /* Return list of requestIds sent to network-discovery microService. */
-    private List<String> sendNetworkDiscoveryRequest(ModelContext networkDiscoveryCtx, String parentRequestId,
-            String partnerName) throws DiscoveryException {
+    private void sendNetworkDiscoveryRequest(ModelContext networkDiscoveryCtx,
+                                             NdQuery ndQuery,
+                                             String parentRequestId,
+                                             String partnerName) throws DiscoveryException {
+        for (NdResourcesList ndResourcesList : ndQuery.getNdQuery()) {
+            for (NdResources ndResources : ndResourcesList.getNdResources()) {
+                for (NdResource ndResource : ndResources.getNdResources()) {
 
-        List<String> relatedRequestIdList = new ArrayList<>();
-        List<NdResource> ndresourceList = new ArrayList<>();
+                    // The old_requestId is inherited from ServiceDecomposition.
+                    // Before we send a message to NetworkDiscoveryMicroService for each Resource,
+                    // we need to generate a new request for identification, based on the old ID.
+                    String requestId = parentRequestId + NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER + uniqueSeq.incrementAndGet();
 
-        for (VF vf : networkDiscoveryCtx.getVfs()) {
-            for (VNFC vnfc : vf.getVnfcs()) {
-                ndresourceList.add(new NdResource(vnfc.getType(), vnfc.getUuid()));
-            }
-            for (VFModule vfModule : vf.getVfModules()) {
-                for (VM vm : vfModule.getVms() ) {
-                    ndresourceList.add(new NdResource(vm.getNfcNamingCode(), vm.getUuid()));
-                    vm.setNfcNamingCode(null);
-                }
-                for (Network network : vfModule.getNetworks()) {
-                    ndresourceList.add(new NdResource(network.getType(), network.getUuid()));
+                    NetworkDiscoveryNotification nt = sendNetworkDiscoveryRequestToSpecificServer(partnerName, parentRequestId,
+                            requestId, ndResource.getResourceId(), ndResource.getResourceType());
+
+                    List<Resource> resourceList = nt.getResources();
+                    for (Resource resource1 : resourceList) {
+                        updateServiceDecompCtx(networkDiscoveryCtx, resource1);
+                    }
                 }
             }
         }
-
-        for (NdResource resource : ndresourceList) {
-
-            // The old_requestId is inherited from ServiceDecomposition.
-            // Before we send a message to NetworkDiscoveryMicroService for each Resource,
-            // we need to generate a new request for identification, based on the old ID.
-            String requestId = parentRequestId + NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER + uniqueSeq.incrementAndGet();
-
-            NetworkDiscoveryNotification nt = sendNetworkDiscoveryRequestToSpecificServer(partnerName, parentRequestId,
-                    requestId, resource.getResourceId(), resource.getResourceType());
-
-            List<Resource> resourceList = nt.getResources();
-            for (Resource resource1 : resourceList) {
-                updateServiceDecompCtx(networkDiscoveryCtx, resource1);
-            }
-        }
-        return relatedRequestIdList;
     }
 
     private NetworkDiscoveryNotification sendNetworkDiscoveryRequestToSpecificServer(String partnerName, String parentRequestId,
@@ -378,14 +339,14 @@ public class SpringServiceImpl implements SpringService {
                     .header(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID, parentRequestId).get();
 
             String status = Response.Status.fromStatusCode(response.getStatus()) + ",code:" + response.getStatus();
-            
+
             if (response.getStatusInfo().getFamily() != Family.SUCCESSFUL) {
                 MDC.put(MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS, status);
                 throw new DiscoveryException(response.getStatusInfo().toString(),
                         Response.Status.fromStatusCode(response.getStatus()));
             } else {
                 MDC.put(MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS, status);
-                NetworkDiscoveryNotification ndResponse = response.readEntity(NetworkDiscoveryNotification.class);              
+                NetworkDiscoveryNotification ndResponse = response.readEntity(NetworkDiscoveryNotification.class);
                 log.info("Message sent. Response Payload: {}", ndResponse);
                 return ndResponse;
             }
@@ -425,5 +386,27 @@ public class SpringServiceImpl implements SpringService {
             log.info("Could not get canonical host name for {}, leaving field null", MDC_SERVER_FQDN);
         }
     }
+
+
+    private ModelContext createModelContextFromSdResonse(String response) {
+        List<Object> jsonSpec = JsonUtils.filepathToList("config/networkdiscovery.spec");
+        Object jsonInput = JsonUtils.jsonToObject(response);
+        Chainr chainr = Chainr.fromSpec(jsonSpec);
+        Object transObject = chainr.transform(jsonInput);
+        Gson gson = new Gson();
+        return gson.fromJson(JsonUtils.toPrettyJsonString(transObject), ModelContext.class);
+
+    }
+
+    private NdQuery createNdQueryFromSdResonse(String response) {
+        List<Object> jsonSpec = JsonUtils.filepathToList("config/ndQuery.spec");
+        Object jsonInput = JsonUtils.jsonToObject(response);
+        Chainr chainr = Chainr.fromSpec(jsonSpec);
+        Object transObject = chainr.transform(jsonInput);
+        Gson gson = new Gson();
+        return gson.fromJson(JsonUtils.toPrettyJsonString(transObject), NdQuery.class);
+
+    }
+
 
 }
