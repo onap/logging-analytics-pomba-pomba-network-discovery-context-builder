@@ -1,0 +1,16 @@
+{
+  "ndQuery": [
+    {
+      "ndResourcesList": [
+        {
+          "ndResources": [
+            {
+              "resourceId": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+              "resourceType": "vserver"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

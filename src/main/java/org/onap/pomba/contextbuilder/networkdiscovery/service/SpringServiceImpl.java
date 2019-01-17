@@ -20,12 +20,14 @@ package org.onap.pomba.contextbuilder.networkdiscovery.service;
 import com.bazaarvoice.jolt.Chainr;
 import com.bazaarvoice.jolt.JsonUtils;
 import com.google.gson.Gson;
+
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.HttpHeaders;
@@ -33,6 +35,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.Response.Status.Family;
+
 import org.onap.aai.restclient.client.Headers;
 import org.onap.pomba.common.datatypes.Attribute;
 import org.onap.pomba.common.datatypes.ModelContext;
@@ -234,25 +237,46 @@ public class SpringServiceImpl implements SpringService {
         }
     }
 
-    private void updateServiceDecompCtx(ModelContext networkDiscoveryCtx, Resource resource) {
+    private void updateNetworkDiscoveryCtx(ModelContext networkDiscoveryCtx, Resource resource) {
         for (VNF vnf : networkDiscoveryCtx.getVnfs()) {
             for (VFModule vfModule : vnf.getVfModules()) {
                 for (VM vm : vfModule.getVms()) {
-                    if (vm.getUuid().equals(resource.getId())) {
+                    if (vm.getUuid().equals(resource.getId())) {                        
                         vm.setDataQuality(resource.getDataQuality());
                         if (null != resource.getAttributeList()) {
                             for (org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Attribute ndattribute : resource.getAttributeList()) {
                                 try {
                                     String ndattributeName = ndattribute.getName();
-                                    if (ndattributeName.equals("name")) {
+                                    // Some Network Discovery attribute name do not exactly
+                                    // match the pomba-audit-common model Attribute Enums,
+                                    // so we have to do some custom mapping here:
+                                    switch (ndattributeName) {
+                                    case "id":
+                                        vm.setUuid(ndattribute.getValue());
+                                        break;
+                                    case "name":
                                         vm.setName(ndattribute.getValue());
-                                    }
-                                    else {
+                                        break;
+                                    case "inMaintenance":
                                         Attribute attribute = new Attribute();
-                                        attribute.setName(Attribute.Name.valueOf(ndattributeName));
+                                        attribute.setName(Attribute.Name.lockedBoolean);
                                         attribute.setValue(ndattribute.getValue());
                                         attribute.setDataQuality(ndattribute.getDataQuality());
                                         vm.addAttribute(attribute);
+                                        break;
+                                    case "hostname":
+                                        attribute = new Attribute();
+                                        attribute.setName(Attribute.Name.hostName);
+                                        attribute.setValue(ndattribute.getValue());
+                                        attribute.setDataQuality(ndattribute.getDataQuality());
+                                        vm.addAttribute(attribute);
+                                        break;                                        
+                                    default:
+                                        attribute = new Attribute();
+                                        attribute.setName(Attribute.Name.valueOf(ndattributeName));
+                                        attribute.setValue(ndattribute.getValue());
+                                        attribute.setDataQuality(ndattribute.getDataQuality());
+                                        vm.addAttribute(attribute);                                            
                                     }
                                 } catch (IllegalArgumentException ex) {
                                     // The attribute Name passed back from Network Discovery is not in our enum
@@ -300,7 +324,6 @@ public class SpringServiceImpl implements SpringService {
         for (NdResourcesList ndResourcesList : ndQuery.getNdQuery()) {
             for (NdResources ndResources : ndResourcesList.getNdResources()) {
                 for (NdResource ndResource : ndResources.getNdResources()) {
-
                     // The old_requestId is inherited from ServiceDecomposition.
                     // Before we send a message to NetworkDiscoveryMicroService for each Resource,
                     // we need to generate a new request for identification, based on the old ID.
@@ -311,7 +334,7 @@ public class SpringServiceImpl implements SpringService {
 
                     List<Resource> resourceList = nt.getResources();
                     for (Resource resource1 : resourceList) {
-                        updateServiceDecompCtx(networkDiscoveryCtx, resource1);
+                        updateNetworkDiscoveryCtx(networkDiscoveryCtx, resource1);
                     }
                 }
             }
@@ -404,6 +427,10 @@ public class SpringServiceImpl implements SpringService {
         Chainr chainr = Chainr.fromSpec(jsonSpec);
         Object transObject = chainr.transform(jsonInput);
         Gson gson = new Gson();
+        
+        log.info("Jolt transformed output: {}", JsonUtils.toJsonString(transObject));
+
+        
         return gson.fromJson(JsonUtils.toPrettyJsonString(transObject), NdQuery.class);
 
     }
