@@ -15,6 +15,7 @@
  * limitations under the License.
  * ============LICENSE_END=====================================================
  */
+
 package org.onap.pomba.contextbuilder.networkdiscovery.service;
 
 import javax.servlet.http.HttpServletRequest;

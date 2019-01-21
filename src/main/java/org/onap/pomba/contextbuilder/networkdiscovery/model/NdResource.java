@@ -23,7 +23,7 @@ import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value="NdResource")
+@ApiModel(value = "NdResource")
 public class NdResource {
 
     @Expose
@@ -37,13 +37,16 @@ public class NdResource {
     public String getResourceId() {
         return resourceId;
     }
+
     public void setResourceId(String resourceId) {
         this.resourceId = resourceId;
     }
+
     @ApiModelProperty(value = "Type of Resource for Network Discovery")
     public String getResourceType() {
         return resourceType;
     }
+
     public void setResourceType(String resourceType) {
         this.resourceType = resourceType;
     }

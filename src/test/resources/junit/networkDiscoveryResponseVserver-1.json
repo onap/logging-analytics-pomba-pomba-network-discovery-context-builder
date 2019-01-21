@@ -5,8 +5,8 @@
     "ackFinalIndicator": true,
     "resources": [
         {
-            "id": "2c311eae-f542-4173-8a01-582922abd495",
-            "name": null,
+            "id": "25fb07ab-0478-465e-a021-6384ac299671",
+            "name": "vserver-name",
             "type": "vserver",
             "dataQuality": {
                 "status": "ok",
@@ -23,6 +23,14 @@
                 },
                 {
                     "name": "name",
+                    "value": "norm-d2-k8s",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "hostname",
                     "value": "norm_bouygues",
                     "dataQuality": {
                         "status": "ok",

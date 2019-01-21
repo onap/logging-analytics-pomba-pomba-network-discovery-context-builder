@@ -28,10 +28,12 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.onap.pomba.contextbuilder.networkdiscovery.model.NdQuery;
+import org.onap.pomba.common.datatypes.ModelContext;
+import org.onap.pomba.contextbuilder.networkdiscovery.model.NdResources;
 
 public class TransformationTest {
 
+    private static final String CONFIG_JOLT_DIRECTORY = "config/jolt/";
     private static final String TEST_RESOURCES = "src/test/resources/jolt/";
 
     @Rule
@@ -39,26 +41,58 @@ public class TransformationTest {
 
 
     @Test
-    public void testTransformNdQuery() {
+    public void testTransformNdResources() {
 
-        Object sourceObject = JsonUtils.filepathToObject(TEST_RESOURCES + "serviceDecompToNdQuery-input.json");
+        Object sourceObject = JsonUtils.filepathToObject(TEST_RESOURCES + "/serviceDecompResponse.json");
         Object sourceObject1 = JsonUtils.jsonToObject(JsonUtils.toJsonString(sourceObject));
         
-        List<Object> chainrSpecJSON = JsonUtils.filepathToList("config/ndQuery.spec");
-        Chainr chainr = Chainr.fromSpec(chainrSpecJSON);
+        List<Object> chainrSpecJson = JsonUtils.filepathToList(CONFIG_JOLT_DIRECTORY + "sdToNdResourcesSpec.json");
+        Chainr chainr = Chainr.fromSpec(chainrSpecJson);
+        Object output = chainr.transform(sourceObject1);
+
+        String resultJson = JsonUtils.toJsonString(output);
+        
+        System.err.println(resultJson);
+ 
+        // read the result into the NqQuery class:
+        Gson gson = new Gson();
+        NdResources ndQuery = gson.fromJson(resultJson, NdResources.class);
+        
+        // convert ndQuery back to json:
+        String ndQueryToJson = gson.toJson(ndQuery);
+        
+        
+
+        // Compare with expected output:
+        Object expectedObject = JsonUtils.filepathToObject(TEST_RESOURCES + "serviceDecompToNdResources-expected.json");
+
+        Assert.assertEquals("Json transformation result does not match expected content",
+                JsonUtils.toPrettyJsonString(expectedObject),
+                JsonUtils.toPrettyJsonString(JsonUtils.jsonToObject(ndQueryToJson)));
+
+    }
+
+    @Test
+    public void testTransformModelContext() {
+
+        Object sourceObject = JsonUtils.filepathToObject(TEST_RESOURCES + "serviceDecompResponse.json");
+        Object sourceObject1 = JsonUtils.jsonToObject(JsonUtils.toJsonString(sourceObject));
+        
+        List<Object> chainrSpecJson = JsonUtils.filepathToList(CONFIG_JOLT_DIRECTORY + "sdToModelContextSpec.json");
+        Chainr chainr = Chainr.fromSpec(chainrSpecJson);
         Object output = chainr.transform(sourceObject1);
 
         String resultJson = JsonUtils.toJsonString(output);
  
         // read the result into the NqQuery class:
         Gson gson = new Gson();
-        NdQuery ndQuery = gson.fromJson(resultJson, NdQuery.class);
+        ModelContext ndQuery = gson.fromJson(resultJson, ModelContext.class);
         
         // convert ndQuery back to json:
         String ndQueryToJson = gson.toJson(ndQuery);
 
         // Compare with expected output:
-        Object expectedObject = JsonUtils.filepathToObject(TEST_RESOURCES + "serviceDecompToNdQuery-expected.json");
+        Object expectedObject = JsonUtils.filepathToObject(TEST_RESOURCES + "serviceDecompToModelContext-expected.json");
 
         Assert.assertEquals("Json transformation result does not match expected content",
                 JsonUtils.toPrettyJsonString(expectedObject),

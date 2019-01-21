@@ -5,3 +5,4 @@ logs/*
 .classpath
 .project
 
+.checkstyle

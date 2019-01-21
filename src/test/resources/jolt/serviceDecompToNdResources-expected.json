@@ -1,0 +1,21 @@
+{
+  "ndResources" : [ {
+    "resourceId" : "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+    "resourceType" : "vserver"
+  }, {
+    "resourceId" : "2ea02809-7279-4b5e-931a-62b231615497",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9-2",
+    "resourceType" : "vserver"
+  }, {
+    "resourceId" : "2ea02809-7279-4b5e-931a-62b231615497-1",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "01e8d84a-17a6-47b5-a167-6a45d1d56603-1",
+    "resourceType" : "l3-network"
+  } ]
+}

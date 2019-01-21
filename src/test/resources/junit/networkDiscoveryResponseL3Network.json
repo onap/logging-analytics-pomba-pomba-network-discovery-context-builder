@@ -1,0 +1,83 @@
+{
+    "requestId": "88001",
+    "code": 200,
+    "message": "OK",
+    "ackFinalIndicator": true,
+    "resources": [
+        {
+            "id": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+            "name": null,
+            "type": "l3-network",
+            "dataQuality": {
+                "status": "ok",
+                "errorText": null
+            },
+            "attributeList": [
+                {
+                    "name": "id",
+                    "value": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "name",
+                    "value": "NET_1106",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "AdminState",
+                    "value": "true",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "sharedNetwork",
+                    "value": "true",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "status",
+                    "value": "ACTIVE",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "subnets",
+                    "value": "089c9160-6f7a-4ae0-83b7-33536b4c6672",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "tenantId",
+                    "value": "cbd5e07f58d84ea6b795aa9f5f207df0",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                },
+                {
+                    "name": "host-status",
+                    "value": "UNKNOWN",
+                    "dataQuality": {
+                        "status": "ok",
+                        "errorText": null
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -15,6 +15,7 @@
  * limitations under the License.
  * ============LICENSE_END=====================================================
  */
+
 package org.onap.pomba.contextbuilder.networkdiscovery.service.rs;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +48,8 @@ public interface RestService {
             @ApiResponse(code = 404, message = "Service not available"),
             @ApiResponse(code = 500, message = "Unexpected Runtime error") })
     public Response getContext(@Context HttpServletRequest req, @HeaderParam("Authorization") String authorization,
-            @HeaderParam("X-ONAP-PartnerName") String xpartnerName, @HeaderParam("X-ONAP-RequestID") String xRequestId,
-            @HeaderParam("X-FromAppId") String xFromAppId, @HeaderParam("X-TransactionId") String xTransactionId,
+            @HeaderParam("X-ONAP-PartnerName") String xpartnerName, @HeaderParam("X-ONAP-RequestID") String requestId,
+            @HeaderParam("X-FromAppId") String fromAppId, @HeaderParam("X-TransactionId") String transactionId,
             @QueryParam("serviceInstanceId") String serviceInstanceId,
             @QueryParam("modelVersionId") String modelVersionId,
             @QueryParam("modelInvariantId") String modelInvariantId) throws DiscoveryException;

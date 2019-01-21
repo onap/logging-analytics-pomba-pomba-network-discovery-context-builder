@@ -1,0 +1,211 @@
+{
+  "model-version-id": "e2d52f32-a952-46f5-800c-c250903625d6",
+  "service-instance-id": "PombaDemoCust_001-SerivceInst-001",
+  "resource-version": "1545324562797",
+  "generic-vnfs": [
+    {
+      "nf-role": "",
+      "service-id": "8ea56b0d-459d-4668-b363-c9567432d8b7",
+      "vnf-id": "PombaDemoCust_001-VNF-id-001",
+      "nf-type": "",
+      "l3-networks": [
+        {
+          "network-role": "",
+          "network-technology": "",
+          "network-id": "2ea02809-7279-4b5e-931a-62b231615497",
+          "is-external-network": false,
+          "is-bound-to-vpn": false,
+          "is-provider-network": false,
+          "network-type": "",
+          "model-version-id": "pomba-demo-sdc-model-001-version001",
+          "resource-version": "1547484061985",
+          "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+          "network-name": "NET_1105",
+          "is-shared-network": true,
+          "model-invariant-id": "pomba-demo-sdc-model-001"
+        },
+        {
+          "network-role": "",
+          "network-technology": "",
+          "network-id": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+          "is-external-network": false,
+          "is-bound-to-vpn": false,
+          "is-provider-network": false,
+          "network-type": "",
+          "model-version-id": "pomba-demo-sdc-model-001-version001",
+          "resource-version": "1547484429696",
+          "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+          "network-name": "NET_1106",
+          "is-shared-network": true,
+          "model-invariant-id": "pomba-demo-sdc-model-001"
+        }
+      ],
+      "prov-status": "PREPROV",
+      "vnf-type": "vFW-vSINK-service/vFWvSINK 0",
+      "orchestration-status": "Created",
+      "nf-naming-code": "",
+      "in-maint": false,
+      "nf-function": "",
+      "model-version-id": "pomba-demo-sdc-model-001-version001",
+      "vservers": [
+        {
+          "in-maint": false,
+          "resource-version": "1545323228761",
+          "vserver-name": "Firewall-001",
+          "prov-status": "ACTIVE",
+          "vserver-id": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+          "vserver-name2": "Firewall-001",
+          "vserver-selflink": "http://10.12.25.2:8774/v2.1/a6a609e3-967a-48bd-8ce5-41c7ff5c19b9/servers/a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+          "is-closed-loop-disabled": false
+        }
+      ],
+      "resource-version": "1547828735448",
+      "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+      "vf-modules": {
+        "vf-module": [
+          {
+            "vf-module-name": "PombaDemoCust_001-VNF-id-001-VfModule001-name",
+            "model-version-id": "pomba-demo-sdc-model-001-version001",
+            "heat-stack-id": "HeatStackId-001",
+            "resource-version": "1547828735835",
+            "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+            "is-base-vf-module": true,
+            "vf-module-id": "PombaDemoCust_001-VNF-id-001-VfModule001",
+            "module-index": 0,
+            "model-invariant-id": "pomba-demo-sdc-model-001",
+            "orchestration-status": "Active",
+            "automated-assignment": true
+          }
+        ]
+      },
+      "model-invariant-id": "pomba-demo-sdc-model-001",
+      "vnf-name": "Firewall-1",
+      "is-closed-loop-disabled": false
+    },
+    {
+      "nf-role": "",
+      "service-id": "8ea56b0d-459d-4668-b363-c9567432d8b7",
+      "vnf-id": "PombaDemoCust_001-VNF-id-001-2",
+      "nf-type": "",
+      "l3-networks": [
+        {
+          "network-role": "",
+          "network-technology": "",
+          "network-id": "2ea02809-7279-4b5e-931a-62b231615497-1",
+          "is-external-network": false,
+          "is-bound-to-vpn": false,
+          "is-provider-network": false,
+          "network-type": "",
+          "model-version-id": "pomba-demo-sdc-model-001-version001",
+          "resource-version": "1547484061985",
+          "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+          "network-name": "NET_1105",
+          "is-shared-network": true,
+          "model-invariant-id": "pomba-demo-sdc-model-001"
+        },
+        {
+          "network-role": "",
+          "network-technology": "",
+          "relationship-list": {
+            "relationship": [
+              {
+                "related-to": "service-instance",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001",
+                    "relationship-key": "customer.global-customer-id"
+                  },
+                  {
+                    "relationship-value": "SDN-ETHERNET-INTERNET",
+                    "relationship-key": "service-subscription.service-type"
+                  },
+                  {
+                    "relationship-value": "PombaDemoCust_001-SerivceInst-001",
+                    "relationship-key": "service-instance.service-instance-id"
+                  }
+                ],
+                "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN-ETHERNET-INTERNET/service-instances/service-instance/PombaDemoCust_001-SerivceInst-001",
+                "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+                "related-to-property": [
+                  {
+                    "property-key": "service-instance.service-instance-name"
+                  }
+                ]
+              },
+              {
+                "related-to": "generic-vnf",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                    "relationship-key": "generic-vnf.vnf-id"
+                  }
+                ],
+                "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
+                "relationship-label": "org.onap.relationships.inventory.Uses",
+                "related-to-property": [
+                  {
+                    "property-key": "generic-vnf.vnf-name",
+                    "property-value": "Firewall-1"
+                  }
+                ]
+              },
+              {
+                "related-to": "generic-vnf",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001-2",
+                    "relationship-key": "generic-vnf.vnf-id"
+                  }
+                ],
+                "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001-2",
+                "relationship-label": "org.onap.relationships.inventory.Uses",
+                "related-to-property": [
+                  {
+                    "property-key": "generic-vnf.vnf-name",
+                    "property-value": "Firewall-2"
+                  }
+                ]
+              }
+            ]
+          },
+          "network-id": "01e8d84a-17a6-47b5-a167-6a45d1d56603-1",
+          "is-external-network": false,
+          "is-bound-to-vpn": false,
+          "is-provider-network": false,
+          "network-type": "",
+          "model-version-id": "pomba-demo-sdc-model-001-version001",
+          "resource-version": "1547484429696",
+          "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+          "network-name": "NET_1106",
+          "is-shared-network": true,
+          "model-invariant-id": "pomba-demo-sdc-model-001"
+        }
+      ],
+      "prov-status": "PREPROV",
+      "vnf-type": "vFW-vSINK-service/vFWvSINK 0",
+      "orchestration-status": "Created",
+      "nf-naming-code": "",
+      "in-maint": false,
+      "nf-function": "",
+      "model-version-id": "pomba-demo-sdc-model-001-version001",
+      "vservers": [
+        {
+          "in-maint": true,
+          "resource-version": "1547822239190",
+          "vserver-name": "Firewall-001-2",
+          "prov-status": "UNKNOWN",
+          "vserver-id": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9-2",
+          "vserver-name2": "Firewall-001-2",
+          "vserver-selflink": "http://10.12.25.2:8774/v2.1/a6a609e3-967a-48bd-8ce5-41c7ff5c19b9/servers/a6a609e3-967a-48bd-8ce5-41c7ff5c19b9-2",
+          "is-closed-loop-disabled": false
+        }
+      ],
+      "resource-version": "1547822479098",
+      "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+      "model-invariant-id": "pomba-demo-sdc-model-001",
+      "vnf-name": "Firewall-2",
+      "is-closed-loop-disabled": false
+    }
+  ],
+  "model-invariant-id": "59dd4d63-8f21-406c-98c0-3b057bb86820"
+}

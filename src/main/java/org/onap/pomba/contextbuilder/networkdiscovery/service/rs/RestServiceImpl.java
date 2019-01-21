@@ -15,6 +15,7 @@
  * limitations under the License.
  * ============LICENSE_END=====================================================
  */
+
 package org.onap.pomba.contextbuilder.networkdiscovery.service.rs;
 
 import com.google.gson.Gson;
@@ -32,6 +33,7 @@ import org.onap.pomba.contextbuilder.networkdiscovery.exception.ErrorMessage;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.SpringService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -45,27 +47,30 @@ public class RestServiceImpl implements RestService {
     private SpringService service;
 
     @Override
-    public Response getContext(HttpServletRequest req, String authorization, String partnerName, String requestId, String fromAppId, String transactionId,
-            String serviceInstanceId, String modelVersionId, String modelInvariantId) throws DiscoveryException {
+    public Response getContext(HttpServletRequest req, String authorization, String partnerName, String requestId,
+            String fromAppId, String transactionId, String serviceInstanceId, String modelVersionId,
+            String modelInvariantId) throws DiscoveryException {
 
         // Do some validation on Http headers and URL parameters
 
-    	//The request ID in the header is not yet standardized to X-ONAP-RequestID.  We would still support X-TransactionId until further notice.
-    	if(requestId == null || requestId.isEmpty()) {
-    		if(transactionId != null) {
-    			requestId = transactionId;
-    		} else {
-    			requestId = UUID.randomUUID().toString();
-    			log.debug("{} is missing; using newly generated value: {}", HEADER_REQUEST_ID, requestId);
-    		}
-    	}
+        // The request ID in the header is not yet standardized to X-ONAP-RequestID. We
+        // would still support X-TransactionId until further notice.
+        if (requestId == null || requestId.isEmpty()) {
+            if (transactionId != null) {
+                requestId = transactionId;
+            } else {
+                requestId = UUID.randomUUID().toString();
+                log.debug("{} is missing; using newly generated value: {}", HEADER_REQUEST_ID, requestId);
+            }
+        }
 
-    	//The partner name in the header is not yet standardized to X-PartnerName.  We would still support X-FromAppId until further notice.
-    	if(partnerName == null || partnerName.isEmpty()) {
-    		if(fromAppId != null) {
-    			partnerName = fromAppId;
-    		}
-    	}
+        // The partner name in the header is not yet standardized to X-PartnerName. We
+        // would still support X-FromAppId until further notice.
+        if (partnerName == null || partnerName.isEmpty()) {
+            if (fromAppId != null) {
+                partnerName = fromAppId;
+            }
+        }
 
         try {
             ModelContext sdContext = service.getContext(req, partnerName, authorization, requestId, serviceInstanceId,
@@ -78,13 +83,17 @@ public class RestServiceImpl implements RestService {
                 return Response.ok().entity(gson.toJson(sdContext)).build();
             }
         } catch (DiscoveryException x) {
-            log.error(ErrorMessage.CONTEXT_BUILDER_FAILED, x);
+            log.warn(ErrorMessage.CONTEXT_BUILDER_FAILED, x);
             return Response.status(x.getHttpStatus()).entity(x.getMessage()).build();
 
         } catch (Exception x) {
             log.error(ErrorMessage.CONTEXT_BUILDER_FAILED, x);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(x.getMessage()).build();
+            
+        } finally {
+            MDC.clear();
         }
+
     }
 
 }

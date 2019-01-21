@@ -15,6 +15,7 @@
  * limitations under the License.
  * ============LICENSE_END=====================================================
  */
+
 package org.onap.pomba.contextbuilder.networkdiscovery.util;
 
 import javax.ws.rs.core.Response.Status;
@@ -39,10 +40,11 @@ public class RestUtil {
      */
     public static void validateServiceInstanceId(String serviceInstanceId) throws DiscoveryException {
 
-        if (serviceInstanceId == null || serviceInstanceId.trim().isEmpty())
+        if (serviceInstanceId == null || serviceInstanceId.trim().isEmpty()) {
             throw new DiscoveryException(
                     ErrorMessage.INVALID_REQUEST_URL + ErrorMessage.MISSING_PARAMTER + SERVICE_INSTANCE_ID,
-                    Status.BAD_REQUEST);
+                    Status.BAD_REQUEST);            
+        }
     }
 
     /**
@@ -54,7 +56,7 @@ public class RestUtil {
     public static void validatePartnerName(String partnerName) throws DiscoveryException {
 
         if ((partnerName == null) || partnerName.trim().isEmpty()) {
-        throw new DiscoveryException(ErrorMessage.MISSING_PARAMTER + HEADER_PARTNER_NAME, Status.BAD_REQUEST);
+            throw new DiscoveryException(ErrorMessage.MISSING_PARAMTER + HEADER_PARTNER_NAME, Status.BAD_REQUEST);
         }
     }
 

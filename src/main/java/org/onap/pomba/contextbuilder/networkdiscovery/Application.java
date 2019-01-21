@@ -15,6 +15,7 @@
  * limitations under the License.
  * ============LICENSE_END=====================================================
  */
+
 package org.onap.pomba.contextbuilder.networkdiscovery;
 
 import org.springframework.boot.SpringApplication;

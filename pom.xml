@@ -310,7 +310,7 @@ limitations under the License.
                                             <includes>
                                                 <include>*.properties</include>
                                                 <include>*.xml</include>
-                                                <include>*.spec</include>
+                                                <include>**/*.json</include>
                                             </includes>
                                             <filtering>false</filtering>
                                         </resource>

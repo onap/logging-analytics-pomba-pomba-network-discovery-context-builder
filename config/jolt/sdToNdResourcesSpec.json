@@ -1,0 +1,43 @@
+[
+  // Use https://jolt-demo.appspot.com/#inception to develop/test
+  // any changes to this file
+  {
+    // This section converts the updated json from service-decomposition
+    // to org.onap.pomba.contextbuilder.networkdiscovery.model.NdResources
+    "operation": "shift",
+    "spec": {
+      "generic-vnfs": {
+        "*": {
+          "vservers": {
+            "*": {
+              "vserver-id":  {
+                   "@": "tempResourceId",
+                   "#vserver": "tempResourceType"
+                    
+              }
+              }},
+          "l3-networks": {
+            "*": {
+              "network-id": {
+                 "@": "tempResourceId",
+                 "#l3-network": "tempResourceType"
+              }
+            }
+          } 
+        }
+      }
+    }
+  },
+  {
+    "operation": "shift",
+    "spec": {
+      "tempResourceType": {
+        "*": {
+          "@": "ndResources[&].resourceType",
+          "@(2,tempResourceId[&])": "ndResources[&].resourceId"
+        }
+      }
+    }
+  }
+  
+]

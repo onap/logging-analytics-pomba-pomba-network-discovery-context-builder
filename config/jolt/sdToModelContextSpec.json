@@ -11,7 +11,7 @@
         "*": {
           "vservers": {
             "*": {
-              "vserver-id": "vnfList[&3].vfModuleList[0].vmList[&1].uuid"
+              "vserver-id": "vnfList[&3].vfModuleList[0].vmList[&1].uuid"            
             }
           },
           "l3-networks": {

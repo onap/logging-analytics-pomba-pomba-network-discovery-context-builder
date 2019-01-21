@@ -24,15 +24,13 @@ import static org.mockito.Mockito.mock;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.github.tomakehurst.wiremock.matching.UrlPattern;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
-import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,11 +42,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.onap.pomba.common.datatypes.DataQuality;
+import org.onap.pomba.common.datatypes.ModelContext;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.rs.RestService;
-import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Attribute;
-import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
-import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -75,10 +70,8 @@ public class NetworkDiscoveryContextBuilderTest {
     private String partnerName = "POMBA";
     private String transactionId = UUID.randomUUID().toString();
     private String serviceInstanceId = "c6456519-6acf-4adb-997c-3c363dd4caaf";
-    private String requestId = "2131__1";
 
     HttpServletRequest httpServletRequest = mock(HttpServletRequest.class);
-    NetworkDiscoveryNotification networkDiscoveryNotification = simulateNetworkDiscoveryNotification();
 
     @Autowired
     Environment environment;
@@ -135,8 +128,8 @@ public class NetworkDiscoveryContextBuilderTest {
     public void testVerifyServiceDecomposition() throws Exception {
 
         String urlStr = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
-        addResponse(urlStr, "junit/SD_response.json", serviceDecompositionRule);
-        addResponseAny("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+        addResponse(urlStr, "junit/serviceDecompositionResponse-1.json", serviceDecompositionRule);
+        addResponseAny("junit/networkDiscoveryResponseVserver-1.json", networkDiscoveryMicroServiceRule);
         Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
                 null, null, serviceInstanceId, null, null);
         assertEquals(Status.OK.getStatusCode(), response.getStatus());
@@ -146,20 +139,73 @@ public class NetworkDiscoveryContextBuilderTest {
     public void testVerifyGetContext() throws Exception {
 
         String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
-        addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
-        addResponseAny("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+        addResponse(serviceDecompUrl, "junit/serviceDecompositionResponse-1.json", serviceDecompositionRule);
+
+        String vserverPayload = readFully(
+                ClassLoader.getSystemResourceAsStream("junit/networkDiscoveryResponseVserver-1.json"));
+        networkDiscoveryMicroServiceRule.stubFor(WireMock
+                .any(WireMock.urlPathEqualTo("/network-discovery/v1/network/resource"))
+                .withQueryParam("resourceType", WireMock.equalTo("vserver")).willReturn(okJson(vserverPayload)));
+
+        String l3networkPayload = readFully(
+                ClassLoader.getSystemResourceAsStream("junit/networkDiscoveryResponseL3Network.json"));
+        networkDiscoveryMicroServiceRule.stubFor(WireMock
+                .any(WireMock.urlPathEqualTo("/network-discovery/v1/network/resource"))
+                .withQueryParam("resourceType", WireMock.equalTo("l3-network")).willReturn(okJson(l3networkPayload)));
 
         Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
                 null, null, serviceInstanceId, null, null);
 
         assertEquals(Status.OK.getStatusCode(), response.getStatus());
+
+        System.out.println(response.getEntity());
+
+        Gson gson = new Gson();
+        ModelContext modelContext = gson.fromJson((String) response.getEntity(), ModelContext.class);
+        assertTrue(modelContext.getVnfs().size() > 0);
+        assertTrue(modelContext.getVnfs().get(0).getVfModules().size() > 0);
+        assertTrue(modelContext.getVnfs().get(0).getVfModules().get(0).getVms().size() > 0);
+
+    }
+    
+    @Test
+    public void testVerifyGetContextNdResourceNotFound() throws Exception {
+
+        String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
+        addResponse(serviceDecompUrl, "junit/serviceDecompositionResponse-1.json", serviceDecompositionRule);
+        UrlPattern testPath = WireMock.anyUrl();
+        networkDiscoveryMicroServiceRule.stubFor(get(testPath).willReturn(WireMock.notFound()));
+
+        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
+                null, null, serviceInstanceId, null, null);
+
+        assertEquals(Status.OK.getStatusCode(), response.getStatus());
+        
+        Gson gson = new Gson();
+        ModelContext modelContext = gson.fromJson((String)response.getEntity(), ModelContext.class);
+        assertTrue(modelContext.getVnfs().size() > 0);
+        assertTrue(modelContext.getVnfs().get(0).getVfModules().size() > 0);
+        assertTrue(modelContext.getVnfs().get(0).getVfModules().get(0).getVms().size() > 0);
+        
+    }
+
+    @Test
+    public void testVerifyGetContextSdResoureNofFound() throws Exception {
+
+        UrlPattern testPath = WireMock.anyUrl();
+        serviceDecompositionRule.stubFor(get(testPath).willReturn(WireMock.notFound()));
+
+        Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
+                null, null, serviceInstanceId, null, null);
+
+        assertEquals(Status.NOT_FOUND.getStatusCode(), response.getStatus());        
     }
 
     @Test
     public void testVerifyNoPartnerNameWithFromAppId() throws Exception {
         String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
-        addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
-        addResponseAny("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+        addResponse(serviceDecompUrl, "junit/serviceDecompositionResponse-1.json", serviceDecompositionRule);
+        addResponseAny("junit/networkDiscoveryResponseVserver-1.json", networkDiscoveryMicroServiceRule);
 
         Response response = this.restService.getContext(httpServletRequest, authorization, null, transactionId,
                 partnerName, null, serviceInstanceId, null, null);
@@ -169,8 +215,8 @@ public class NetworkDiscoveryContextBuilderTest {
     @Test
     public void testVerifyNoRequestIdNoTransactionId() throws Exception {
         String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
-        addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
-        addResponseAny("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+        addResponse(serviceDecompUrl, "junit/serviceDecompositionResponse-1.json", serviceDecompositionRule);
+        addResponseAny("junit/networkDiscoveryResponseVserver-1.json", networkDiscoveryMicroServiceRule);
 
         Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, null, null,
                 null, serviceInstanceId, null, null);
@@ -180,8 +226,8 @@ public class NetworkDiscoveryContextBuilderTest {
     @Test
     public void testVerifyNoPartnerNameNoFromAppId() throws Exception {
         String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
-        addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
-        addResponseAny("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+        addResponse(serviceDecompUrl, "junit/serviceDecompositionResponse-1.json", serviceDecompositionRule);
+        addResponseAny("junit/networkDiscoveryResponseVserver-1.json", networkDiscoveryMicroServiceRule);
 
         Response response = this.restService.getContext(httpServletRequest, authorization, null, transactionId, null,
                 null, serviceInstanceId, null, null);
@@ -191,8 +237,8 @@ public class NetworkDiscoveryContextBuilderTest {
     @Test
     public void testVerifyNoRequestIdWithTransactionId() throws Exception {
         String serviceDecompUrl = "/service-decomposition/service/context?serviceInstanceId=" + serviceInstanceId;
-        addResponse(serviceDecompUrl, "junit/serviceDecomposition-1.json", serviceDecompositionRule);
-        addResponseAny("junit/networkDiscoveryResponse-1.json", networkDiscoveryMicroServiceRule);
+        addResponse(serviceDecompUrl, "junit/serviceDecompositionResponse-1.json", serviceDecompositionRule);
+        addResponseAny("junit/networkDiscoveryResponseVserver-1.json", networkDiscoveryMicroServiceRule);
 
         Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, null, null,
                 transactionId, serviceInstanceId, null, null);
@@ -206,8 +252,8 @@ public class NetworkDiscoveryContextBuilderTest {
 
     private void addResponseAny(String classpathResource, WireMockRule thisMock) throws IOException {
         String payload = readFully(ClassLoader.getSystemResourceAsStream(classpathResource));
-        UrlPattern tPath = WireMock.anyUrl();
-        thisMock.stubFor(get(tPath).willReturn(okJson(payload)));
+        UrlPattern testPath = WireMock.anyUrl();
+        thisMock.stubFor(get(testPath).willReturn(okJson(payload)));
     }
 
     private String readFully(InputStream in) throws IOException {
@@ -221,75 +267,4 @@ public class NetworkDiscoveryContextBuilderTest {
         }
         return content.toString();
     }
-
-    private NetworkDiscoveryNotification simulateNetworkDiscoveryNotification() {
-        Resource myResource = new Resource();
-        myResource.setId("25fb07ab-0478-465e-a021-6384ac299671");
-        myResource.setType("vserver");
-        DataQuality dataQuality = new DataQuality();
-        dataQuality.setStatus(DataQuality.Status.ok);
-        myResource.setDataQuality(dataQuality);
-        Attribute attribute = new Attribute();
-        attribute.setName("vserver-id");
-        attribute.setValue("25fb07ab-0478-465e-a021-6384ac299671");
-        attribute.setDataQuality(dataQuality);
-        List<Attribute> attributeList = new ArrayList<>();
-        attributeList.add(attribute);
-
-        attribute.setName("power-state");
-        attribute.setValue("1");
-        attribute.setDataQuality(dataQuality);
-        attributeList.add(attribute);
-
-        attribute.setName("vm-state");
-        attribute.setValue("active");
-        attribute.setDataQuality(dataQuality);
-        attributeList.add(attribute);
-
-        attribute.setName("status");
-        attribute.setValue("ACTIVE");
-        attribute.setDataQuality(dataQuality);
-        attributeList.add(attribute);
-
-        attribute.setName("host-status");
-        attribute.setValue("UNKNOWN");
-        attribute.setDataQuality(dataQuality);
-        attributeList.add(attribute);
-
-        attribute.setName("updated");
-        attribute.setValue("2017-11-20T04:26:13Z");
-        attribute.setDataQuality(dataQuality);
-        attributeList.add(attribute);
-
-        attribute.setName("disk-allocation-gb");
-        attribute.setValue(".010");
-        attribute.setDataQuality(dataQuality);
-        attributeList.add(attribute);
-
-        attribute.setName("memory-usage-mb");
-        attribute.setValue("null");
-        attribute.setDataQuality(dataQuality);
-        attributeList.add(attribute);
-
-        attribute.setName("cpu-util-percent");
-        attribute.setValue(".048");
-        attribute.setDataQuality(dataQuality);
-        attributeList.add(attribute);
-
-        attribute.setName(".048");
-        attribute.setValue("2018-07-26 01:37:07 +0000");
-        attribute.setDataQuality(dataQuality);
-        attributeList.add(attribute);
-        myResource.setAttributeList(attributeList);
-
-        NetworkDiscoveryNotification notification = new NetworkDiscoveryNotification();
-        notification.setResources(Arrays.asList(myResource));
-        notification.setAckFinalIndicator(true);
-        notification.setCode(200);
-        notification.setRequestId(requestId);
-        notification.setMessage("OK");
-
-        return notification;
-    }
-
 }

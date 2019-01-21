@@ -25,7 +25,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-@ApiModel(value="NdResources")
+@ApiModel(value = "NdResources")
 public class NdResources {
 
     @Expose
@@ -36,9 +36,11 @@ public class NdResources {
     public List<NdResource> getNdResources() {
         return ndResources;
     }
+
     public void setNdResources(List<NdResource> ndResources) {
         this.ndResources = ndResources;
     }
+
     public void addNdResource(NdResource ndResource) {
         this.ndResources.add(ndResource);
     }
