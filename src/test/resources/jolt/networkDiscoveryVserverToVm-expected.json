@@ -1,0 +1,38 @@
+{
+  "uuid": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+  "name": "norm-rancher",
+  "dataQuality": {
+    "status": "ok"
+  },
+  "attributeList": [
+    {
+      "name": "lockedBoolean",
+      "value": "false",
+      "dataQuality": {
+        "status": "ok"
+      }
+    },
+    {
+      "name": "hostName",
+      "value": "norm-rancher",
+      "dataQuality": {
+        "status": "ok"
+      }
+    },
+    {
+      "name": "imageId",
+      "value": "87e000f6-9a81-4841-b446-5d6751c42c48",
+      "dataQuality": {
+        "status": "ok"
+      }
+    }
+  ],
+  "pServer": {
+    "dataQuality": {
+      "status": "ok"
+    },
+    "attributeList": [],
+    "pInterfaceList": []
+  },
+  "lInterfaceList": []
+}

@@ -24,8 +24,11 @@ import com.google.gson.Gson;
 
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -50,6 +53,7 @@ import org.onap.pomba.contextbuilder.networkdiscovery.model.NdResource;
 import org.onap.pomba.contextbuilder.networkdiscovery.model.NdResources;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.rs.RestService;
 import org.onap.pomba.contextbuilder.networkdiscovery.util.RestUtil;
+import org.onap.pomba.contextbuilder.networkdiscovery.util.TransformationUtil;
 import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.NetworkDiscoveryNotification;
 import org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Resource;
 import org.slf4j.Logger;
@@ -59,7 +63,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @org.springframework.stereotype.Service
 public class SpringServiceImpl implements SpringService {
+    private static final String ND_TYPE_VSERVER = "vserver";
+    private static final String ND_TYPE_L3_NETWORK = "l3-network";
     private static Logger log = LoggerFactory.getLogger(RestService.class);
+
     public static final String APP_NAME = "NetworkDiscoveryContextBuilder";
 
     public static final String MDC_REQUEST_ID = "RequestId";
@@ -193,134 +200,59 @@ public class SpringServiceImpl implements SpringService {
         return reply;
     }
 
-    private void updateNetworkDiscoveryCtx(ModelContext networkDiscoveryCtx, Resource resource) {
-        // Future: try to replace this with a Jolt transformation.
+    private void updateNetworkDiscoveryCtx(ModelContext networkDiscoveryCtx, Map<String, String> resourceMap) {
+
+        for (Network network : networkDiscoveryCtx.getNetworkList()) {
+            updateNetworkInstance(resourceMap, network);
+        }
+
         for (VNF vnf : networkDiscoveryCtx.getVnfs()) {
+            for (Network network : vnf.getNetworks()) {
+                updateNetworkInstance(resourceMap, network);
+            }
+
             for (VFModule vfModule : vnf.getVfModules()) {
                 for (VM vm : vfModule.getVms()) {
-                    if (vm.getUuid().equals(resource.getId()) && "vserver".equals(resource.getType())) {                        
-                        vm.setDataQuality(resource.getDataQuality());
-                        if (null != resource.getAttributeList()) {
-                            for (org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Attribute ndattribute : resource
-                                    .getAttributeList()) {
-                                try {
-                                    String ndattributeName = ndattribute.getName();
-                                    // Some Network Discovery attribute name do not exactly
-                                    // match the pomba-audit-common model Attribute Enums,
-                                    // so we have to do some custom mapping here:
-                                    switch (ndattributeName) {
-                                    case "id":
-                                        vm.setUuid(ndattribute.getValue());
-                                        break;
-                                    case "name":
-                                        vm.setName(ndattribute.getValue());
-                                        break;
-                                    case "inMaintenance":
-                                        Attribute attribute = new Attribute();
-                                        attribute.setName(Attribute.Name.lockedBoolean);
-                                        attribute.setValue(ndattribute.getValue());
-                                        attribute.setDataQuality(ndattribute.getDataQuality());
-                                        vm.addAttribute(attribute);
-                                        break;
-                                    case "hostname":
-                                        attribute = new Attribute();
-                                        attribute.setName(Attribute.Name.hostName);
-                                        attribute.setValue(ndattribute.getValue());
-                                        attribute.setDataQuality(ndattribute.getDataQuality());
-                                        vm.addAttribute(attribute);
-                                        break;
-                                    default:
-                                        attribute = new Attribute();
-                                        attribute.setName(Attribute.Name.valueOf(ndattributeName));
-                                        attribute.setValue(ndattribute.getValue());
-                                        attribute.setDataQuality(ndattribute.getDataQuality());
-                                        vm.addAttribute(attribute);
-                                    }
-                                } catch (IllegalArgumentException ex) {
-                                    // The attribute Name passed back from Network Discovery is not in our enum
-                                    log.info("Attribute Name: {}  for Resource: {}  Id: {}  is invalid",
-                                            ndattribute.getName(), resource.getName(), resource.getId());
-                                }
-                            }
-                        }
-                    }
-                }
-                for (Network network : vfModule.getNetworks()) {
-                    if (network.getUuid().equals(resource.getId()) && "l3-network".equals(resource.getType())) {
-                        network.setDataQuality(resource.getDataQuality());
-                        if (null != resource.getAttributeList()) {
-                            for (org.onap.sdnc.apps.pomba.networkdiscovery.datamodel.Attribute ndattribute : resource
-                                    .getAttributeList()) {
-                                try {
-                                    String ndattributeName = ndattribute.getName();
-                                    // Some Network Discovery attribute name do not exactly
-                                    // match the pomba-audit-common model Attribute Enums,
-                                    // so we have to do some custom mapping here:
-                                    switch (ndattributeName) {
-                                    case "id":
-                                        network.setUuid(ndattribute.getValue());
-                                        break;
-                                    case "name":
-                                        network.setName(ndattribute.getValue());
-                                        break;
-                                    case "AdminState":
-                                        Attribute attribute = new Attribute();
-                                        attribute.setName(Attribute.Name.adminStatus);
-                                        attribute.setValue(ndattribute.getValue());
-                                        attribute.setDataQuality(ndattribute.getDataQuality());
-                                        network.addAttribute(attribute);
-                                        break;
-                                    case "sharedNetwork":
-                                        attribute = new Attribute();
-                                        attribute.setName(Attribute.Name.sharedNetworkBoolean);
-                                        attribute.setValue(ndattribute.getValue());
-                                        attribute.setDataQuality(ndattribute.getDataQuality());
-                                        network.addAttribute(attribute);
-                                        break;
-                                    default:
-                                        attribute = new Attribute();
-                                        attribute.setName(Attribute.Name.valueOf(ndattributeName));
-                                        attribute.setValue(ndattribute.getValue());
-                                        attribute.setDataQuality(ndattribute.getDataQuality());
-                                        network.addAttribute(attribute);
-                                    }
-                                } catch (IllegalArgumentException ex) {
-                                    // The attribute Name passed back from Network Discovery is not in our enum
-                                    log.info("Attribute Name: {}  for Resource: {}  Id: {}  is invalid",
-                                            ndattribute.getName(), resource.getName(), resource.getId());
-                                }
-                            }
-                        }
-                    }
+                    updateVmInstance(resourceMap, vm);
                 }
 
+                for (Network network : vfModule.getNetworks()) {
+                    updateNetworkInstance(resourceMap, network);
+                }
             }
         }
     }
 
-    private void updateNetworkDiscoveryCtxDataQuality(ModelContext networkDiscoveryCtx, String resourceId,
-            DataQuality dataQuality) {
-        for (VNF vnf : networkDiscoveryCtx.getVnfs()) {
-            for (VFModule vfModule : vnf.getVfModules()) {
-                for (VM vm : vfModule.getVms()) {
-                    if (vm.getUuid().equals(resourceId)) {
-                        vm.setDataQuality(dataQuality);
-                    }
-                }
-                for (Network network : vfModule.getNetworks()) {
-                    if (network.getUuid().equals(resourceId)) {
-                        network.setDataQuality(dataQuality);
-                    }
-                }
+    private void updateVmInstance(Map<String, String> resourceMap, VM vm) {
+        String resources = resourceMap.get(vm.getUuid());
+        String resultJson = TransformationUtil.transform(resources, ND_TYPE_VSERVER);
 
-            }
-        }
+        // copy the result into the VM class:
+        Gson gson = new Gson();
+        VM ndVm = gson.fromJson(resultJson, VM.class);
+        vm.setName(ndVm.getName());
+        vm.setDataQuality(ndVm.getDataQuality());
+        vm.setAttributes(ndVm.getAttributes());
+    }
+
+    private void updateNetworkInstance(Map<String, String> resourceMap, Network network) {
+        String resources = resourceMap.get(network.getUuid());
+        String resultJson = TransformationUtil.transform(resources, ND_TYPE_L3_NETWORK);
+
+        // copy the results into the Network class:
+        Gson gson = new Gson();
+        Network ndNetwork = gson.fromJson(resultJson, Network.class);
+        network.setName(ndNetwork.getName());
+        network.setDataQuality(ndNetwork.getDataQuality());
+        network.setAttributes(ndNetwork.getAttributes());
     }
 
     /* Return list of requestIds sent to network-discovery microService. */
     private void sendNetworkDiscoveryRequest(ModelContext networkDiscoveryCtx, NdResources ndResources,
             String parentRequestId, String partnerName) throws DiscoveryException {
-
+        
+        Map<String, String> resourceMap = new HashMap<>();
+        
         for (NdResource ndResource : ndResources.getNdResources()) {
             try {
                 // The old_requestId is inherited from ServiceDecomposition.
@@ -329,23 +261,33 @@ public class SpringServiceImpl implements SpringService {
                 String requestId = parentRequestId + NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER
                         + uniqueSeq.incrementAndGet();
 
-                NetworkDiscoveryNotification nt = sendNetworkDiscoveryRequestToSpecificServer(partnerName,
+                String resultJson = sendNetworkDiscoveryRequestToSpecificServer(partnerName,
                         parentRequestId, requestId, ndResource.getResourceId(), ndResource.getResourceType());
 
-                List<Resource> resourceList = nt.getResources();
-                for (Resource resource1 : resourceList) {
-                    updateNetworkDiscoveryCtx(networkDiscoveryCtx, resource1);
-                }
+                resourceMap.put(ndResource.getResourceId(), resultJson);
             } catch (Exception e) {
-                log.error("Error from Network Disovery Request - resourceId: {}, message: {}",
+                log.error("Error from Network Discovery Request - resourceId: {}, message: {}",
                         ndResource.getResourceId(), e.getMessage());
-                DataQuality dataQuality = DataQuality.error("Error from Network Disovery Request: " + e.getMessage());
-                updateNetworkDiscoveryCtxDataQuality(networkDiscoveryCtx, ndResource.getResourceId(), dataQuality);
+                
+                // Build a fake Network Discovery error result, so it will be returned to the client:
+                Resource errorResource = new Resource();
+                errorResource.setId(ndResource.getResourceId());
+                DataQuality dataQuality = DataQuality.error(e.getMessage());
+                errorResource.setDataQuality(dataQuality);
+                List<Resource> resourceList = new ArrayList<>();
+                resourceList.add(errorResource);
+                NetworkDiscoveryNotification ndErrorResult = new NetworkDiscoveryNotification();           
+                ndErrorResult.setResources(resourceList);
+                ndErrorResult.setCode(404);
+                Gson gson = new Gson();
+                String ndErrorResultToJson = gson.toJson(ndErrorResult);
+                resourceMap.put(ndResource.getResourceId(), ndErrorResultToJson);
             }
         }
+        updateNetworkDiscoveryCtx(networkDiscoveryCtx, resourceMap);
     }
 
-    private NetworkDiscoveryNotification sendNetworkDiscoveryRequestToSpecificServer(String partnerName,
+    private String sendNetworkDiscoveryRequestToSpecificServer(String partnerName,
             String parentRequestId, String requestId, String resourceId, String resourceType)
             throws DiscoveryException {
 
@@ -378,9 +320,9 @@ public class SpringServiceImpl implements SpringService {
                     Response.Status.fromStatusCode(response.getStatus()));
         }
 
-        NetworkDiscoveryNotification ndResponse = response.readEntity(NetworkDiscoveryNotification.class);
-        log.info("Message sent. Response Payload: {}", ndResponse);
-        return ndResponse;     
+        String ndResult = response.readEntity(String.class);
+        log.info("Message sent. Response ndResult: {}", ndResult);
+        return ndResult;     
     }
 
 

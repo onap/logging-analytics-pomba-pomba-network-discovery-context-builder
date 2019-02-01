@@ -1,0 +1,15 @@
+{
+  "uuid" : "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+  "name" : "NET_1106",
+  "dataQuality" : {
+    "status" : "ok"
+  },
+  "attributeList" : [ {
+    "name" : "sharedNetworkBoolean",
+    "value" : "true",
+    "dataQuality" : {
+      "status" : "ok"
+    }
+  } ],
+  "networkPolicyList" : [ ]
+}
