@@ -1,6 +1,6 @@
 {
   "service" : {
-    "uuid" : "PombaDemoCust_001-SerivceInst-001",
+    "uuid" : "PombaDemoCust_002-ServiceInst-002",
     "dataQuality" : {
       "status" : "ok"
     },
@@ -37,24 +37,38 @@
         },
         "lInterfaceList" : [ ]
       } ],
-      "networkList" : [ ]
+      "networkList" : [ {
+        "uuid" : "network-id-vnf1-vfmodule1-001",
+        "dataQuality" : {
+          "status" : "ok"
+        },
+        "attributeList" : [ ],
+        "networkPolicyList" : [ ]
+      }, {
+        "uuid" : "network-id-vnf1-vfmodule1-002",
+        "dataQuality" : {
+          "status" : "ok"
+        },
+        "attributeList" : [ ],
+        "networkPolicyList" : [ ]
+      } ]
     } ],
     "vnfcList" : [ ],
     "networkList" : [ {
-      "uuid" : "2ea02809-7279-4b5e-931a-62b231615497",
-      "dataQuality" : {
-        "status" : "ok"
-      },
-      "attributeList" : [ ],
-      "networkPolicyList" : [ ]
-    }, {
-      "uuid" : "01e8d84a-17a6-47b5-a167-6a45d1d56603",
-      "dataQuality" : {
-        "status" : "ok"
-      },
-      "attributeList" : [ ],
-      "networkPolicyList" : [ ]
-    } ]
+        "uuid" : "network-id-vnf1-001",
+        "dataQuality" : {
+          "status" : "ok"
+        },
+        "attributeList" : [ ],
+        "networkPolicyList" : [ ]
+      }, {
+        "uuid" : "network-id-vnf1-002",
+        "dataQuality" : {
+          "status" : "ok"
+        },
+        "attributeList" : [ ],
+        "networkPolicyList" : [ ]
+      } ]
   }, {
     "dataQuality" : {
       "status" : "ok"
@@ -82,18 +96,32 @@
         },
         "lInterfaceList" : [ ]
       } ],
-      "networkList" : [ ]
-    } ],
+      "networkList" : [ {
+        "uuid" : "network-id-vnf2-vfmodule1-001",
+        "dataQuality" : {
+          "status" : "ok"
+        },
+        "attributeList" : [ ],
+        "networkPolicyList" : [ ]
+      }, {
+        "uuid" : "network-id-vnf2-vfmodule1-002",
+        "dataQuality" : {
+          "status" : "ok"
+        },
+        "attributeList" : [ ],
+        "networkPolicyList" : [ ]
+      } ]
+    }],
     "vnfcList" : [ ],
     "networkList" : [ {
-      "uuid" : "2ea02809-7279-4b5e-931a-62b231615497-1",
+      "uuid" : "network-id-vnf2-001",
       "dataQuality" : {
         "status" : "ok"
       },
       "attributeList" : [ ],
       "networkPolicyList" : [ ]
     }, {
-      "uuid" : "01e8d84a-17a6-47b5-a167-6a45d1d56603-1",
+      "uuid" : "network-id-vnf2-002",
       "dataQuality" : {
         "status" : "ok"
       },
@@ -102,5 +130,20 @@
     } ]
   } ],
   "pnfList" : [ ],
-  "networkList" : [ ]
+  "networkList" : [ {
+    "uuid" : "network-id-service-001",
+    "dataQuality" : {
+      "status" : "ok"
+    },
+    "attributeList" : [ ],
+    "networkPolicyList" : [ ]
+  }, {
+    "uuid" : "network-id-service-002",
+    "dataQuality" : {
+      "status" : "ok"
+    },
+    "attributeList" : [ ],
+    "networkPolicyList" : [ ]
+  } ]
+  
 }

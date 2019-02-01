@@ -1,0 +1,39 @@
+{
+  "ndResources" : [ {
+    "resourceId" : "network-id-service-001",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-service-002",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+    "resourceType" : "vserver"
+  }, {
+    "resourceId" : "network-id-vnf1-vfmodule1-001",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-vnf1-vfmodule1-002",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-vnf1-001",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-vnf1-002",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9-2",
+    "resourceType" : "vserver"
+  }, {
+    "resourceId" : "network-id-vnf2-vfmodule1-001",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-vnf2-vfmodule1-002",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-vnf2-001",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-vnf2-002",
+    "resourceType" : "l3-network"
+  } ]
+}

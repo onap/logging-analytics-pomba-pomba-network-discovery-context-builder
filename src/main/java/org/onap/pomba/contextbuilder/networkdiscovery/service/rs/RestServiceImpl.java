@@ -18,6 +18,8 @@
 
 package org.onap.pomba.contextbuilder.networkdiscovery.service.rs;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -28,6 +30,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.onap.pomba.common.datatypes.ModelContext;
+import org.onap.pomba.common.datatypes.VFModule;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.DiscoveryException;
 import org.onap.pomba.contextbuilder.networkdiscovery.exception.ErrorMessage;
 import org.onap.pomba.contextbuilder.networkdiscovery.service.SpringService;
@@ -45,6 +48,27 @@ public class RestServiceImpl implements RestService {
 
     @Autowired
     private SpringService service;
+
+    /**
+     * Certain attributes in the common model do not apply (are not available) from network discovery.
+     * This exclusion strategy will make sure that any defaulted attributes that are not available/not valid are 
+     * excluded from the json response.
+     *
+     * For now, there a two known attributes that need to be excluded from the VFModule:
+     * - minInstances (because it's an integer that defaults to zero)
+     * - maxInstances (because it's an integer that defaults to zero)
+     */
+    public class ContextBuilderExclusionStrategy implements ExclusionStrategy {
+
+        public boolean shouldSkipClass(Class<?> arg0) {
+            return false;
+        }
+
+        public boolean shouldSkipField(FieldAttributes f) {
+            return (f.getDeclaringClass() == VFModule.class && f.getName().equals("minInstances"))
+                    || (f.getDeclaringClass() == VFModule.class && f.getName().equals("maxInstances"));
+        }
+    }
 
     @Override
     public Response getContext(HttpServletRequest req, String authorization, String partnerName, String requestId,
@@ -79,7 +103,9 @@ public class RestServiceImpl implements RestService {
                 // Return empty JSON
                 return Response.ok().entity(EMPTY_JSON_OBJECT).build();
             } else {
-                Gson gson = new GsonBuilder().create();
+                GsonBuilder gsonBuilder = new GsonBuilder();
+                gsonBuilder.setExclusionStrategies(new ContextBuilderExclusionStrategy());
+                Gson gson = gsonBuilder.create();
                 return Response.ok().entity(gson.toJson(sdContext)).build();
             }
         } catch (DiscoveryException x) {
@@ -89,7 +115,7 @@ public class RestServiceImpl implements RestService {
         } catch (Exception x) {
             log.error(ErrorMessage.CONTEXT_BUILDER_FAILED, x);
             return Response.status(Status.INTERNAL_SERVER_ERROR).entity(x.getMessage()).build();
-            
+           
         } finally {
             MDC.clear();
         }

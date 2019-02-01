@@ -1,0 +1,49 @@
+[
+    // This section converts the json from network discovery micro-service
+    // to org.onap.pomba.audit.common.model.Network
+
+  {
+    "operation": "shift",
+    "spec": {
+      "resources": {
+        "*": {
+          "id": "uuid",
+          "name": "name",
+          "dataQuality": "dataQuality",
+          "attributeList": {
+            "*": {
+              // filter the Network Discovery attributes that we want to keep, to a temporary list:
+              "name": {
+                "sharedNetwork": {
+                  "@2": "tempList[]"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ,
+  {
+    // Convert the attribute names to common model names.
+    "operation": "shift",
+    "spec": {
+      "tempList": {
+        "*": {
+          "name" : {
+            "sharedNetwork": {
+              "#sharedNetworkBoolean": "attributeList[#4].name"
+              }
+       	    },
+        	"*" : {
+              "@" : "attributeList[#3].&"
+            }
+          }
+        },
+        "*": {
+          "@" : "&"
+        }
+      }
+   }
+]
