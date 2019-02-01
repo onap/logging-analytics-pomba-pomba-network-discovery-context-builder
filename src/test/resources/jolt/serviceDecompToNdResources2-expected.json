@@ -1,0 +1,39 @@
+{
+  "ndResources" : [ {
+    "resourceId" : "network-id-009",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-010",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+    "resourceType" : "vserver"
+  }, {
+    "resourceId" : "network-id-003",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-004",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-001",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-002",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9-2",
+    "resourceType" : "vserver"
+  }, {
+    "resourceId" : "network-id-007",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-008",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-005",
+    "resourceType" : "l3-network"
+  }, {
+    "resourceId" : "network-id-006",
+    "resourceType" : "l3-network"
+  } ]
+}

@@ -1,0 +1,99 @@
+{
+  "requestId": "5d115268-564b-4db6-9d59-aa28cbd2d022___4",
+  "code": 200,
+  "message": "OK",
+  "ackFinalIndicator": true,
+  "resources": [
+    {
+      "id": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+      "name": "norm-rancher",
+      "type": "vserver",
+      "dataQuality": {
+        "status": "ok",
+        "errorText": null
+      },
+      "attributeList": [
+        {
+          "name": "inMaintenance",
+          "value": "false",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+          "name": "hostname",
+          "value": "norm-rancher",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+           "name": "imageId",
+           "value": "87e000f6-9a81-4841-b446-5d6751c42c48",
+           "dataQuality": {
+              "status": "ok",
+              "errorText": null
+           }
+        },
+        {
+          "name": "status",
+          "value": "ACTIVE",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+          "name": "vmState",
+          "value": "active",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+          "name": "userId",
+          "value": "0aae369d1c874bb7827f61ca4f11edae",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+          "name": "tenantId",
+          "value": "1130b349e19c4827bf91a29d51256af1",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+          "name": "hostId",
+          "value": "a4b1deed35881a129eabaaf9abef99b83706567bf026d8d7120a8ff3",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+          "name": "host",
+          "value": "Setup-D2-OTT-A-C1",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+          "name": "hostStatus",
+          "value": "UP",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        }
+      ]
+    }
+  ]
+}

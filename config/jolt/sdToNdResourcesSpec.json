@@ -6,6 +6,14 @@
     // to org.onap.pomba.contextbuilder.networkdiscovery.model.NdResources
     "operation": "shift",
     "spec": {
+       "l3-networks": {
+         "*": {
+          "network-id": {
+            "@": "tempResourceId",
+            "#l3-network": "tempResourceType"
+          }
+        }
+      },
       "generic-vnfs": {
         "*": {
           "vservers": {
@@ -16,6 +24,20 @@
                     
               }
               }},
+          "vf-modules": {
+            "vf-module": {
+              "*": {
+                "l3-networks":  {
+                  "*": {
+                    "network-id": {
+                    "@": "tempResourceId",
+                    "#l3-network": "tempResourceType"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "l3-networks": {
             "*": {
               "network-id": {
