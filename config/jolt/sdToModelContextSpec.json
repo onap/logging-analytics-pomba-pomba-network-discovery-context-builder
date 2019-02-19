@@ -12,11 +12,23 @@
           "network-id": "networkList[&1].uuid"
         }
       },
+      "pnfs": {
+        "*": {
+          "pnf-id": "pnfList[&1].uuid",
+          "p-interfaces": {
+            "p-interface": {
+              "*": {
+                "equipment-identifier": "pnfList[&4].pInterfaceList[&1].uuid"
+              }
+            }
+          }
+        }
+      },
       "generic-vnfs": {
-         "*": {
+        "*": {
           "vservers": {
             "*": {
-              "vserver-id": "vnfList[&3].vfModuleList[0].vmList[&1].uuid"            
+              "vserver-id": "vnfList[&3].vfModuleList[0].vmList[&1].uuid"
             }
           },
           "l3-networks": {
@@ -25,15 +37,15 @@
             }
           },
           "vf-modules": {
-             "vf-module": {
-               "*": {
-                 "l3-networks" : {
-                   "*": {
-                     "network-id": "vnfList[&6].vfModuleList[0].networkList[&1].uuid"
-                   }              
+            "vf-module": {
+              "*": {
+                "l3-networks": {
+                  "*": {
+                    "network-id": "vnfList[&6].vfModuleList[0].networkList[&1].uuid"
+                  }
                 }
-               }
-             }
+              }
+            }
           },
           "vnfcs": {
             "*": {

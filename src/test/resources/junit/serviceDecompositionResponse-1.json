@@ -1,461 +1,1112 @@
 {
-    "relationship-list": {
-        "relationship": [{
+  "relationship-list": {
+    "relationship": [
+      {
+        "related-to": "l3-network",
+        "relationship-data": [
+          {
+            "relationship-value": "2ea02809-7279-4b5e-931a-62b231615497",
+            "relationship-key": "l3-network.network-id"
+          }
+        ],
+        "related-link": "/aai/v13/network/l3-networks/l3-network/2ea02809-7279-4b5e-931a-62b231615497",
+        "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+        "related-to-property": [
+          {
+            "property-key": "l3-network.network-name",
+            "property-value": "NET_1105"
+          }
+        ]
+      },
+      {
+        "related-to": "generic-vnf",
+        "relationship-data": [
+          {
+            "relationship-value": "PombaDemoCust_001-VNF-id-001",
+            "relationship-key": "generic-vnf.vnf-id"
+          }
+        ],
+        "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
+        "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+        "related-to-property": [
+          {
+            "property-key": "generic-vnf.vnf-name",
+            "property-value": "Firewall-1"
+          }
+        ]
+      },
+      {
+        "related-to": "l3-network",
+        "relationship-data": [
+          {
+            "relationship-value": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+            "relationship-key": "l3-network.network-id"
+          }
+        ],
+        "related-link": "/aai/v13/network/l3-networks/l3-network/01e8d84a-17a6-47b5-a167-6a45d1d56603",
+        "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+        "related-to-property": [
+          {
+            "property-key": "l3-network.network-name",
+            "property-value": "NET_1106"
+          }
+        ]
+      },
+      {
+        "related-to": "pnf",
+        "relationship-data": [
+          {
+            "relationship-value": "PombaDemoCust_001-PNF2-id-001",
+            "relationship-key": "pnf.pnf-name"
+          }
+        ],
+        "related-link": "/aai/v13/network/pnfs/pnf/PombaDemoCust_001-PNF2-id-001",
+        "relationship-label": "org.onap.relationships.inventory.ComposedOf"
+      },
+      {
+        "related-to": "pnf",
+        "relationship-data": [
+          {
+            "relationship-value": "PombaDemoCust_001-PNF-id-001",
+            "relationship-key": "pnf.pnf-name"
+          }
+        ],
+        "related-link": "/aai/v13/network/pnfs/pnf/PombaDemoCust_001-PNF-id-001",
+        "relationship-label": "org.onap.relationships.inventory.ComposedOf"
+      }
+    ]
+  },
+  "model-version-id": "pomba-demo-sdc-model-001-version001",
+  "l3-networks": [
+    {
+      "network-role": "network-role-1",
+      "network-technology": "network-technology-1",
+      "relationship-list": {
+        "relationship": [
+          {
             "related-to": "generic-vnf",
-            "relationship-data": [{
-                "relationship-value": "6700c313-fbb7-4cf9-ac70-0293ec56df68",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001-VNF-id-001",
                 "relationship-key": "generic-vnf.vnf-id"
-            }],
-            "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/6700c313-fbb7-4cf9-ac70-0293ec56df68",
-            "related-to-property": [{
+              }
+            ],
+            "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
+            "relationship-label": "org.onap.relationships.inventory.Uses",
+            "related-to-property": [
+              {
                 "property-key": "generic-vnf.vnf-name",
-                "property-value": "PacketGenerator-1"
-            }]
-        },
-        {
-            "related-to": "generic-vnf",
-            "relationship-data": [{
-                "relationship-value": "6700c313-fbb7-4cf9-ac70-0293ec56df69",
+                "property-value": "Firewall-1"
+              }
+            ]
+          },
+          {
+            "related-to": "service-instance",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001",
+                "relationship-key": "customer.global-customer-id"
+              },
+              {
+                "relationship-value": "SDN_ETHERNET_INTERNET",
+                "relationship-key": "service-subscription.service-type"
+              },
+              {
+                "relationship-value": "PombaDemoCust_001-ServiceInst-001",
+                "relationship-key": "service-instance.service-instance-id"
+              }
+            ],
+            "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN_ETHERNET_INTERNET/service-instances/service-instance/PombaDemoCust_001-ServiceInst-001",
+            "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+            "related-to-property": [
+              {
+                "property-key": "service-instance.service-instance-name",
+                "property-value": "PombaDemoCust_001-ServiceInst-001-name"
+              }
+            ]
+          },
+          {
+            "related-to": "vf-module",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001-VNF-id-001",
                 "relationship-key": "generic-vnf.vnf-id"
-            }],
-            "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/6700c313-fbb7-4cf9-ac70-0293ec56df69",
-            "related-to-property": [{
-                "property-key": "generic-vnf.vnf-name",
-                "property-value": "PacketGenerator-2"
-            }]
-        }]
-    },
-    "model-version-id": "d3d6cf83-d03a-43cc-99ff-206d40bb9a72",
-    "service-instance-id": "c6456519-6acf-4adb-997c-3c363dd4caaf",
-    "resource-version": "1527637758480",
-    "generic-vnfs": [{
-        "nf-role": "",
-        "service-id": "8ea56b0d-459d-4668-b363-c9567432d8b7",
-        "relationship-list": {
-            "relationship": [{
-                "related-to": "service-instance",
-                "relationship-data": [{
-                    "relationship-value": "Demonstration",
-                    "relationship-key": "customer.global-customer-id"
-                },
-                {
-                    "relationship-value": "vFWCL",
-                    "relationship-key": "service-subscription.service-type"
-                },
-                {
-                    "relationship-value": "c6456519-6acf-4adb-997c-3c363dd4caaf",
-                    "relationship-key": "service-instance.service-instance-id"
-                }],
-                "related-link": "/aai/v11/business/customers/customer/Demonstration/service-subscriptions/service-subscription/vFWCL/service-instances/service-instance/c6456519-6acf-4adb-997c-3c363dd4caaf",
-                "related-to-property": [{
-                    "property-key": "service-instance.service-instance-name",
-                    "property-value": "Firewall1"
-                }]
-            },
-            {
-                "related-to": "l3-network",
-                "relationship-data": [{
-                    "relationship-value": "HNP1d77c-1094-41ec-b7f3-94bb30951870",
-                    "relationship-key": "l3-network.network-id"
-                }],
-                "related-link": "/aai/v13/network/l3-networks/l3-network/HNP1d77c-1094-41ec-b7f3-94bb30951870",
-                "relationship-label": "org.onap.relationships.inventory.Uses",
-                "related-to-property": [{
-                    "property-key": "l3-network.network-name",
-                    "property-value": "HNPORTALOAM.OAM"
-                }]
-            },
-            {
-                "related-to": "vserver",
-                "relationship-data": [{
-                    "relationship-value": "CloudOwner",
-                    "relationship-key": "cloud-region.cloud-owner"
-                },
-                {
-                    "relationship-value": "RegionOne",
-                    "relationship-key": "cloud-region.cloud-region-id"
-                },
-                {
-                    "relationship-value": "b49b830686654191bb1e952a74b014ad",
-                    "relationship-key": "tenant.tenant-id"
-                },
-                {
-                    "relationship-value": "25fb07ab-0478-465e-a021-6384ac299671",
-                    "relationship-key": "vserver.vserver-id"
-                }],
-                "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/tenants/tenant/b49b830686654191bb1e952a74b014ad/vservers/vserver/25fb07ab-0478-465e-a021-6384ac299671"
-            },
-            {
-                "related-to": "vserver",
-                "relationship-data": [{
-                    "relationship-value": "CloudOwner",
-                    "relationship-key": "cloud-region.cloud-owner"
-                },
-                {
-                    "relationship-value": "RegionOne",
-                    "relationship-key": "cloud-region.cloud-region-id"
-                },
-                {
-                    "relationship-value": "b49b830686654191bb1e952a74b014ad",
-                    "relationship-key": "tenant.tenant-id"
-                },
-                {
-                    "relationship-value": "25fb07ab-0478-465e-a021-6384ac299672",
-                    "relationship-key": "vserver.vserver-id"
-                }],
-                "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/tenants/tenant/b49b830686654191bb1e952a74b014ad/vservers/vserver/25fb07ab-0478-465e-a021-6384ac299672"
-            }]
-        },
-        "vnf-id": "6700c313-fbb7-4cf9-ac70-0293ec56df68",
-        "nf-type": "",
-        "l3-networks": [{
-            "network-role": "HNPORTALOAM.OAM",
-            "network-technology": "ovs",
-            "service-id": "V7611HNP-1222-48f1-8085-94aef0c6ef3d51870",
-            "network-id": "HNP1d77c-1222-41ec-b7f3-94bb30951870",
-            "neutron-network-id": "491c7cef-a3f4-4990-883e-b0af397466d0",
-            "is-external-network": false,
-            "is-bound-to-vpn": false,
-            "is-provider-network": false,
-            "network-type": "OVS_PROVIDER_VLAN",
-            "orchestration-status": "active",
-            "network-role-instance": 0,
-            "resource-version": "1526558298075",
-            "network-name": "HNPORTALOAM.OAM",
-            "is-shared-network": false
-        }],
-        "prov-status": "PREPROV",
-        "vnf-type": "vFW-vSINK-service/vPKG 0",
-        "orchestration-status": "Created",
-        "nf-naming-code": "",
-        "in-maint": false,
-        "nf-function": "",
-        "model-version-id": "a5565bf4-d55a-4964-8fbc-6a7674a2e676",
-        "vservers": [{
-            "relationship-list": {
-                "relationship": [{
-                    "related-to": "generic-vnf",
-                    "relationship-data": [{
-                        "relationship-value": "8a9ddb25-2e79-449c-a40d-5011bac0da39",
-                        "relationship-key": "generic-vnf.vnf-id"
-                    }],
-                    "related-link": "/aai/v11/network/generic-vnfs/generic-vnf/8a9ddb25-2e79-449c-a40d-5011bac0da39",
-                    "related-to-property": [{
-                        "property-key": "generic-vnf.vnf-name",
-                        "property-value": "Firewall-1"
-                    }]
-                },
-                {
-                    "related-to": "flavor",
-                    "relationship-data": [{
-                        "relationship-value": "CloudOwner",
-                        "relationship-key": "cloud-region.cloud-owner"
-                    },
-                    {
-                        "relationship-value": "RegionOne",
-                        "relationship-key": "cloud-region.cloud-region-id"
-                    },
-                    {
-                        "relationship-value": "764efb04-5a46-4806-a766-2bdd24559f39",
-                        "relationship-key": "flavor.flavor-id"
-                    }],
-                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/flavors/flavor/764efb04-5a46-4806-a766-2bdd24559f39",
-                    "related-to-property": [{
-                        "property-key": "flavor.flavor-name",
-                        "property-value": "m1.medium"
-                    }]
-                },
-                {
-                    "related-to": "image",
-                    "relationship-data": [{
-                        "relationship-value": "CloudOwner",
-                        "relationship-key": "cloud-region.cloud-owner"
-                    },
-                    {
-                        "relationship-value": "RegionOne",
-                        "relationship-key": "cloud-region.cloud-region-id"
-                    },
-                    {
-                        "relationship-value": "42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
-                        "relationship-key": "image.image-id"
-                    }],
-                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/images/image/42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
-                    "related-to-property": [{
-                        "property-key": "image.image-name",
-                        "property-value": "unknown"
-                    }]
-                }]
-            },
-            "in-maint": false,
-            "resource-version": "1528481820321",
-            "vserver-name": "Firewall-0",
-            "prov-status": "ACTIVE",
-            "vserver-id": "25fb07ab-0478-465e-a021-6384ac299671",
-            "vserver-name2": "Firewall-0",
-            "vserver-selflink": "http://10.12.25.2:8774/v2.1/b49b830686654191bb1e952a74b014ad/servers/25fb07ab-0478-465e-a021-6384ac299671",
-            "is-closed-loop-disabled": false
-        },
-        {
-            "relationship-list": {
-                "relationship": [{
-                    "related-to": "generic-vnf",
-                    "relationship-data": [{
-                        "relationship-value": "8a9ddb25-2e79-449c-a40d-5011bac0da39",
-                        "relationship-key": "generic-vnf.vnf-id"
-                    }],
-                    "related-link": "/aai/v11/network/generic-vnfs/generic-vnf/8a9ddb25-2e79-449c-a40d-5011bac0da39",
-                    "related-to-property": [{
-                        "property-key": "generic-vnf.vnf-name",
-                        "property-value": "Firewall-1"
-                    }]
-                },
-                {
-                    "related-to": "flavor",
-                    "relationship-data": [{
-                        "relationship-value": "CloudOwner",
-                        "relationship-key": "cloud-region.cloud-owner"
-                    },
-                    {
-                        "relationship-value": "RegionOne",
-                        "relationship-key": "cloud-region.cloud-region-id"
-                    },
-                    {
-                        "relationship-value": "764efb04-5a46-4806-a766-2bdd24559f39",
-                        "relationship-key": "flavor.flavor-id"
-                    }],
-                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/flavors/flavor/764efb04-5a46-4806-a766-2bdd24559f39",
-                    "related-to-property": [{
-                        "property-key": "flavor.flavor-name",
-                        "property-value": "m1.medium"
-                    }]
-                },
-                {
-                    "related-to": "image",
-                    "relationship-data": [{
-                        "relationship-value": "CloudOwner",
-                        "relationship-key": "cloud-region.cloud-owner"
-                    },
-                    {
-                        "relationship-value": "RegionOne",
-                        "relationship-key": "cloud-region.cloud-region-id"
-                    },
-                    {
-                        "relationship-value": "42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
-                        "relationship-key": "image.image-id"
-                    }],
-                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/images/image/42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
-                    "related-to-property": [{
-                        "property-key": "image.image-name",
-                        "property-value": "unknown"
-                    }]
-                }]
-            },
-            "in-maint": false,
-            "resource-version": "1528481820321",
-            "vserver-name": "Firewall-0",
-            "prov-status": "ACTIVE",
-            "vserver-id": "25fb07ab-0478-465e-a021-6384ac299672",
-            "vserver-name2": "Firewall-0",
-            "vserver-selflink": "http://10.12.25.2:8774/v2.1/b49b830686654191bb1e952a74b014ad/servers/25fb07ab-0478-465e-a021-6384ac299672",
-            "is-closed-loop-disabled": false
-        }],
-        "resource-version": "1527638176989",
-        "model-customization-id": "4cc1e555-361f-4d69-ae21-9f371ea9f40c",
-        "vf-modules": {
-            "vf-module": [{
-                "vf-module-name": "vPacketGen-VNF-1128-3",
-                "model-version-id": "d6d4a002-a584-4640-bdce-a50e9bce552b",
-                "heat-stack-id": "vPacketGen-VNF-1128-3/df34f5d6-ed39-4184-b785-51c37cfa8ac2",
-                "resource-version": "1527641224058",
-                "model-customization-id": "49c8f521-e5ee-4095-bb87-4090166e49ab",
-                "is-base-vf-module": true,
-                "vf-module-id": "0f792076-f5b3-4251-9fcc-c4d5afae0eb1",
-                "module-index": 0,
-                "model-invariant-id": "2a8844a8-f5f7-46dd-a732-472c6972a28e",
-                "orchestration-status": "active"
-            }]
-        },
-        "vserver": [{
-            "vserver-name": "Firewall-1",
-            "vserver-id": "25fb07ab-0478-465e-a021-6384ac299671",
-            "model-invariant-id": "0c5a20de-87ad-442c-9190-f38ab0a6bb7f"
-        }],
-        "model-invariant-id": "99f1fd3f-845c-48f5-a0ba-11fbde6ae557",
-        "vnf-name": "PacketGenerator-1",
-        "is-closed-loop-disabled": false
+              },
+              {
+                "relationship-value": "PombaDemoCust_001-VNF-id-001-VfModule001",
+                "relationship-key": "vf-module.vf-module-id"
+              }
+            ],
+            "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001/vf-modules/vf-module/PombaDemoCust_001-VNF-id-001-VfModule001",
+            "relationship-label": "org.onap.relationships.inventory.DependsOn"
+          }
+        ]
+      },
+      "network-id": "2ea02809-7279-4b5e-931a-62b231615497",
+      "is-external-network": false,
+      "is-bound-to-vpn": false,
+      "is-provider-network": false,
+      "network-type": "network-type-1",
+      "model-version-id": "pomba-demo-sdc-model-001-version001",
+      "resource-version": "1550159843536",
+      "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+      "network-name": "NET_1105",
+      "is-shared-network": true,
+      "model-invariant-id": "pomba-demo-sdc-model-001"
     },
     {
-        "nf-role": "",
-        "service-id": "8ea56b0d-459d-4668-b363-c9567432d8b9",
-        "relationship-list": {
-            "relationship": [{
-                "related-to": "service-instance",
-                "relationship-data": [{
-                    "relationship-value": "Demonstration",
-                    "relationship-key": "customer.global-customer-id"
-                },
-                {
-                    "relationship-value": "vFWCL",
-                    "relationship-key": "service-subscription.service-type"
-                },
-                {
-                    "relationship-value": "c6456519-6acf-4adb-997c-3c363dd4caaf",
-                    "relationship-key": "service-instance.service-instance-id"
-                }],
-                "related-link": "/aai/v11/business/customers/customer/Demonstration/service-subscriptions/service-subscription/vFWCL/service-instances/service-instance/c6456519-6acf-4adb-997c-3c363dd4caaf",
-                "related-to-property": [{
-                    "property-key": "service-instance.service-instance-name",
-                    "property-value": "Firewall1"
-                }]
-            },
-            {
-                "related-to": "l3-network",
-                "relationship-data": [{
-                    "relationship-value": "HNP1d77c-1094-41ec-b7f3-94bb30951870",
-                    "relationship-key": "l3-network.network-id"
-                }],
-                "related-link": "/aai/v13/network/l3-networks/l3-network/HNP1d77c-1094-41ec-b7f3-94bb30951871",
+      "network-role": "network-role-1",
+      "network-technology": "network-technology-1",
+      "relationship-list": {
+        "relationship": [
+          {
+            "related-to": "generic-vnf",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                "relationship-key": "generic-vnf.vnf-id"
+              }
+            ],
+            "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
+            "relationship-label": "org.onap.relationships.inventory.Uses",
+            "related-to-property": [
+              {
+                "property-key": "generic-vnf.vnf-name",
+                "property-value": "Firewall-1"
+              }
+            ]
+          },
+          {
+            "related-to": "service-instance",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001",
+                "relationship-key": "customer.global-customer-id"
+              },
+              {
+                "relationship-value": "SDN_ETHERNET_INTERNET",
+                "relationship-key": "service-subscription.service-type"
+              },
+              {
+                "relationship-value": "PombaDemoCust_001-ServiceInst-001",
+                "relationship-key": "service-instance.service-instance-id"
+              }
+            ],
+            "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN_ETHERNET_INTERNET/service-instances/service-instance/PombaDemoCust_001-ServiceInst-001",
+            "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+            "related-to-property": [
+              {
+                "property-key": "service-instance.service-instance-name",
+                "property-value": "PombaDemoCust_001-ServiceInst-001-name"
+              }
+            ]
+          },
+          {
+            "related-to": "vf-module",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                "relationship-key": "generic-vnf.vnf-id"
+              },
+              {
+                "relationship-value": "PombaDemoCust_001-VNF-id-001-VfModule001",
+                "relationship-key": "vf-module.vf-module-id"
+              }
+            ],
+            "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001/vf-modules/vf-module/PombaDemoCust_001-VNF-id-001-VfModule001",
+            "relationship-label": "org.onap.relationships.inventory.DependsOn"
+          }
+        ]
+      },
+      "network-id": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+      "is-external-network": false,
+      "is-bound-to-vpn": false,
+      "is-provider-network": false,
+      "network-type": "network-type-1",
+      "model-version-id": "pomba-demo-sdc-model-001-version001",
+      "resource-version": "1550159844639",
+      "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+      "network-name": "NET_1106",
+      "is-shared-network": true,
+      "model-invariant-id": "pomba-demo-sdc-model-001"
+    }
+  ],
+  "service-instance-id": "PombaDemoCust_001-ServiceInst-001",
+  "resource-version": "1550159850344",
+  "generic-vnfs": [
+    {
+      "nf-role": "nf-role1",
+      "service-id": "8ea56b0d-459d-4668-b363-c9567432d8b7",
+      "relationship-list": {
+        "relationship": [
+          {
+            "related-to": "service-instance",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001",
+                "relationship-key": "customer.global-customer-id"
+              },
+              {
+                "relationship-value": "SDN_ETHERNET_INTERNET",
+                "relationship-key": "service-subscription.service-type"
+              },
+              {
+                "relationship-value": "PombaDemoCust_001-ServiceInst-001",
+                "relationship-key": "service-instance.service-instance-id"
+              }
+            ],
+            "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN_ETHERNET_INTERNET/service-instances/service-instance/PombaDemoCust_001-ServiceInst-001",
+            "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+            "related-to-property": [
+              {
+                "property-key": "service-instance.service-instance-name",
+                "property-value": "PombaDemoCust_001-ServiceInst-001-name"
+              }
+            ]
+          },
+          {
+            "related-to": "l3-network",
+            "relationship-data": [
+              {
+                "relationship-value": "2ea02809-7279-4b5e-931a-62b231615497",
+                "relationship-key": "l3-network.network-id"
+              }
+            ],
+            "related-link": "/aai/v13/network/l3-networks/l3-network/2ea02809-7279-4b5e-931a-62b231615497",
+            "relationship-label": "org.onap.relationships.inventory.Uses",
+            "related-to-property": [
+              {
+                "property-key": "l3-network.network-name",
+                "property-value": "NET_1105"
+              }
+            ]
+          },
+          {
+            "related-to": "l3-network",
+            "relationship-data": [
+              {
+                "relationship-value": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+                "relationship-key": "l3-network.network-id"
+              }
+            ],
+            "related-link": "/aai/v13/network/l3-networks/l3-network/01e8d84a-17a6-47b5-a167-6a45d1d56603",
+            "relationship-label": "org.onap.relationships.inventory.Uses",
+            "related-to-property": [
+              {
+                "property-key": "l3-network.network-name",
+                "property-value": "NET_1106"
+              }
+            ]
+          },
+          {
+            "related-to": "vserver",
+            "relationship-data": [
+              {
+                "relationship-value": "CloudOwner",
+                "relationship-key": "cloud-region.cloud-owner"
+              },
+              {
+                "relationship-value": "PombaRegion001",
+                "relationship-key": "cloud-region.cloud-region-id"
+              },
+              {
+                "relationship-value": "PombaRegion001-tenant-001",
+                "relationship-key": "tenant.tenant-id"
+              },
+              {
+                "relationship-value": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+                "relationship-key": "vserver.vserver-id"
+              }
+            ],
+            "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/PombaRegion001/tenants/tenant/PombaRegion001-tenant-001/vservers/vserver/a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+            "relationship-label": "tosca.relationships.HostedOn",
+            "related-to-property": [
+              {
+                "property-key": "vserver.vserver-name",
+                "property-value": "Firewall-001"
+              }
+            ]
+          },
+          {
+            "related-to": "pserver",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001-pserver-id-001",
+                "relationship-key": "pserver.hostname"
+              }
+            ],
+            "related-link": "/aai/v13/cloud-infrastructure/pservers/pserver/PombaDemoCust_001-pserver-id-001",
+            "relationship-label": "tosca.relationships.HostedOn",
+            "related-to-property": [
+              {
+                "property-key": "pserver.pserver-name2",
+                "property-value": "PombaDemoCust_001-pserver-id-001-name2"
+              }
+            ]
+          }
+        ]
+      },
+      "vnf-id": "PombaDemoCust_001-VNF-id-001",
+      "nf-type": "nf-type1",
+      "l3-networks": [
+        {
+          "network-role": "network-role-1",
+          "network-technology": "network-technology-1",
+          "relationship-list": {
+            "relationship": [
+              {
+                "related-to": "generic-vnf",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                    "relationship-key": "generic-vnf.vnf-id"
+                  }
+                ],
+                "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
                 "relationship-label": "org.onap.relationships.inventory.Uses",
-                "related-to-property": [{
-                    "property-key": "l3-network.network-name",
-                    "property-value": "HNPORTALOAM.OAM"
-                }]
-            },
-            {
+                "related-to-property": [
+                  {
+                    "property-key": "generic-vnf.vnf-name",
+                    "property-value": "Firewall-1"
+                  }
+                ]
+              },
+              {
+                "related-to": "service-instance",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001",
+                    "relationship-key": "customer.global-customer-id"
+                  },
+                  {
+                    "relationship-value": "SDN_ETHERNET_INTERNET",
+                    "relationship-key": "service-subscription.service-type"
+                  },
+                  {
+                    "relationship-value": "PombaDemoCust_001-ServiceInst-001",
+                    "relationship-key": "service-instance.service-instance-id"
+                  }
+                ],
+                "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN_ETHERNET_INTERNET/service-instances/service-instance/PombaDemoCust_001-ServiceInst-001",
+                "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+                "related-to-property": [
+                  {
+                    "property-key": "service-instance.service-instance-name",
+                    "property-value": "PombaDemoCust_001-ServiceInst-001-name"
+                  }
+                ]
+              },
+              {
+                "related-to": "vf-module",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                    "relationship-key": "generic-vnf.vnf-id"
+                  },
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001-VfModule001",
+                    "relationship-key": "vf-module.vf-module-id"
+                  }
+                ],
+                "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001/vf-modules/vf-module/PombaDemoCust_001-VNF-id-001-VfModule001",
+                "relationship-label": "org.onap.relationships.inventory.DependsOn"
+              }
+            ]
+          },
+          "network-id": "2ea02809-7279-4b5e-931a-62b231615497",
+          "is-external-network": false,
+          "is-bound-to-vpn": false,
+          "is-provider-network": false,
+          "network-type": "network-type-1",
+          "model-version-id": "pomba-demo-sdc-model-001-version001",
+          "resource-version": "1550159843536",
+          "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+          "network-name": "NET_1105",
+          "is-shared-network": true,
+          "model-invariant-id": "pomba-demo-sdc-model-001"
+        },
+        {
+          "network-role": "network-role-1",
+          "network-technology": "network-technology-1",
+          "relationship-list": {
+            "relationship": [
+              {
+                "related-to": "generic-vnf",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                    "relationship-key": "generic-vnf.vnf-id"
+                  }
+                ],
+                "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
+                "relationship-label": "org.onap.relationships.inventory.Uses",
+                "related-to-property": [
+                  {
+                    "property-key": "generic-vnf.vnf-name",
+                    "property-value": "Firewall-1"
+                  }
+                ]
+              },
+              {
+                "related-to": "service-instance",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001",
+                    "relationship-key": "customer.global-customer-id"
+                  },
+                  {
+                    "relationship-value": "SDN_ETHERNET_INTERNET",
+                    "relationship-key": "service-subscription.service-type"
+                  },
+                  {
+                    "relationship-value": "PombaDemoCust_001-ServiceInst-001",
+                    "relationship-key": "service-instance.service-instance-id"
+                  }
+                ],
+                "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN_ETHERNET_INTERNET/service-instances/service-instance/PombaDemoCust_001-ServiceInst-001",
+                "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+                "related-to-property": [
+                  {
+                    "property-key": "service-instance.service-instance-name",
+                    "property-value": "PombaDemoCust_001-ServiceInst-001-name"
+                  }
+                ]
+              },
+              {
+                "related-to": "vf-module",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                    "relationship-key": "generic-vnf.vnf-id"
+                  },
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001-VfModule001",
+                    "relationship-key": "vf-module.vf-module-id"
+                  }
+                ],
+                "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001/vf-modules/vf-module/PombaDemoCust_001-VNF-id-001-VfModule001",
+                "relationship-label": "org.onap.relationships.inventory.DependsOn"
+              }
+            ]
+          },
+          "network-id": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+          "is-external-network": false,
+          "is-bound-to-vpn": false,
+          "is-provider-network": false,
+          "network-type": "network-type-1",
+          "model-version-id": "pomba-demo-sdc-model-001-version001",
+          "resource-version": "1550159844639",
+          "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+          "network-name": "NET_1106",
+          "is-shared-network": true,
+          "model-invariant-id": "pomba-demo-sdc-model-001"
+        }
+      ],
+      "pservers": [
+        {
+          "ptnii-equip-name": "ptnii-equip-name-1",
+          "ipaddress-v6-loopback-0": "ipaddress-v6-loopback-0-1",
+          "equip-vendor": "equip-vendor-1",
+          "purpose": "purpose-1",
+          "number-of-cpus": 4,
+          "ipaddress-v6-aim": "ipaddress-v6-aim-1",
+          "pserver-name2": "PombaDemoCust_001-pserver-id-001-name2",
+          "hostname": "PombaDemoCust_001-pserver-id-001",
+          "inv-status": "inv-status-1",
+          "disk-in-gigabytes": 500,
+          "equip-type": "equip-type-1",
+          "relationship-list": {
+            "relationship": [
+              {
+                "related-to": "generic-vnf",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                    "relationship-key": "generic-vnf.vnf-id"
+                  }
+                ],
+                "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
+                "relationship-label": "tosca.relationships.HostedOn",
+                "related-to-property": [
+                  {
+                    "property-key": "generic-vnf.vnf-name",
+                    "property-value": "Firewall-1"
+                  }
+                ]
+              },
+              {
                 "related-to": "vserver",
-                "relationship-data": [{
+                "relationship-data": [
+                  {
                     "relationship-value": "CloudOwner",
                     "relationship-key": "cloud-region.cloud-owner"
-                },
-                {
-                    "relationship-value": "RegionOne",
+                  },
+                  {
+                    "relationship-value": "PombaRegion001",
                     "relationship-key": "cloud-region.cloud-region-id"
-                },
-                {
-                    "relationship-value": "b49b830686654191bb1e952a74b014ad",
+                  },
+                  {
+                    "relationship-value": "PombaRegion001-tenant-001",
                     "relationship-key": "tenant.tenant-id"
-                },
-                {
-                    "relationship-value": "25fb07ab-0478-465e-a021-6384ac299671",
+                  },
+                  {
+                    "relationship-value": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
                     "relationship-key": "vserver.vserver-id"
-                }],
-                "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/tenants/tenant/b49b830686654191bb1e952a74b014ad/vservers/vserver/b494cd6e-b9f3-45e0-afe7-e1d1a5f5d74b"
-            }]
-        },
-        "vnf-id": "6700c313-fbb7-4cf9-ac70-0293ec56df69",
-        "nf-type": "",
-        "l3-networks": [{
-            "network-role": "HNPORTALOAM.OAM",
-            "network-technology": "ovs",
-            "service-id": "V7611HNP-1222-48f1-8085-94aef0c6ef3d51870",
-            "network-id": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
-            "neutron-network-id": "491c7cef-a3f4-4990-883e-b0af397466d0",
-            "is-external-network": false,
-            "is-bound-to-vpn": false,
-            "is-provider-network": false,
-            "network-type": "OVS_PROVIDER_VLAN",
-            "orchestration-status": "active",
-            "network-role-instance": 0,
-            "resource-version": "1526558298075",
-            "network-name": "HNPORTALOAM.OAM",
-            "is-shared-network": false
-        }],
-        "prov-status": "PREPROV",
-        "vnf-type": "vFW-vSINK-service/vPKG 0",
-        "orchestration-status": "Created",
-        "nf-naming-code": "",
-        "in-maint": false,
-        "nf-function": "",
-        "model-version-id": "a5565bf4-d55a-4964-8fbc-6a7674a2e676",
-        "vservers": [{
+                  }
+                ],
+                "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/PombaRegion001/tenants/tenant/PombaRegion001-tenant-001/vservers/vserver/a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+                "relationship-label": "tosca.relationships.HostedOn",
+                "related-to-property": [
+                  {
+                    "property-key": "vserver.vserver-name",
+                    "property-value": "Firewall-001"
+                  }
+                ]
+              }
+            ]
+          },
+          "fqdn": "fqdn-1",
+          "serial-number": "serial-number",
+          "ipaddress-v6-oam": "ipaddress-v6-oam-1",
+          "pserver-id": "PombaDemoCust_001-pserver-id-001",
+          "prov-status": "PREPROV",
+          "ipv4-oam-address": "ipv4-oam-address-1",
+          "ipaddress-v4-loopback-0": "ipaddress-v4-loopback-0-1",
+          "equip-model": "equip-model-1",
+          "in-maint": true,
+          "p-interfaces": {
+            "p-interface": [
+              {
+                "interface-role": "interface-role-pserver1-2",
+                "speed-value": "1000",
+                "in-maint": true,
+                "equipment-identifier": "equipment-identifier-pserver1-2",
+                "interface-type": "interface-type-pserver1-2",
+                "port-description": "port-description-pserver1-2",
+                "resource-version": "1550159857509",
+                "inv-status": "inv-status-pserver1-2",
+                "interface-name": "interface-name-pserver1-2",
+                "speed-units": "Mbps",
+                "mac-addresss": "mac-addresss-pserver1-2",
+                "prov-status": "prov-status-pserver1-2"
+              },
+              {
+                "interface-role": "interface-role-pserver1-1",
+                "speed-value": "100",
+                "in-maint": true,
+                "equipment-identifier": "equipment-identifier-pnf1-1",
+                "interface-type": "interface-type-pserver1-1",
+                "port-description": "port-description-pserver1-1",
+                "resource-version": "1550159857500",
+                "inv-status": "inv-status-pserver1-1",
+                "interface-name": "interface-name-pserver1-1",
+                "speed-units": "Mbps",
+                "mac-addresss": "mac-addresss-pserver1-1",
+                "prov-status": "prov-status-pserver1-1"
+              }
+            ]
+          },
+          "resource-version": "1550159857236",
+          "ram-in-megabytes": 64000,
+          "ipaddress-v4-aim": "ipaddress-v4-aim-1",
+          "management-option": "management-option-1",
+          "internet-topology": "internet-topology-1",
+          "host-profile": "host-profile-1"
+        }
+      ],
+      "prov-status": "PREPROV",
+      "vnf-type": "vFW-vSINK-service/vFWvSINK 0",
+      "orchestration-status": "Created",
+      "nf-naming-code": "nf-naming-code1",
+      "in-maint": false,
+      "nf-function": "nf-function1",
+      "model-version-id": "pomba-demo-sdc-model-001-version001",
+      "vservers": [
+        {
+          "relationship-list": {
+            "relationship": [
+              {
+                "related-to": "generic-vnf",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                    "relationship-key": "generic-vnf.vnf-id"
+                  }
+                ],
+                "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
+                "relationship-label": "tosca.relationships.HostedOn",
+                "related-to-property": [
+                  {
+                    "property-key": "generic-vnf.vnf-name",
+                    "property-value": "Firewall-1"
+                  }
+                ]
+              },
+              {
+                "related-to": "image",
+                "relationship-data": [
+                  {
+                    "relationship-value": "CloudOwner",
+                    "relationship-key": "cloud-region.cloud-owner"
+                  },
+                  {
+                    "relationship-value": "PombaRegion001",
+                    "relationship-key": "cloud-region.cloud-region-id"
+                  },
+                  {
+                    "relationship-value": "PombaRegion001-image001",
+                    "relationship-key": "image.image-id"
+                  }
+                ],
+                "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/PombaRegion001/images/image/PombaRegion001-image001",
+                "relationship-label": "org.onap.relationships.inventory.Uses",
+                "related-to-property": [
+                  {
+                    "property-key": "image.image-name",
+                    "property-value": "unknown"
+                  }
+                ]
+              },
+              {
+                "related-to": "flavor",
+                "relationship-data": [
+                  {
+                    "relationship-value": "CloudOwner",
+                    "relationship-key": "cloud-region.cloud-owner"
+                  },
+                  {
+                    "relationship-value": "PombaRegion001",
+                    "relationship-key": "cloud-region.cloud-region-id"
+                  },
+                  {
+                    "relationship-value": "PombaRegion001-flavor001",
+                    "relationship-key": "flavor.flavor-id"
+                  }
+                ],
+                "related-link": "/aai/v13/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/PombaRegion001/flavors/flavor/PombaRegion001-flavor001",
+                "relationship-label": "org.onap.relationships.inventory.Uses",
+                "related-to-property": [
+                  {
+                    "property-key": "flavor.flavor-name",
+                    "property-value": "m1.medium"
+                  }
+                ]
+              },
+              {
+                "related-to": "pserver",
+                "relationship-data": [
+                  {
+                    "relationship-value": "PombaDemoCust_001-pserver-id-001",
+                    "relationship-key": "pserver.hostname"
+                  }
+                ],
+                "related-link": "/aai/v13/cloud-infrastructure/pservers/pserver/PombaDemoCust_001-pserver-id-001",
+                "relationship-label": "tosca.relationships.HostedOn",
+                "related-to-property": [
+                  {
+                    "property-key": "pserver.pserver-name2",
+                    "property-value": "PombaDemoCust_001-pserver-id-001-name2"
+                  }
+                ]
+              }
+            ]
+          },
+          "in-maint": false,
+          "resource-version": "1550159848062",
+          "vserver-name": "Firewall-001",
+          "prov-status": "ACTIVE",
+          "vserver-id": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+          "vserver-name2": "Firewall-001",
+          "vserver-selflink": "http://10.12.25.2:8774/v2.1/a6a609e3-967a-48bd-8ce5-41c7ff5c19b9/servers/a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+          "is-closed-loop-disabled": false
+        }
+      ],
+      "resource-version": "1550159851567",
+      "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+      "vf-modules": {
+        "vf-module": [
+          {
+            "vf-module-name": "PombaDemoCust_001-VNF-id-001-VfModule001-name",
             "relationship-list": {
-                "relationship": [{
-                    "related-to": "generic-vnf",
-                    "relationship-data": [{
-                        "relationship-value": "8a9ddb25-2e79-449c-a40d-5011bac0da39",
-                        "relationship-key": "generic-vnf.vnf-id"
-                    }],
-                    "related-link": "/aai/v11/network/generic-vnfs/generic-vnf/8a9ddb25-2e79-449c-a40d-5011bac0da39",
-                    "related-to-property": [{
-                        "property-key": "generic-vnf.vnf-name",
-                        "property-value": "Firewall-1"
-                    }]
+              "relationship": [
+                {
+                  "related-to": "l3-network",
+                  "relationship-data": [
+                    {
+                      "relationship-value": "2ea02809-7279-4b5e-931a-62b231615497",
+                      "relationship-key": "l3-network.network-id"
+                    }
+                  ],
+                  "related-link": "/aai/v13/network/l3-networks/l3-network/2ea02809-7279-4b5e-931a-62b231615497",
+                  "relationship-label": "org.onap.relationships.inventory.DependsOn",
+                  "related-to-property": [
+                    {
+                      "property-key": "l3-network.network-name",
+                      "property-value": "NET_1105"
+                    }
+                  ]
                 },
                 {
-                    "related-to": "flavor",
-                    "relationship-data": [{
-                        "relationship-value": "CloudOwner",
-                        "relationship-key": "cloud-region.cloud-owner"
-                    },
+                  "related-to": "l3-network",
+                  "relationship-data": [
                     {
-                        "relationship-value": "RegionOne",
-                        "relationship-key": "cloud-region.cloud-region-id"
-                    },
+                      "relationship-value": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+                      "relationship-key": "l3-network.network-id"
+                    }
+                  ],
+                  "related-link": "/aai/v13/network/l3-networks/l3-network/01e8d84a-17a6-47b5-a167-6a45d1d56603",
+                  "relationship-label": "org.onap.relationships.inventory.DependsOn",
+                  "related-to-property": [
                     {
-                        "relationship-value": "764efb04-5a46-4806-a766-2bdd24559f39",
-                        "relationship-key": "flavor.flavor-id"
-                    }],
-                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/flavors/flavor/764efb04-5a46-4806-a766-2bdd24559f39",
-                    "related-to-property": [{
-                        "property-key": "flavor.flavor-name",
-                        "property-value": "m1.medium"
-                    }]
-                },
-                {
-                    "related-to": "image",
-                    "relationship-data": [{
-                        "relationship-value": "CloudOwner",
-                        "relationship-key": "cloud-region.cloud-owner"
-                    },
-                    {
-                        "relationship-value": "RegionOne",
-                        "relationship-key": "cloud-region.cloud-region-id"
-                    },
-                    {
-                        "relationship-value": "42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
-                        "relationship-key": "image.image-id"
-                    }],
-                    "related-link": "/aai/v11/cloud-infrastructure/cloud-regions/cloud-region/CloudOwner/RegionOne/images/image/42fd42f8-cf81-4f4c-a552-d4b124f83b0b",
-                    "related-to-property": [{
-                        "property-key": "image.image-name",
-                        "property-value": "unknown"
-                    }]
-                }]
+                      "property-key": "l3-network.network-name",
+                      "property-value": "NET_1106"
+                    }
+                  ]
+                }
+              ]
             },
-            "in-maint": false,
-            "resource-version": "1528481820321",
-            "vserver-name": "Firewall-0",
-            "prov-status": "ACTIVE",
-            "vserver-id": "b494cd6e-b9f3-45e0-afe7-e1d1a5f5d74b",
-            "vserver-name2": "Firewall-0",
-            "vserver-selflink": "http://10.12.25.2:8774/v2.1/b49b830686654191bb1e952a74b014ad/servers/25fb07ab-0478-465e-a021-6384ac299671",
-            "is-closed-loop-disabled": false
-        }],
-        "resource-version": "1527638176989",
-        "model-customization-id": "4cc1e555-361f-4d69-ae21-9f371ea9f40c",
-        "vf-modules": {
-            "vf-module": [{
-                "vf-module-name": "vPacketGen-VNF-1128-3",
-                "model-version-id": "d6d4a002-a584-4640-bdce-a50e9bce552b",
-                "heat-stack-id": "vPacketGen-VNF-1128-3/df34f5d6-ed39-4184-b785-51c37cfa8ac2",
-                "resource-version": "1527641224058",
-                "model-customization-id": "49c8f521-e5ee-4095-bb87-4090166e49ab",
-                "is-base-vf-module": true,
-                "vf-module-id": "0f792076-f5b3-4251-9fcc-c4d5afae0eb1",
-                "module-index": 0,
-                "model-invariant-id": "2a8844a8-f5f7-46dd-a732-472c6972a28e",
-                "orchestration-status": "active"
-            }]
-        },
-        "vserver": [{
-            "vserver-name": "Firewall-1",
-            "vserver-id": "25fb07ab-0478-465e-a021-6384ac299672",
-            "model-invariant-id": "0c5a20de-87ad-442c-9190-f38ab0a6bb7f"
-        }],
-        "model-invariant-id": "99f1fd3f-845c-48f5-a0ba-11fbde6ae557",
-        "vnf-name": "PacketGenerator-2",
-        "is-closed-loop-disabled": false
-    }],
-    "model-invariant-id": "0c5a20de-87ad-442c-9190-f38ab0a6bb7f",
-    "service-instance-name": "Firewall1"
+            "l3-networks": [
+              {
+                "network-role": "network-role-1",
+                "network-technology": "network-technology-1",
+                "relationship-list": {
+                  "relationship": [
+                    {
+                      "related-to": "generic-vnf",
+                      "relationship-data": [
+                        {
+                          "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                          "relationship-key": "generic-vnf.vnf-id"
+                        }
+                      ],
+                      "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
+                      "relationship-label": "org.onap.relationships.inventory.Uses",
+                      "related-to-property": [
+                        {
+                          "property-key": "generic-vnf.vnf-name",
+                          "property-value": "Firewall-1"
+                        }
+                      ]
+                    },
+                    {
+                      "related-to": "service-instance",
+                      "relationship-data": [
+                        {
+                          "relationship-value": "PombaDemoCust_001",
+                          "relationship-key": "customer.global-customer-id"
+                        },
+                        {
+                          "relationship-value": "SDN_ETHERNET_INTERNET",
+                          "relationship-key": "service-subscription.service-type"
+                        },
+                        {
+                          "relationship-value": "PombaDemoCust_001-ServiceInst-001",
+                          "relationship-key": "service-instance.service-instance-id"
+                        }
+                      ],
+                      "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN_ETHERNET_INTERNET/service-instances/service-instance/PombaDemoCust_001-ServiceInst-001",
+                      "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+                      "related-to-property": [
+                        {
+                          "property-key": "service-instance.service-instance-name",
+                          "property-value": "PombaDemoCust_001-ServiceInst-001-name"
+                        }
+                      ]
+                    },
+                    {
+                      "related-to": "vf-module",
+                      "relationship-data": [
+                        {
+                          "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                          "relationship-key": "generic-vnf.vnf-id"
+                        },
+                        {
+                          "relationship-value": "PombaDemoCust_001-VNF-id-001-VfModule001",
+                          "relationship-key": "vf-module.vf-module-id"
+                        }
+                      ],
+                      "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001/vf-modules/vf-module/PombaDemoCust_001-VNF-id-001-VfModule001",
+                      "relationship-label": "org.onap.relationships.inventory.DependsOn"
+                    }
+                  ]
+                },
+                "network-id": "2ea02809-7279-4b5e-931a-62b231615497",
+                "is-external-network": false,
+                "is-bound-to-vpn": false,
+                "is-provider-network": false,
+                "network-type": "network-type-1",
+                "model-version-id": "pomba-demo-sdc-model-001-version001",
+                "resource-version": "1550159843536",
+                "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+                "network-name": "NET_1105",
+                "is-shared-network": true,
+                "model-invariant-id": "pomba-demo-sdc-model-001"
+              },
+              {
+                "network-role": "network-role-1",
+                "network-technology": "network-technology-1",
+                "relationship-list": {
+                  "relationship": [
+                    {
+                      "related-to": "generic-vnf",
+                      "relationship-data": [
+                        {
+                          "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                          "relationship-key": "generic-vnf.vnf-id"
+                        }
+                      ],
+                      "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001",
+                      "relationship-label": "org.onap.relationships.inventory.Uses",
+                      "related-to-property": [
+                        {
+                          "property-key": "generic-vnf.vnf-name",
+                          "property-value": "Firewall-1"
+                        }
+                      ]
+                    },
+                    {
+                      "related-to": "service-instance",
+                      "relationship-data": [
+                        {
+                          "relationship-value": "PombaDemoCust_001",
+                          "relationship-key": "customer.global-customer-id"
+                        },
+                        {
+                          "relationship-value": "SDN_ETHERNET_INTERNET",
+                          "relationship-key": "service-subscription.service-type"
+                        },
+                        {
+                          "relationship-value": "PombaDemoCust_001-ServiceInst-001",
+                          "relationship-key": "service-instance.service-instance-id"
+                        }
+                      ],
+                      "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN_ETHERNET_INTERNET/service-instances/service-instance/PombaDemoCust_001-ServiceInst-001",
+                      "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+                      "related-to-property": [
+                        {
+                          "property-key": "service-instance.service-instance-name",
+                          "property-value": "PombaDemoCust_001-ServiceInst-001-name"
+                        }
+                      ]
+                    },
+                    {
+                      "related-to": "vf-module",
+                      "relationship-data": [
+                        {
+                          "relationship-value": "PombaDemoCust_001-VNF-id-001",
+                          "relationship-key": "generic-vnf.vnf-id"
+                        },
+                        {
+                          "relationship-value": "PombaDemoCust_001-VNF-id-001-VfModule001",
+                          "relationship-key": "vf-module.vf-module-id"
+                        }
+                      ],
+                      "related-link": "/aai/v13/network/generic-vnfs/generic-vnf/PombaDemoCust_001-VNF-id-001/vf-modules/vf-module/PombaDemoCust_001-VNF-id-001-VfModule001",
+                      "relationship-label": "org.onap.relationships.inventory.DependsOn"
+                    }
+                  ]
+                },
+                "network-id": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+                "is-external-network": false,
+                "is-bound-to-vpn": false,
+                "is-provider-network": false,
+                "network-type": "network-type-1",
+                "model-version-id": "pomba-demo-sdc-model-001-version001",
+                "resource-version": "1550159844639",
+                "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+                "network-name": "NET_1106",
+                "is-shared-network": true,
+                "model-invariant-id": "pomba-demo-sdc-model-001"
+              }
+            ],
+            "module-index": 0,
+            "orchestration-status": "Active",
+            "automated-assignment": true,
+            "model-version-id": "pomba-demo-sdc-model-001-version001",
+            "heat-stack-id": "HeatStackId-001",
+            "resource-version": "1550159851871",
+            "model-customization-id": "3b822416-475d-4e1c-aac3-2544b0a0fdfc",
+            "is-base-vf-module": true,
+            "vf-module-id": "PombaDemoCust_001-VNF-id-001-VfModule001",
+            "model-invariant-id": "pomba-demo-sdc-model-001"
+          }
+        ]
+      },
+      "model-invariant-id": "pomba-demo-sdc-model-001",
+      "vnf-name": "Firewall-1",
+      "is-closed-loop-disabled": false
+    }
+  ],
+  "model-invariant-id": "pomba-demo-sdc-model-001",
+  "service-instance-name": "PombaDemoCust_001-ServiceInst-001-name",
+  "pnfs": [
+    {
+      "ipaddress-v4-oam": "ipaddress-v4-oam-2",
+      "nf-role": "nf-role-2",
+      "pnf-name2-source": "pnf2-name2-source-1",
+      "equip-type": "equip-type-2",
+      "relationship-list": {
+        "relationship": [
+          {
+            "related-to": "service-instance",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001",
+                "relationship-key": "customer.global-customer-id"
+              },
+              {
+                "relationship-value": "SDN_ETHERNET_INTERNET",
+                "relationship-key": "service-subscription.service-type"
+              },
+              {
+                "relationship-value": "PombaDemoCust_001-ServiceInst-001",
+                "relationship-key": "service-instance.service-instance-id"
+              }
+            ],
+            "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN_ETHERNET_INTERNET/service-instances/service-instance/PombaDemoCust_001-ServiceInst-001",
+            "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+            "related-to-property": [
+              {
+                "property-key": "service-instance.service-instance-name",
+                "property-value": "PombaDemoCust_001-ServiceInst-001-name"
+              }
+            ]
+          }
+        ]
+      },
+      "equip-vendor": "equip-vendor-2",
+      "serial-number": "serial-number-2",
+      "ipaddress-v6-oam": "ipaddress-v6-oam-2",
+      "frame-id": "frame-id-02",
+      "prov-status": "PROV",
+      "ipaddress-v4-loopback-0": "ipaddress-v4-loopback-0-2",
+      "pnf-name2": "PombaDemoCust_001-PNF2-id-001-name2",
+      "equip-model": "equip-model-2",
+      "in-maint": false,
+      "model-version-id": "pomba-demo-sdc-model-001-version001",
+      "p-interfaces": {
+        "p-interface": [
+          {
+            "interface-role": "interface-role-pnf2-1",
+            "speed-value": "100",
+            "in-maint": true,
+            "equipment-identifier": "equipment-identifier-pnf2-1",
+            "interface-type": "interface-type-pnf2-1",
+            "port-description": "port-description-pnf2-1",
+            "resource-version": "1550159856100",
+            "inv-status": "inv-status-pnf2-1",
+            "interface-name": "interface-name-pnf2-1",
+            "speed-units": "Mbps",
+            "mac-addresss": "mac-addresss-pnf2-1",
+            "prov-status": "prov-status-pnf2-1"
+          },
+          {
+            "interface-role": "interface-role-pnf2-2",
+            "speed-value": "1000",
+            "in-maint": true,
+            "equipment-identifier": "equipment-identifier-pnf2-2",
+            "interface-type": "interface-type-pnf2-2",
+            "port-description": "port-description-pnf2-2",
+            "resource-version": "1550159856162",
+            "inv-status": "inv-status-pnf2-2",
+            "interface-name": "interface-name-pnf2-2",
+            "speed-units": "Mbps",
+            "mac-addresss": "mac-addresss-pnf2-2",
+            "prov-status": "prov-status-pnf2-2"
+          }
+        ]
+      },
+      "inv-status": "inv-status-2",
+      "resource-version": "1550159855893",
+      "sw-version": "sw-version-2",
+      "pnf-id": "PombaDemoCust_001-PNF2-id-001-id",
+      "management-option": "management-option-2",
+      "pnf-name": "PombaDemoCust_001-PNF2-id-001",
+      "model-invariant-id": "pomba-demo-sdc-model-001"
+    },
+    {
+      "ipaddress-v4-oam": "ipaddress-v4-oam-1",
+      "nf-role": "nf-role-1",
+      "pnf-name2-source": "pnf-name2-source-1",
+      "equip-type": "equip-type-1",
+      "relationship-list": {
+        "relationship": [
+          {
+            "related-to": "service-instance",
+            "relationship-data": [
+              {
+                "relationship-value": "PombaDemoCust_001",
+                "relationship-key": "customer.global-customer-id"
+              },
+              {
+                "relationship-value": "SDN_ETHERNET_INTERNET",
+                "relationship-key": "service-subscription.service-type"
+              },
+              {
+                "relationship-value": "PombaDemoCust_001-ServiceInst-001",
+                "relationship-key": "service-instance.service-instance-id"
+              }
+            ],
+            "related-link": "/aai/v13/business/customers/customer/PombaDemoCust_001/service-subscriptions/service-subscription/SDN_ETHERNET_INTERNET/service-instances/service-instance/PombaDemoCust_001-ServiceInst-001",
+            "relationship-label": "org.onap.relationships.inventory.ComposedOf",
+            "related-to-property": [
+              {
+                "property-key": "service-instance.service-instance-name",
+                "property-value": "PombaDemoCust_001-ServiceInst-001-name"
+              }
+            ]
+          }
+        ]
+      },
+      "equip-vendor": "equip-vendor-1",
+      "serial-number": "serial-number-1",
+      "ipaddress-v6-oam": "ipaddress-v6-oam-1",
+      "frame-id": "frame-id-01",
+      "prov-status": "PROV",
+      "ipaddress-v4-loopback-0": "ipaddress-v4-loopback-0-1",
+      "pnf-name2": "PombaDemoCust_001-PNF-id-001-name2",
+      "equip-model": "equip-model-1",
+      "in-maint": false,
+      "model-version-id": "pomba-demo-sdc-model-001-version001",
+      "p-interfaces": {
+        "p-interface": [
+          {
+            "interface-role": "interface-role-pnf1-2",
+            "speed-value": "1000",
+            "in-maint": true,
+            "equipment-identifier": "equipment-identifier-pnf1-2",
+            "interface-type": "interface-type-pnf1-2",
+            "port-description": "port-description-pnf1-2",
+            "resource-version": "1550159854124",
+            "inv-status": "inv-status-pnf1-2",
+            "interface-name": "interface-name-pnf1-2",
+            "speed-units": "Mbps",
+            "mac-addresss": "mac-addresss-pnf1-2",
+            "prov-status": "prov-status-pnf1-2"
+          },
+          {
+            "interface-role": "interface-role-pnf1-1",
+            "speed-value": "100",
+            "in-maint": true,
+            "equipment-identifier": "equipment-identifier-pnf1-1",
+            "interface-type": "interface-type-pnf1-1",
+            "port-description": "port-description-pnf1-1",
+            "resource-version": "1550159854074",
+            "inv-status": "inv-status-pnf1-1",
+            "interface-name": "interface-name-pnf1-1",
+            "speed-units": "Mbps",
+            "mac-addresss": "mac-addresss-pnf1-1",
+            "prov-status": "prov-status-pnf1-1"
+          }
+        ]
+      },
+      "inv-status": "inv-status-1",
+      "resource-version": "1550159853942",
+      "sw-version": "sw-version-1",
+      "pnf-id": "PombaDemoCust_001-PNF-id-001-id",
+      "management-option": "management-option-1",
+      "pnf-name": "PombaDemoCust_001-PNF-id-001",
+      "model-invariant-id": "pomba-demo-sdc-model-001"
+    }
+  ]
 }

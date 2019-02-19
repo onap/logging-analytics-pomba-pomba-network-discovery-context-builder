@@ -153,6 +153,12 @@ public class NetworkDiscoveryContextBuilderTest {
                 .any(WireMock.urlPathEqualTo("/network-discovery/v1/network/resource"))
                 .withQueryParam("resourceType", WireMock.equalTo("l3-network")).willReturn(okJson(l3networkPayload)));
 
+        String pInterfacePayload = readFully(
+                ClassLoader.getSystemResourceAsStream("junit/networkDiscoveryResponsePinterface.json"));
+        networkDiscoveryMicroServiceRule.stubFor(WireMock
+                .any(WireMock.urlPathEqualTo("/network-discovery/v1/network/resource"))
+                .withQueryParam("resourceType", WireMock.equalTo("port")).willReturn(okJson(pInterfacePayload)));
+
         Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
                 null, null, serviceInstanceId, null, null);
 
@@ -167,7 +173,7 @@ public class NetworkDiscoveryContextBuilderTest {
         assertTrue(modelContext.getVnfs().get(0).getVfModules().get(0).getVms().size() > 0);
 
     }
-    
+
     @Test
     public void testVerifyGetContextNdResourceNotFound() throws Exception {
 
@@ -180,13 +186,13 @@ public class NetworkDiscoveryContextBuilderTest {
                 null, null, serviceInstanceId, null, null);
 
         assertEquals(Status.OK.getStatusCode(), response.getStatus());
-        
+
         Gson gson = new Gson();
         ModelContext modelContext = gson.fromJson((String)response.getEntity(), ModelContext.class);
         assertTrue(modelContext.getVnfs().size() > 0);
         assertTrue(modelContext.getVnfs().get(0).getVfModules().size() > 0);
         assertTrue(modelContext.getVnfs().get(0).getVfModules().get(0).getVms().size() > 0);
-        
+
     }
 
     @Test
@@ -198,7 +204,7 @@ public class NetworkDiscoveryContextBuilderTest {
         Response response = this.restService.getContext(httpServletRequest, authorization, partnerName, transactionId,
                 null, null, serviceInstanceId, null, null);
 
-        assertEquals(Status.NOT_FOUND.getStatusCode(), response.getStatus());        
+        assertEquals(Status.NOT_FOUND.getStatusCode(), response.getStatus());
     }
 
     @Test
