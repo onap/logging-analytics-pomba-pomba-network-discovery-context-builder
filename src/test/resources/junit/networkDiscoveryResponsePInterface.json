@@ -1,0 +1,35 @@
+{
+  "requestId": "2131_1",
+  "code": 200,
+  "message": "OK",
+  "ackFinalIndicator": true,
+  "resources": [
+    {
+      "id": "25fb07ab-0478-465e-a021-6384ac299671",
+      "name": "p-interface-name",
+      "type": "vserver",
+      "dataQuality": {
+        "status": "ok",
+        "errorText": null
+      },
+      "attributeList": [
+        {
+          "name": "mac_address",
+          "value": "127.0.0.1",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+          "name": "description",
+          "value": "norm_bouygues",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        }
+      ]
+    }
+  ]
+}

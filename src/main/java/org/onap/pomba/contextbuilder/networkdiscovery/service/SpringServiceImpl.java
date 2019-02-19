@@ -21,7 +21,9 @@ package org.onap.pomba.contextbuilder.networkdiscovery.service;
 import com.bazaarvoice.jolt.Chainr;
 import com.bazaarvoice.jolt.JsonUtils;
 import com.google.gson.Gson;
-
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,7 +33,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.HttpHeaders;
@@ -39,11 +40,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.Response.Status.Family;
-
 import org.onap.aai.restclient.client.Headers;
 import org.onap.pomba.common.datatypes.DataQuality;
 import org.onap.pomba.common.datatypes.ModelContext;
 import org.onap.pomba.common.datatypes.Network;
+import org.onap.pomba.common.datatypes.PInterface;
+import org.onap.pomba.common.datatypes.PNF;
+import org.onap.pomba.common.datatypes.Pserver;
 import org.onap.pomba.common.datatypes.VFModule;
 import org.onap.pomba.common.datatypes.VM;
 import org.onap.pomba.common.datatypes.VNF;
@@ -64,6 +67,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SpringServiceImpl implements SpringService {
     private static final String ND_TYPE_VSERVER = "vserver";
     private static final String ND_TYPE_L3_NETWORK = "l3-network";
+    private static final String ND_TYPE_P_INTERFACE = "p-interface";
     private static Logger log = LoggerFactory.getLogger(RestService.class);
 
     public static final String APP_NAME = "NetworkDiscoveryContextBuilder";
@@ -135,6 +139,7 @@ public class SpringServiceImpl implements SpringService {
         validateBasicAuth(authorization);
         String sdReply = getServiceDeomposition(serviceInstanceId, partnerName, requestId);
         ModelContext networkDiscoveryCtx = createModelContextFromSdResonse(sdReply);
+        mapPservertoVmModelContext(networkDiscoveryCtx, sdReply);
         NdResources ndResources = createNdResourcesFromSdResonse(sdReply);
         sendNetworkDiscoveryRequest(networkDiscoveryCtx, ndResources, requestId, partnerName);
         return networkDiscoveryCtx;
@@ -166,7 +171,7 @@ public class SpringServiceImpl implements SpringService {
         if (serviceInstanceId == null) {
             return null;
         }
-        
+
         String urlStr = serviceDecompositionBaseUrl + "?serviceInstanceId=" + serviceInstanceId;
 
         log.info("Querying Service Decomposition for service instance {} at url {}", serviceInstanceId, urlStr);
@@ -212,12 +217,24 @@ public class SpringServiceImpl implements SpringService {
 
             for (VFModule vfModule : vnf.getVfModules()) {
                 for (VM vm : vfModule.getVms()) {
+                    Pserver pserver = vm.getPServer();
+                    if (null != pserver) {
+                        for (PInterface pInterface : pserver.getPInterfaceList()) {
+                            updatePInterface(resourceMap, pInterface);
+                        }
+                    }
                     updateVmInstance(resourceMap, vm);
                 }
 
                 for (Network network : vfModule.getNetworks()) {
                     updateNetworkInstance(resourceMap, network);
                 }
+            }
+        }
+
+        for (PNF pnf : networkDiscoveryCtx.getPnfs()) {
+            for (PInterface pInterface : pnf.getPInterfaceList()) {
+                updatePInterface(resourceMap, pInterface);
             }
         }
     }
@@ -246,12 +263,25 @@ public class SpringServiceImpl implements SpringService {
         network.setAttributes(ndNetwork.getAttributes());
     }
 
+    private void updatePInterface(Map<String, String> resourceMap, PInterface pInterface) {
+        String resources = resourceMap.get(pInterface.getUuid());
+        String resultJson = TransformationUtil.transform(resources, ND_TYPE_P_INTERFACE);
+
+        // copy the results into the Network class:
+        Gson gson = new Gson();
+        PInterface ndpInterface = gson.fromJson(resultJson, PInterface.class);
+        pInterface.setName(ndpInterface.getName());
+        pInterface.setDataQuality(ndpInterface.getDataQuality());
+        pInterface.setAttributes(ndpInterface.getAttributes());
+    }
+
+
     /* Return list of requestIds sent to network-discovery microService. */
     private void sendNetworkDiscoveryRequest(ModelContext networkDiscoveryCtx, NdResources ndResources,
             String parentRequestId, String partnerName) throws DiscoveryException {
-        
+
         Map<String, String> resourceMap = new HashMap<>();
-        
+
         for (NdResource ndResource : ndResources.getNdResources()) {
             try {
                 // The old_requestId is inherited from ServiceDecomposition.
@@ -267,7 +297,7 @@ public class SpringServiceImpl implements SpringService {
             } catch (Exception e) {
                 log.error("Error from Network Discovery Request - resourceId: {}, message: {}",
                         ndResource.getResourceId(), e.getMessage());
-                
+
                 // Build a fake Network Discovery error result, so it will be returned to the client:
                 Resource errorResource = new Resource();
                 errorResource.setId(ndResource.getResourceId());
@@ -275,7 +305,7 @@ public class SpringServiceImpl implements SpringService {
                 errorResource.setDataQuality(dataQuality);
                 List<Resource> resourceList = new ArrayList<>();
                 resourceList.add(errorResource);
-                NetworkDiscoveryNotification ndErrorResult = new NetworkDiscoveryNotification();           
+                NetworkDiscoveryNotification ndErrorResult = new NetworkDiscoveryNotification();
                 ndErrorResult.setResources(resourceList);
                 ndErrorResult.setCode(404);
                 Gson gson = new Gson();
@@ -321,7 +351,7 @@ public class SpringServiceImpl implements SpringService {
 
         String ndResult = response.readEntity(String.class);
         log.info("Message sent. Response ndResult: {}", ndResult);
-        return ndResult;     
+        return ndResult;
     }
 
 
@@ -383,13 +413,45 @@ public class SpringServiceImpl implements SpringService {
         return gson.fromJson(JsonUtils.toPrettyJsonString(transObject), ModelContext.class);
     }
 
+    private void mapPservertoVmModelContext(ModelContext networkDiscoveryCtx, String ndReply) {
+        List<Object> jsonSpec = JsonUtils.filepathToList("config/jolt/pserverToVmSpec.json");
+        Object jsonInput = JsonUtils.jsonToObject(ndReply);
+        Chainr chainr = Chainr.fromSpec(jsonSpec);
+        Object transObject = chainr.transform(jsonInput);
+        log.debug("Jolt transformed output: {}", JsonUtils.toJsonString(transObject));
+        Gson gson = new Gson();
+        JsonObject pserverToVmMap = gson.fromJson(JsonUtils.toPrettyJsonString(transObject), JsonObject.class);
+        if (null != pserverToVmMap) {
+            JsonArray pserverList = pserverToVmMap.getAsJsonArray("pServer");
+            for (JsonElement pserverElement : pserverList) {
+                JsonObject pserverObject = pserverElement.getAsJsonObject();
+                String vserverId = pserverObject.get("vserver-id").getAsString();
+                Pserver pserver = gson.fromJson(pserverElement, Pserver.class);
+                for (VNF vnf : networkDiscoveryCtx.getVnfs()) {
+                    if (null != vnf) {
+                        for (VFModule vfModule :  vnf.getVfModules()) {
+                            if (null != vfModule) {
+                                for (VM vm : vfModule.getVms()) {
+                                    if (vm.getUuid().equals(vserverId)) {
+                                        vm.setPServer(pserver);
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private NdResources createNdResourcesFromSdResonse(String response) {
         List<Object> jsonSpec = JsonUtils.filepathToList("config/jolt/sdToNdResourcesSpec.json");
         Object jsonInput = JsonUtils.jsonToObject(response);
         Chainr chainr = Chainr.fromSpec(jsonSpec);
         Object transObject = chainr.transform(jsonInput);
         log.debug("Jolt transformed output: {}", JsonUtils.toJsonString(transObject));
-        Gson gson = new Gson();        
+        Gson gson = new Gson();
         return gson.fromJson(JsonUtils.toPrettyJsonString(transObject), NdResources.class);
     }
 

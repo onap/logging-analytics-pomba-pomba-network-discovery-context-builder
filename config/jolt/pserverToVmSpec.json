@@ -1,0 +1,47 @@
+[
+  // Use https://jolt-demo.appspot.com/#inception to develop/test
+  // any changes to this file
+  {
+    // This section extracts pservers from generic-vnf from service-decompostion
+    // and maps them to their associated vservers (VM)
+    // to org.onap.pomba.common.datatypes.ModelContext
+    "operation": "shift",
+    "spec": {
+      "generic-vnfs": {
+        "*": {
+          "pservers": {
+            "*": {
+              "pserver-id": "pServer[&1].uuid",
+              "p-interfaces": {
+                "p-interface": {
+                  "*": {
+                    "equipment-identifier": "pServer[&4].pInterfaceList[&1].uuid"
+                  }
+                }
+              },
+              "relationship-list": {
+                "relationship": {
+                  "*": {
+                    "related-to": {
+                      "vserver": {
+                        "@(2,relationship-data)": {
+                          "*": {
+                            "relationship-key": {
+                              "vserver.vserver-id": {
+                                "@(2,relationship-value)": "pServer[&10].vserver-id"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
