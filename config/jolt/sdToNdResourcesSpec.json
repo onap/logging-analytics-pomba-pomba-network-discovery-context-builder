@@ -6,11 +6,25 @@
     // to org.onap.pomba.contextbuilder.networkdiscovery.model.NdResources
     "operation": "shift",
     "spec": {
-       "l3-networks": {
-         "*": {
+      "l3-networks": {
+        "*": {
           "network-id": {
             "@": "tempResourceId",
             "#l3-network": "tempResourceType"
+          }
+        }
+      },
+      "pnfs": {
+        "*": {
+          "p-interfaces": {
+            "p-interface": {
+              "*": {
+                "equipment-identifier": {
+                  "@": "tempResourceId",
+                  "#port": "tempResourceType"
+                }
+              }
+            }
           }
         }
       },
@@ -18,20 +32,20 @@
         "*": {
           "vservers": {
             "*": {
-              "vserver-id":  {
-                   "@": "tempResourceId",
-                   "#vserver": "tempResourceType"
-                    
+              "vserver-id": {
+                "@": "tempResourceId",
+                "#vserver": "tempResourceType"
               }
-              }},
+            }
+          },
           "vf-modules": {
             "vf-module": {
               "*": {
-                "l3-networks":  {
+                "l3-networks": {
                   "*": {
                     "network-id": {
-                    "@": "tempResourceId",
-                    "#l3-network": "tempResourceType"
+                      "@": "tempResourceId",
+                      "#l3-network": "tempResourceType"
                     }
                   }
                 }
@@ -41,11 +55,25 @@
           "l3-networks": {
             "*": {
               "network-id": {
-                 "@": "tempResourceId",
-                 "#l3-network": "tempResourceType"
+                "@": "tempResourceId",
+                "#l3-network": "tempResourceType"
               }
             }
-          } 
+          },
+          "pservers": {
+            "*": {
+              "p-interfaces": {
+                "p-interface": {
+                  "*": {
+                    "equipment-identifier": {
+                      "@": "tempResourceId",
+                      "#port": "tempResourceType"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -61,5 +89,5 @@
       }
     }
   }
-  
+
 ]
