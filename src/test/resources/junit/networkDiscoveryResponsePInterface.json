@@ -14,7 +14,15 @@
       },
       "attributeList": [
         {
-          "name": "mac_address",
+          "name": "adminStateUp",
+          "value": "true",
+          "dataQuality": {
+            "status": "ok",
+            "errorText": null
+          }
+        },
+        {
+          "name": "macAddress",
           "value": "127.0.0.1",
           "dataQuality": {
             "status": "ok",

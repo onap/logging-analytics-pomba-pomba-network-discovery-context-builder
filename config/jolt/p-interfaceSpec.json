@@ -14,7 +14,10 @@
             "*": {
               // filter the Network Discovery attributes that we want to keep, to a temporary list:
               "name": {
-                "mac_address": {
+                "adminStateUp": {
+                  "@2": "tempList[]"
+                },
+                "macAddress": {
                   "@2": "tempList[]"
                 },
                 "description": {
@@ -26,8 +29,7 @@
         }
       }
     }
-  }
-  ,
+  },
   {
     // Convert the attribute names to common model names.
     "operation": "shift",
@@ -35,15 +37,28 @@
       "tempList": {
         "*": {
           "name": {
-            "mac_address": {
-              "#macAddress": "attributeList[#4].name"
+            "adminStateUp": {
+              "#lockedBoolean": "attributeList[&3].name",
+              "@(2,value)": {
+                "true": {
+                  "#false": "attributeList[&5].value"
+                },
+                "false": {
+                  "#true": "attributeList[&5].value"
+                }
+              },
+              "@(2,dataQuality)": "attributeList[&3].dataQuality"
+            },
+            "macAddress": {
+              "#macAddress": "attributeList[&3].name",
+              "@(2,value)": "attributeList[&3].value",
+              "@(2,dataQuality)": "attributeList[&3].dataQuality"
             },
             "description": {
-              "#description": "attributeList[#4].name"
+              "#description": "attributeList[&3].name",
+              "@(2,value)": "attributeList[&3].value",
+              "@(2,dataQuality)": "attributeList[&3].dataQuality"
             }
-          },
-          "*": {
-            "@": "attributeList[#3].&"
           }
         }
       },
@@ -51,5 +66,6 @@
         "@": "&"
       }
     }
-   }
+  }
+
 ]
