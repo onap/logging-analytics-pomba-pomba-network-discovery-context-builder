@@ -1,106 +1,126 @@
 {
-  "service" : {
-    "uuid" : "PombaDemoCust_001-SerivceInst-001",
-    "dataQuality" : {
-      "status" : "ok"
+  "service": {
+    "uuid": "PombaDemoCust_001-SerivceInst-001",
+    "dataQuality": {
+      "status": "ok"
     },
-    "attributeList" : [ ]
+    "attributeList": []
   },
-  "dataQuality" : {
-    "status" : "ok"
+  "dataQuality": {
+    "status": "ok"
   },
-  "attributeList" : [ ],
-  "vnfList" : [ {
-    "dataQuality" : {
-      "status" : "ok"
-    },
-    "attributeList" : [ ],
-    "vfModuleList" : [ {
-      "maxInstances" : 0,
-      "minInstances" : 0,
-      "dataQuality" : {
-        "status" : "ok"
+  "attributeList": [],
+  "vnfList": [
+    {
+      "dataQuality": {
+        "status": "ok"
       },
-      "attributeList" : [ ],
-      "vmList" : [ {
-        "uuid" : "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
-        "dataQuality" : {
-          "status" : "ok"
-        },
-        "attributeList" : [ ],
-        "pServer" : {
-          "dataQuality" : {
-            "status" : "ok"
+      "attributeList": [],
+      "vfModuleList": [
+        {
+          "maxInstances": 0,
+          "minInstances": 0,
+          "dataQuality": {
+            "status": "ok"
           },
-          "attributeList" : [ ],
-          "pInterfaceList" : [ ]
-        },
-        "lInterfaceList" : [ ]
-      } ],
-      "networkList" : [ ]
-    } ],
-    "vnfcList" : [ ],
-    "networkList" : [ {
-      "uuid" : "2ea02809-7279-4b5e-931a-62b231615497",
-      "dataQuality" : {
-        "status" : "ok"
-      },
-      "attributeList" : [ ],
-      "networkPolicyList" : [ ]
-    }, {
-      "uuid" : "01e8d84a-17a6-47b5-a167-6a45d1d56603",
-      "dataQuality" : {
-        "status" : "ok"
-      },
-      "attributeList" : [ ],
-      "networkPolicyList" : [ ]
-    } ]
-  }, {
-    "dataQuality" : {
-      "status" : "ok"
-    },
-    "attributeList" : [ ],
-    "vfModuleList" : [ {
-      "maxInstances" : 0,
-      "minInstances" : 0,
-      "dataQuality" : {
-        "status" : "ok"
-      },
-      "attributeList" : [ ],
-      "vmList" : [ {
-        "uuid" : "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9-2",
-        "dataQuality" : {
-          "status" : "ok"
-        },
-        "attributeList" : [ ],
-        "pServer" : {
-          "dataQuality" : {
-            "status" : "ok"
+          "attributeList": [],
+          "vmList": [
+            {
+              "uuid": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9",
+              "dataQuality": {
+                "status": "ok"
+              },
+              "attributeList": [],
+              "pServer": {
+                "dataQuality": {
+                  "status": "ok"
+                },
+                "attributeList": [],
+                "pInterfaceList": []
+              },
+              "lInterfaceList": []
+            }
+          ],
+          "networkList": []
+        }
+      ],
+      "vnfcList": [],
+      "networkList": [
+        {
+          "uuid": "2ea02809-7279-4b5e-931a-62b231615497",
+          "dataQuality": {
+            "status": "ok"
           },
-          "attributeList" : [ ],
-          "pInterfaceList" : [ ]
+          "attributeList": [],
+          "networkPolicyList": []
         },
-        "lInterfaceList" : [ ]
-      } ],
-      "networkList" : [ ]
-    } ],
-    "vnfcList" : [ ],
-    "networkList" : [ {
-      "uuid" : "2ea02809-7279-4b5e-931a-62b231615497-1",
-      "dataQuality" : {
-        "status" : "ok"
+        {
+          "uuid": "01e8d84a-17a6-47b5-a167-6a45d1d56603",
+          "dataQuality": {
+            "status": "ok"
+          },
+          "attributeList": [],
+          "networkPolicyList": []
+        }
+      ],
+      "lInterfaceList": []
+    },
+    {
+      "dataQuality": {
+        "status": "ok"
       },
-      "attributeList" : [ ],
-      "networkPolicyList" : [ ]
-    }, {
-      "uuid" : "01e8d84a-17a6-47b5-a167-6a45d1d56603-1",
-      "dataQuality" : {
-        "status" : "ok"
-      },
-      "attributeList" : [ ],
-      "networkPolicyList" : [ ]
-    } ]
-  } ],
-  "pnfList" : [ ],
-  "networkList" : [ ]
+      "attributeList": [],
+      "vfModuleList": [
+        {
+          "maxInstances": 0,
+          "minInstances": 0,
+          "dataQuality": {
+            "status": "ok"
+          },
+          "attributeList": [],
+          "vmList": [
+            {
+              "uuid": "a6a609e3-967a-48bd-8ce5-41c7ff5c19b9-2",
+              "dataQuality": {
+                "status": "ok"
+              },
+              "attributeList": [],
+              "pServer": {
+                "dataQuality": {
+                  "status": "ok"
+                },
+                "attributeList": [],
+                "pInterfaceList": []
+              },
+              "lInterfaceList": []
+            }
+          ],
+          "networkList": []
+        }
+      ],
+      "vnfcList": [],
+      "networkList": [
+        {
+          "uuid": "2ea02809-7279-4b5e-931a-62b231615497-1",
+          "dataQuality": {
+            "status": "ok"
+          },
+          "attributeList": [],
+          "networkPolicyList": []
+        },
+        {
+          "uuid": "01e8d84a-17a6-47b5-a167-6a45d1d56603-1",
+          "dataQuality": {
+            "status": "ok"
+          },
+          "attributeList": [],
+          "networkPolicyList": []
+        }
+      ],
+      "lInterfaceList": []
+    }
+  ],
+  "pnfList": [],
+  "networkList": [],
+  "logicalLinkList": []
 }

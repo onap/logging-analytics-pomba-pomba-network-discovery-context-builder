@@ -32,7 +32,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicLong;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.HttpHeaders;
@@ -70,38 +69,30 @@ public class SpringServiceImpl implements SpringService {
     private static final String ND_TYPE_P_INTERFACE = "p-interface";
     private static Logger log = LoggerFactory.getLogger(RestService.class);
 
-    public static final String APP_NAME = "NetworkDiscoveryContextBuilder";
+    private static final String APP_NAME = "NetworkDiscoveryContextBuilder";
 
-    public static final String MDC_REQUEST_ID = "RequestId";
-    public static final String MDC_SERVER_FQDN = "ServerFQDN";
-    public static final String MDC_SERVICE_NAME = "ServiceName";
-    public static final String MDC_PARTNER_NAME = "PartnerName";
-    public static final String MDC_START_TIME = "StartTime";
-    public static final String MDC_SERVICE_INSTANCE_ID = "ServiceInstanceId";
-    public static final String MDC_INVOCATION_ID = "InvocationID";
-    public static final String MDC_CLIENT_ADDRESS = "ClientAddress";
-    public static final String MDC_STATUS_CODE = "StatusCode";
-    public static final String MDC_RESPONSE_CODE = "ResponseCode";
-    public static final String MDC_INSTANCE_UUID = "InstanceUUID";
+    private static final String MDC_REQUEST_ID = "RequestId";
+    private static final String MDC_SERVER_FQDN = "ServerFQDN";
+    private static final String MDC_SERVICE_NAME = "ServiceName";
+    private static final String MDC_PARTNER_NAME = "PartnerName";
+    private static final String MDC_START_TIME = "StartTime";
+    private static final String MDC_SERVICE_INSTANCE_ID = "ServiceInstanceId";
+    private static final String MDC_INVOCATION_ID = "InvocationID";
+    private static final String MDC_CLIENT_ADDRESS = "ClientAddress";
+    private static final String MDC_STATUS_CODE = "StatusCode";
+    private static final String MDC_RESPONSE_CODE = "ResponseCode";
+    private static final String MDC_INSTANCE_UUID = "InstanceUUID";
 
-    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_APP = "NetworkDiscoveryContextBuilder_TO_NetworkDiscoveryMicroService";
-    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_MSG_NAME = "MsgName";
-    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_FINDBYRESOURCEIDANDTYPE = "findbyResourceIdAndType";
-    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_URL = "CallingURL";
-    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_REQUEST_ID = "ChildRequestId";
-    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_RESOURCE_TYPE = "ResourceType";
-    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_RESOURCE_ID = "ResourceID";
-    public static final String MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS = "Status";
+    private static final String MDC_RESOURCE_TYPE = "ResourceType";
+    private static final String MDC_RESOURCE_ID = "ResourceId";
 
-    public static final String NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER = "___";
-    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_PARTNER_NAME = "X-ONAP-PartnerName";
-    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID = "X-ONAP-RequestID";
-    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_REQUEST_ID = "requestId";
-    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_TYPE = "resourceType";
-    public static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_ID = "resourceId";
+    private static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_PARTNER_NAME = "X-ONAP-PartnerName";
+    private static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID = "X-ONAP-RequestID";
+    private static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_REQUEST_ID = "requestId";
+    private static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_TYPE = "resourceType";
+    private static final String NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_RESOURCE_ID = "resourceId";
 
     private static UUID instanceUUID = UUID.randomUUID();
-    private static final AtomicLong uniqueSeq = new AtomicLong();
 
     @Autowired
     private String serviceDecompositionBaseUrl;
@@ -278,20 +269,14 @@ public class SpringServiceImpl implements SpringService {
 
     /* Return list of requestIds sent to network-discovery microService. */
     private void sendNetworkDiscoveryRequest(ModelContext networkDiscoveryCtx, NdResources ndResources,
-            String parentRequestId, String partnerName) throws DiscoveryException {
+            String requestId, String partnerName) throws DiscoveryException {
 
         Map<String, String> resourceMap = new HashMap<>();
 
         for (NdResource ndResource : ndResources.getNdResources()) {
             try {
-                // The old_requestId is inherited from ServiceDecomposition.
-                // Before we send a message to NetworkDiscoveryMicroService for each Resource,
-                // we need to generate a new request for identification, based on the old ID.
-                String requestId = parentRequestId + NETWORK_DISCOVERY_RSP_REQUESTID_SPLITTER
-                        + uniqueSeq.incrementAndGet();
-
                 String resultJson = sendNetworkDiscoveryRequestToSpecificServer(partnerName,
-                        parentRequestId, requestId, ndResource.getResourceId(), ndResource.getResourceType());
+                        requestId, requestId, ndResource.getResourceId(), ndResource.getResourceType());
 
                 resourceMap.put(ndResource.getResourceId(), resultJson);
             } catch (Exception e) {
@@ -337,18 +322,19 @@ public class SpringServiceImpl implements SpringService {
                 .header(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_PARTNER_NAME, partnerName)
                 .header(NETWORK_DISCOVERY_FIND_RESOURCE_BY_TYPE_REST_X_ONAP_REQUEST_ID, parentRequestId).get();
 
-        String status = Response.Status.fromStatusCode(response.getStatus()) + ",code:" + response.getStatus();
-
         log.info("Network Disvovery response status code: {}", response.getStatus());
 
-        MDC.put(MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_STATUS, status);
+        MDC.put(MDC_RESPONSE_CODE, String.valueOf(response.getStatus()));
+        MDC.put(MDC_STATUS_CODE, "ERROR");
 
         if (response.getStatusInfo().getFamily() != Family.SUCCESSFUL) {
+            MDC.put(MDC_STATUS_CODE, "ERROR");
             throw new DiscoveryException(
                     "Error from Network Discovery service: " + response.getStatusInfo().getReasonPhrase(),
                     Response.Status.fromStatusCode(response.getStatus()));
         }
 
+        MDC.put(MDC_STATUS_CODE, "SUCCESS");
         String ndResult = response.readEntity(String.class);
         log.info("Message sent. Response ndResult: {}", ndResult);
         return ndResult;
@@ -378,6 +364,7 @@ public class SpringServiceImpl implements SpringService {
 
     private void initMdcSendToNetworkDiscoveryMicroService(String networkDiscoveryUrl, String requestId,
             String resourceType, String resourceId, String partnerName) {
+
         String parentRequestId = MDC.get(MDC_REQUEST_ID);
         String parentServiceInstanceId = MDC.get(MDC_SERVICE_INSTANCE_ID);
         String parentPartnerName = MDC.get(MDC_PARTNER_NAME);
@@ -385,22 +372,8 @@ public class SpringServiceImpl implements SpringService {
         MDC.clear();
         initMdc(parentRequestId, parentPartnerName, parentServiceInstanceId, networkDiscoveryMicroServiceHostAndPort);
 
-        MDC.put(MDC_SERVICE_NAME, MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_APP);
-        MDC.put(MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_MSG_NAME,
-                MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_FINDBYRESOURCEIDANDTYPE);
-        MDC.put(MDC_START_TIME, new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(new Date()));
-        MDC.put(MDC_PARTNER_NAME, partnerName);
-        MDC.put(MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_URL, networkDiscoveryUrl);
-        MDC.put(MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_REQUEST_ID, requestId);
-        MDC.put(MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_RESOURCE_TYPE, resourceType);
-        MDC.put(MDC_TO_NETWORK_DISCOVERY_MICRO_SERVICE_RESOURCE_ID, resourceId);
-        try {
-            MDC.put(MDC_SERVER_FQDN, InetAddress.getLocalHost().getHostAddress());
-        } catch (Exception e) {
-            // If, for some reason we are unable to get the canonical host name,
-            // we just want to leave the field null.
-            log.info("Could not get canonical host name for {}, leaving field null", MDC_SERVER_FQDN);
-        }
+        MDC.put(MDC_RESOURCE_TYPE, resourceType);
+        MDC.put(MDC_RESOURCE_ID, resourceId);
     }
 
     private ModelContext createModelContextFromSdResonse(String response) {

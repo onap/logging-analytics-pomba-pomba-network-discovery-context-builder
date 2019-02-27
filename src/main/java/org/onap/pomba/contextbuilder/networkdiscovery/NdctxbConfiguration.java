@@ -19,12 +19,9 @@
 package org.onap.pomba.contextbuilder.networkdiscovery;
 
 import java.util.Base64;
-
 import org.eclipse.jetty.util.security.Password;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -140,8 +137,5 @@ public class NdctxbConfiguration {
                 + Password.deobfuscate(this.networkDiscoveryMicroServicePassword);
         return ("Basic " + Base64.getEncoder().encodeToString(auth.getBytes()));
     }
-
-    @Autowired
-    private Environment env;
 
 }
