@@ -20,7 +20,7 @@
                 "macAddress": {
                   "@2": "tempList[]"
                 },
-                "description": {
+                "portDescription": {
                   "@2": "tempList[]"
                 }
               }
@@ -54,8 +54,8 @@
               "@(2,value)": "attributeList[&3].value",
               "@(2,dataQuality)": "attributeList[&3].dataQuality"
             },
-            "description": {
-              "#description": "attributeList[&3].name",
+            "portDescription": {
+              "#portDescription": "attributeList[&3].name",
               "@(2,value)": "attributeList[&3].value",
               "@(2,dataQuality)": "attributeList[&3].dataQuality"
             }

@@ -30,7 +30,7 @@
           }
         },
         {
-          "name": "description",
+          "name": "portDescription",
           "value": "norm_bouygues",
           "dataQuality": {
             "status": "ok",
