@@ -116,7 +116,7 @@ limitations under the License.
         <dependency>
            <groupId>org.onap.logging-analytics.pomba</groupId>
            <artifactId>pomba-audit-common</artifactId>
-           <version>1.4.0-SNAPSHOT</version>
+           <version>1.4.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
