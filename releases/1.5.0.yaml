@@ -1,0 +1,5 @@
+---
+distribution_type: 'maven'
+version: '1.5.0'
+project: 'pomba-network-discovery-context-builder'
+log_dir: 'logging-analytics-pomba-pomba-network-discovery-context-builder-maven-stage-master/103/'
